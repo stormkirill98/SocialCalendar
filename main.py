@@ -11,5 +11,5 @@ db = client.test
 def run():
     events = ""
     for event in client['database']['events'].find({}):
-        events += str(event) + "\n"
+        events += str(event) + "<br>"
     return events
