@@ -1,8 +1,9 @@
 
-class Event:
+class Event(object):
 
-    def __init__(self, name, private, date, time, address, description):
+    def __init__(self, id, name, private, date, time, address, description):
         """Constructor"""
+        self.id = id
         self.event_name = name
         self.is_private = private  # true of false
         self.date = date  # day of event
