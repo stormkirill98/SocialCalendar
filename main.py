@@ -10,6 +10,6 @@ db = client.test
 @app.route('/')
 def run():
     events = ""
-    for doc in client['database']['events'].find({}):
-        events += doc + "\n"
+    for event in client['database']['events'].find({}):
+        events += str(event) + "\n"
     return events
