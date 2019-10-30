@@ -5,7 +5,7 @@ app.config['JSON_AS_ASCII'] = False
 
 
 @app.route('/')
-def main_page():
+def run():
     return jsonify('Привет мир')
 
 
