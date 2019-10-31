@@ -5,7 +5,7 @@ class Event:
         """Constructor"""
         self.id = id
         self.event_name = name
-        self.is_private = private  # true of false
+        self.is_private = private  # true or false
         self.date = date  # day of event
         self.time = time
         self.address = address
