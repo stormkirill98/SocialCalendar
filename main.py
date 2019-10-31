@@ -13,3 +13,6 @@ def run():
     for event in client['database']['events'].find({}):
         events += str(event) + "<br>"
     return events
+
+# uncomment for debug locale
+# app.run
