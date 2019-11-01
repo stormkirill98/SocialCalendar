@@ -21,7 +21,7 @@ def create_user():
                 "nickname " + str(randrange(100)),
                 "url " + str(randrange(100)),
                 datetime.today())
-    user_dao.save_user(user)
+    user_dao.insert_user(user)
     return user.to_json()
 
 
@@ -35,6 +35,12 @@ def get_user(user_id):
 def delete_user(user_id):
     count_deleted_user = user_dao.delete_user(user_id)
     return 'Delete ' + str(count_deleted_user) + ' users'
+
+
+@app.route('/add_event_to_user/<user_id>/<event_id>')
+def add_event_to_user(user_id, event_id):
+    user_dao.add_event(user_id, event_id)
+    return user_dao.get_user(user_id).to_json()
 
 
 # uncomment for debug locale

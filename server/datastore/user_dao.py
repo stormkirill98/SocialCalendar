@@ -6,8 +6,8 @@ from shared.entities.user import User
 users_collection = database['users']
 
 
-def save_user(user):
-    id = users_collection.insert_one(user.__dict__).inserted_id
+def insert_user(user):
+    id = users_collection.insert_one(user.to_json()).inserted_id
     user.set_id(str(id))
     return user
 
@@ -25,3 +25,7 @@ def get_user(id):
 
 def delete_user(id):
     return users_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+
+
+def add_event(user_id, event_id):
+    users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'event_id_list': event_id}})
