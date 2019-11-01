@@ -31,5 +31,8 @@ class User:
             'password': self.password,
             'nickname': self.nickname,
             'avatar_url': self.avatar_url,
-            'birthday': self.birthday
+            'birthday': self.birthday,
+            'event_id_list': self.event_id_list,
+            'friend_id_list': self.friend_id_list,
+            'chat_id_list': self.chat_id_list
         }
