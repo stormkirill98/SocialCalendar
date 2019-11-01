@@ -3,9 +3,9 @@ class User:
     friend_id_list = {}
     chat_id_list = {}
 
-    def __init__(self, login, password, nickname, avatar_url, birthday):
+    def __init__(self, login, password, nickname, avatar_url, birthday, id=""):
         """Constructor"""
-        self.id = ""
+        self.id = id
         self.login = login
         self.password = password
         self.nickname = nickname

@@ -25,5 +25,11 @@ def create_user():
     return user.to_json()
 
 
+@app.route('/get_user/<user_id>')
+def get_user(user_id):
+    user = datastore.get_user(user_id)
+    return user.to_json()
+
+
 # uncomment for debug locale
 app.run()
