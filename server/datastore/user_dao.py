@@ -19,7 +19,10 @@ def get_user(id):
                 user_json['nickname'],
                 user_json['avatar_url'],
                 user_json['birthday'],
-                str(user_json['_id']))
+                str(user_json['_id']),
+                user_json['event_id_list'],
+                user_json['friend_id_list'],
+                user_json['chat_id_list'])
     return user
 
 
