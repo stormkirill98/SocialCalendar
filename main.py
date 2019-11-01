@@ -31,5 +31,11 @@ def get_user(user_id):
     return user.to_json()
 
 
+@app.route('/delete_user/<user_id>')
+def delete_user(user_id):
+    count_deleted_user = user_dao.delete_user(user_id)
+    return 'Delete ' + str(count_deleted_user) + ' users'
+
+
 # uncomment for debug locale
 app.run()

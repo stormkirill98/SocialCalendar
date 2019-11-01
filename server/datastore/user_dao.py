@@ -12,8 +12,8 @@ def save_user(user):
     return user
 
 
-def get_user(user_id):
-    user_json = users_collection.find_one({'_id': ObjectId(user_id)})
+def get_user(id):
+    user_json = users_collection.find_one({'_id': ObjectId(id)})
     user = User(user_json['login'],
                 user_json['password'],
                 user_json['nickname'],
@@ -21,3 +21,7 @@ def get_user(user_id):
                 user_json['birthday'],
                 str(user_json['_id']))
     return user
+
+
+def delete_user(id):
+    return users_collection.delete_one({'_id': ObjectId(id)}).deleted_count
