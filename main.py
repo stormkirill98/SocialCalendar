@@ -1,18 +1,29 @@
+from datetime import datetime
+from random import randrange
+
 from flask import Flask
-from pymongo import MongoClient
+
+from server import datastore
+from shared.entities.user import User
 
 app = Flask(__name__)
-
-client = MongoClient("mongodb+srv://admin:admin@socialcalendar-kjwvs.gcp.mongodb.net/test?retryWrites=true&w=majority")
-db = client.test
 
 
 @app.route('/')
 def run():
-    events = ""
-    for event in client['database']['events'].find({}):
-        events += str(event) + "<br>"
-    return events
+    return "Hello world"
+
+
+@app.route('/create_user')
+def create_user():
+    user = User("login " + str(randrange(100)),
+                "password " + str(randrange(100)),
+                "nickname " + str(randrange(100)),
+                "url " + str(randrange(100)),
+                datetime.today())
+    datastore.save_user(user)
+    return user.to_json()
+
 
 # uncomment for debug locale
-# app.run
+app.run()
