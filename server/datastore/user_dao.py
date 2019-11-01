@@ -31,4 +31,5 @@ def delete_user(id):
 
 
 def add_event(user_id, event_id):
-    users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'event_id_list': event_id}})
+    result = users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'event_id_list': event_id}})
+    return result.modified_count

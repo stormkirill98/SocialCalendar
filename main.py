@@ -39,8 +39,8 @@ def delete_user(user_id):
 
 @app.route('/add_event_to_user/<user_id>/<event_id>')
 def add_event_to_user(user_id, event_id):
-    user_dao.add_event(user_id, event_id)
-    return user_dao.get_user(user_id).to_json()
+    modified_count = user_dao.add_event(user_id, event_id)
+    return 'Modify ' + str(modified_count) + ' users'
 
 
 # uncomment for debug locale
