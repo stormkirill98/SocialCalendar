@@ -1,9 +1,6 @@
 class User:
-    event_id_list = []
-    friend_id_list = []
-    chat_id_list = []
-
-    def __init__(self, login, password, nickname, avatar_url, birthday, id=""):
+    def __init__(self, login, password, nickname, avatar_url, birthday, id="",
+                 event_id_list=[], friend_id_list=[], chat_id_list=[]):
         """Constructor"""
         self.id = id
         self.login = login
@@ -11,6 +8,10 @@ class User:
         self.nickname = nickname
         self.avatar_url = avatar_url
         self.birthday = birthday
+
+        self.event_id_list = event_id_list
+        self.friend_id_list = friend_id_list
+        self.chat_id_list = chat_id_list
 
     def set_id(self, id):
         self.id = id
