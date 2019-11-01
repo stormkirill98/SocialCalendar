@@ -3,7 +3,7 @@ from random import randrange
 
 from flask import Flask
 
-from server import datastore
+from server.datastore import user_dao
 from shared.entities.user import User
 
 app = Flask(__name__)
@@ -21,13 +21,13 @@ def create_user():
                 "nickname " + str(randrange(100)),
                 "url " + str(randrange(100)),
                 datetime.today())
-    datastore.save_user(user)
+    user_dao.save_user(user)
     return user.to_json()
 
 
 @app.route('/get_user/<user_id>')
 def get_user(user_id):
-    user = datastore.get_user(user_id)
+    user = user_dao.get_user(user_id)
     return user.to_json()
 
 

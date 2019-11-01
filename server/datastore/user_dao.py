@@ -1,10 +1,7 @@
 from bson import ObjectId
-from pymongo import MongoClient
 
+from server.datastore.datastore import database
 from shared.entities.user import User
-
-client = MongoClient("mongodb+srv://admin:admin@socialcalendar-kjwvs.gcp.mongodb.net/test?retryWrites=true&w=majority")
-database = client.database
 
 users_collection = database['users']
 
