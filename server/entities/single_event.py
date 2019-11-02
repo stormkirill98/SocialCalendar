@@ -1,4 +1,4 @@
-from shared.entities.event import Event
+from server.entities.event import Event
 
 
 class SingleEvent(Event):

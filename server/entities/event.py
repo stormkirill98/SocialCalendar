@@ -1,4 +1,3 @@
-
 class Event:
 
     def __init__(self, id, name, private, date, time, address, description):
