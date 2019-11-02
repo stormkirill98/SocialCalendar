@@ -1,7 +1,7 @@
 from bson import ObjectId
 
 from server.datastore.datastore import database
-from shared.entities.user import User
+from server.entities.user import User
 
 users_collection = database['users']
 
