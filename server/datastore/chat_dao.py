@@ -26,6 +26,10 @@ def get_dialog(id):
                   json['msg_id_list'])
 
 
+def delete_dialog(id):
+    return dialogs_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+
+
 def save_event_chat(event_chat):
     json = event_chat.to_json()
     json.pop('id')
@@ -40,6 +44,10 @@ def get_event_chat(id):
     return EventChat(json['event_id'],
                      str(json['_id']),
                      json['msg_id_list'])
+
+
+def delete_event_chat(id):
+    return event_chats_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 
 def save_msg(msg):
