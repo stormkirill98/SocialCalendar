@@ -1,6 +1,6 @@
 class Event:
 
-    def __init__(self, id, name, private, datetime, address, description):
+    def __init__(self, name, private, datetime, address, description, id=""):
         self.id = id
         self.event_name = name
         self.is_private = private  # true or false
