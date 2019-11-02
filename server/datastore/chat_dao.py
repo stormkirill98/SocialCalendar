@@ -68,6 +68,10 @@ def get_msg(id):
                    str(json['_id']))
 
 
+def delete_msg(id):
+    return msg_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+
+
 def add_msg_to_dialog(dialog_id, msg_id):
     result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
                                            {'$push': {'msg_id_list': msg_id}})
