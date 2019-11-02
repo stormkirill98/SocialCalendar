@@ -21,7 +21,7 @@ def create_user():
                 "nickname " + str(randrange(100)),
                 "url " + str(randrange(100)),
                 datetime.today())
-    user_dao.insert_user(user)
+    user_dao.save_user(user)
     return user.to_json()
 
 
@@ -76,4 +76,4 @@ def delete_chat_from_user(user_id, chat_id):
     return 'Delete chat from ' + str(modified_count) + ' users'
 
 # uncomment for debug locale
-# app.run()
+app.run()

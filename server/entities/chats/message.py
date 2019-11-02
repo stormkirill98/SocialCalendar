@@ -7,3 +7,11 @@ class Message:
 
     def set_id(self, id):
         self.id = id
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'datetime': self.datetime,
+            'text': self.text
+        }
