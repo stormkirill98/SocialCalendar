@@ -4,3 +4,6 @@ class Message:
         self.user_id = user_id
         self.datetime = datetime
         self.text = text
+
+    def set_id(self, id):
+        self.id = id
