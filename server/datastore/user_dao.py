@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.datastore.datastore import database
+from server.datastore.datastore import database, id_is_valid
 from server.entities.user import User
 
 users_collection = database['users']
@@ -32,6 +32,9 @@ def delete_user(id):
 
 
 def is_exists(id):
+    if not id_is_valid(id):
+        return False
+
     return users_collection.find({'_id': ObjectId(id)}).count() > 0
 
 

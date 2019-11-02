@@ -6,7 +6,8 @@ def create_dialog(user_id_1, user_id_2):
     """Create and save dialog to mongoDB,
        then add this dialog to users on mongoDB"""
 
-    # TODO check that users id is validate and users already is created
+    if not user_dao.is_exists(user_id_1) or not user_dao.is_exists(user_id_2):
+        return None
 
     # create and save dialog
     dialog = Dialog(user_id_1, user_id_2)
