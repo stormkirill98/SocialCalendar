@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.datastore.datastore import database
+from server.datastore.datastore import database, id_is_valid
 from server.entities.chats.dialog import Dialog
 from server.entities.chats.event_chat import EventChat
 from server.entities.chats.message import Message
@@ -29,6 +29,13 @@ def get_dialog(id):
 
 def delete_dialog(id):
     return dialogs_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+
+
+def dialog_is_exist(id):
+    if not id_is_valid(id):
+        return False
+
+    return dialogs_collection.find({'_id': ObjectId(id)}).count() > 0
 
 
 def save_event_chat(event_chat):
