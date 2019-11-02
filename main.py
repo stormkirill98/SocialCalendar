@@ -75,5 +75,6 @@ def delete_chat_from_user(user_id, chat_id):
     modified_count = user_dao.delete_chat(user_id, chat_id)
     return 'Delete chat from ' + str(modified_count) + ' users'
 
+
 # uncomment for debug locale
 app.run()

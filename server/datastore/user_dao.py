@@ -31,6 +31,10 @@ def delete_user(id):
     return users_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 
+def is_exists(id):
+    return users_collection.find({'_id': ObjectId(id)}).count() > 0
+
+
 def add_event(user_id, event_id):
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'event_id_list': event_id}})
