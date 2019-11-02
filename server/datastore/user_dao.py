@@ -6,8 +6,10 @@ from server.entities.user import User
 users_collection = database['users']
 
 
-def insert_user(user):
-    id = users_collection.insert_one(user.to_json()).inserted_id
+def save_user(user):
+    json = user.to_json()
+    json.pop('id')
+    id = users_collection.insert_one(json).inserted_id
     user.set_id(str(id))
     return user
 
