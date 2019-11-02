@@ -1,5 +1,4 @@
 from server.datastore import chat_dao, user_dao
-from server.datastore.datastore import id_is_valid
 from server.entities.chats.dialog import Dialog
 
 
