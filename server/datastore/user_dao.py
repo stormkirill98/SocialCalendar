@@ -16,7 +16,7 @@ def save_user(user):
 
 def get_user(id):
     saved_user = users_collection.find_one({'_id': ObjectId(id)})
-    user = User(saved_user['login'],
+    return User(saved_user['login'],
                 saved_user['password'],
                 saved_user['nickname'],
                 saved_user['avatar_url'],
@@ -25,7 +25,6 @@ def get_user(id):
                 saved_user['event_id_list'],
                 saved_user['friend_id_list'],
                 saved_user['chat_id_list'])
-    return user
 
 
 def delete_user(id):
