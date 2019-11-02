@@ -13,16 +13,16 @@ def insert_user(user):
 
 
 def get_user(id):
-    user_json = users_collection.find_one({'_id': ObjectId(id)})
-    user = User(user_json['login'],
-                user_json['password'],
-                user_json['nickname'],
-                user_json['avatar_url'],
-                user_json['birthday'],
-                str(user_json['_id']),
-                user_json['event_id_list'],
-                user_json['friend_id_list'],
-                user_json['chat_id_list'])
+    saved_user = users_collection.find_one({'_id': ObjectId(id)})
+    user = User(saved_user['login'],
+                saved_user['password'],
+                saved_user['nickname'],
+                saved_user['avatar_url'],
+                saved_user['birthday'],
+                str(saved_user['_id']),
+                saved_user['event_id_list'],
+                saved_user['friend_id_list'],
+                saved_user['chat_id_list'])
     return user
 
 
@@ -32,4 +32,14 @@ def delete_user(id):
 
 def add_event(user_id, event_id):
     result = users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'event_id_list': event_id}})
+    return result.modified_count
+
+
+def add_friend(user_id, friend_id):
+    result = users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'friend_id_list': friend_id}})
+    return result.modified_count
+
+
+def add_chat(user_id, chat_id):
+    result = users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'chat_id_list': chat_id}})
     return result.modified_count

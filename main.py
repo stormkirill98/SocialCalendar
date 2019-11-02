@@ -39,8 +39,23 @@ def delete_user(user_id):
 
 @app.route('/add_event_to_user/<user_id>/<event_id>')
 def add_event_to_user(user_id, event_id):
+    # TODO check that event_id is event
     modified_count = user_dao.add_event(user_id, event_id)
-    return 'Modify ' + str(modified_count) + ' users'
+    return 'Add event to ' + str(modified_count) + ' users'
+
+
+@app.route('/add_friend_to_user/<user_id>/<friend_id>')
+def add_friend_to_user(user_id, friend_id):
+    # TODO check that friend_id is friend
+    modified_count = user_dao.add_friend(user_id, friend_id)
+    return 'Add friend to ' + str(modified_count) + ' users'
+
+
+@app.route('/add_chat_to_user/<user_id>/<chat_id>')
+def add_chat_to_user(user_id, chat_id):
+    # TODO check that friend_id is friend
+    modified_count = user_dao.add_chat(user_id, chat_id)
+    return 'Add chat to ' + str(modified_count) + ' users'
 
 
 # uncomment for debug locale
