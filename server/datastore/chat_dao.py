@@ -3,6 +3,7 @@ from bson import ObjectId
 from server.datastore.datastore import database
 from server.entities.chats.dialog import Dialog
 from server.entities.chats.event_chat import EventChat
+from server.entities.chats.message import Message
 
 event_chats_collection = database['event_chats']
 dialogs_collection = database['dialogs']
@@ -57,6 +58,14 @@ def save_msg(msg):
     id = msg_collection.insert_one(json).inserted_id
     msg.set_id(id)
     return msg
+
+
+def get_msg(id):
+    json = msg_collection.find_one({'_id': ObjectId(id)})
+    return Message(json['user_id'],
+                   json['datetime'],
+                   json['test'],
+                   str(json['_id']))
 
 
 def add_msg_to_dialog(dialog_id, msg_id):
