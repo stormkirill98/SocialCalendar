@@ -58,5 +58,23 @@ def add_chat_to_user(user_id, chat_id):
     return 'Add chat to ' + str(modified_count) + ' users'
 
 
+@app.route('/delete_event_to_user/<user_id>/<event_id>')
+def delete_event_to_user(user_id, event_id):
+    modified_count = user_dao.delete_event(user_id, event_id)
+    return 'Delete event from ' + str(modified_count) + ' users'
+
+
+@app.route('/delete_friend_to_user/<user_id>/<friend_id>')
+def delete_friend_to_user(user_id, friend_id):
+    modified_count = user_dao.delete_friend(user_id, friend_id)
+    return 'Delete friend from ' + str(modified_count) + ' users'
+
+
+@app.route('/delete_chat_to_user/<user_id>/<chat_id>')
+def delete_chat_to_user(user_id, chat_id):
+    modified_count = user_dao.delete_chat(user_id, chat_id)
+    return 'Delete chat from ' + str(modified_count) + ' users'
+
+
 # uncomment for debug locale
 app.run()

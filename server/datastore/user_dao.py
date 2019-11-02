@@ -31,15 +31,36 @@ def delete_user(id):
 
 
 def add_event(user_id, event_id):
-    result = users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'event_id_list': event_id}})
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$push': {'event_id_list': event_id}})
+    return result.modified_count
+
+
+def delete_event(user_id, event_id):
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$pull': {'event_id_list': event_id}})
     return result.modified_count
 
 
 def add_friend(user_id, friend_id):
-    result = users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'friend_id_list': friend_id}})
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$push': {'friend_id_list': friend_id}})
+    return result.modified_count
+
+
+def delete_friend(user_id, friend_id):
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$pull': {'friend_id_list': friend_id}})
     return result.modified_count
 
 
 def add_chat(user_id, chat_id):
-    result = users_collection.update_one({'_id': ObjectId(user_id)}, {'$push': {'chat_id_list': chat_id}})
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$push': {'chat_id_list': chat_id}})
+    return result.modified_count
+
+
+def delete_chat(user_id, chat_id):
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$pull': {'chat_id_list': chat_id}})
     return result.modified_count

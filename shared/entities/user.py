@@ -17,13 +17,22 @@ class User:
         self.id = id
 
     def add_event(self, id):
-        self.event_id_list.__add__(id)
+        self.event_id_list.append(id)
+
+    def delete_event(self, id):
+        self.event_id_list.remove(id)
 
     def add_friend(self, id):
-        self.friend_id_list.__add__(id)
+        self.friend_id_list.append(id)
+
+    def delete_friend(self, id):
+        self.friend_id_list.remove(id)
 
     def add_chat(self, id):
-        self.chat_id_list.__add__(id)
+        self.chat_id_list.append(id)
+
+    def delete_chat(self, id):
+        self.chat_id_list.remove(id)
 
     def to_json(self):
         return {
