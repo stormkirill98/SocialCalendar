@@ -1,7 +1,6 @@
 class User:
     def __init__(self, login, password, nickname, avatar_url, birthday, id="",
                  event_id_list=[], friend_id_list=[], chat_id_list=[]):
-        """Constructor"""
         self.id = id
         self.login = login
         self.password = password

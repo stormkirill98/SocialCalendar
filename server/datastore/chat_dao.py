@@ -4,6 +4,7 @@ from server.datastore.datastore import database
 
 event_chats_collection = database['event_chats']
 dialogs_collection = database['dialogs']
+msg_collection = database['messages']
 
 
 def save_dialog(dialog):
@@ -22,6 +23,15 @@ def save_event_chat(event_chat):
     id = event_chats_collection.insert_one(json).inserted_id
     event_chat.set_id(id)
     return event_chat
+
+
+def save_msg(msg):
+    json = msg.to_json()
+    json.pop('id')
+
+    id = msg_collection.insert_one(json).inserted_id
+    msg.set_id(id)
+    return msg
 
 
 def add_msg_to_dialog(dialog_id, msg_id):
