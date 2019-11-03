@@ -1,5 +1,6 @@
 class Message:
-    def __init__(self, user_id, datetime, text, id=""):
+    def __init__(self, user_id, chat_id, datetime, text, id=""):
+        self.chat_id = chat_id
         self.id = id
         self.user_id = user_id
         self.datetime = datetime
@@ -12,6 +13,7 @@ class Message:
         return {
             'id': self.id,
             'user_id': self.user_id,
+            'chat_id': self.chat_id,
             'datetime': self.datetime,
             'text': self.text
         }

@@ -39,45 +39,6 @@ def delete_user(user_id):
     return 'Delete ' + str(count_deleted_user) + ' users'
 
 
-@app.route('/add_event_to_user/<user_id>/<event_id>')
-def add_event_to_user(user_id, event_id):
-    # TODO check that event_id is event
-    modified_count = user_dao.add_event(user_id, event_id)
-    return 'Add event to ' + str(modified_count) + ' users'
-
-
-@app.route('/add_friend_to_user/<user_id>/<friend_id>')
-def add_friend_to_user(user_id, friend_id):
-    # TODO check that friend_id is friend
-    modified_count = user_dao.add_friend(user_id, friend_id)
-    return 'Add friend to ' + str(modified_count) + ' users'
-
-
-@app.route('/add_chat_to_user/<user_id>/<chat_id>')
-def add_chat_to_user(user_id, chat_id):
-    # TODO check that friend_id is friend
-    modified_count = user_dao.add_chat(user_id, chat_id)
-    return 'Add chat to ' + str(modified_count) + ' users'
-
-
-@app.route('/delete_event_from_user/<user_id>/<event_id>')
-def delete_event_from_user(user_id, event_id):
-    modified_count = user_dao.delete_event(user_id, event_id)
-    return 'Delete event from ' + str(modified_count) + ' users'
-
-
-@app.route('/delete_friend_from_user/<user_id>/<friend_id>')
-def delete_friend_from_user(user_id, friend_id):
-    modified_count = user_dao.delete_friend(user_id, friend_id)
-    return 'Delete friend from ' + str(modified_count) + ' users'
-
-
-@app.route('/delete_chat_from_user/<user_id>/<chat_id>')
-def delete_chat_from_user(user_id, chat_id):
-    modified_count = user_dao.delete_chat(user_id, chat_id)
-    return 'Delete chat from ' + str(modified_count) + ' users'
-
-
 @app.route('/create_dialog/<user_id_1>/<user_id_2>')
 def create_dialog(user_id_1, user_id_2):
     dialog_utils.create_dialog(user_id_1, user_id_2)
