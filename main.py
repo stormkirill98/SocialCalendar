@@ -1,11 +1,12 @@
 from datetime import datetime
 from random import randrange
 
+from bson import ObjectId
 from flask import Flask
 
 from server.datastore import user_dao
 from server.entities.user import User
-from server.utils import dialog_utils
+from server.utils.chats import dialog_utils
 
 app = Flask(__name__)
 
@@ -80,6 +81,13 @@ def delete_chat_from_user(user_id, chat_id):
 @app.route('/create_dialog/<user_id_1>/<user_id_2>')
 def create_dialog(user_id_1, user_id_2):
     dialog_utils.create_dialog(user_id_1, user_id_2)
+    return ""
+
+
+@app.route('/delete_dialog/<dialog_id>')
+def delete_dialog(dialog_id):
+    dialog_utils.delete_dialog(dialog_id)
+    return ""
 
 
 # uncomment for debug locale
