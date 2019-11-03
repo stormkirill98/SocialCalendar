@@ -1,5 +1,4 @@
 class Event:
-
     def __init__(self, name, private, datetime, address, description, id=""):
         self.id = id
         self.event_name = name

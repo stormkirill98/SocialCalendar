@@ -5,6 +5,7 @@ from flask import Flask
 
 from server.datastore import user_dao
 from server.entities.user import User
+from server.utils import dialog_utils
 
 app = Flask(__name__)
 
@@ -74,6 +75,11 @@ def delete_friend_from_user(user_id, friend_id):
 def delete_chat_from_user(user_id, chat_id):
     modified_count = user_dao.delete_chat(user_id, chat_id)
     return 'Delete chat from ' + str(modified_count) + ' users'
+
+
+@app.route('/create_dialog/<user_id_1>/<user_id_2>')
+def create_dialog(user_id_1, user_id_2):
+    dialog_utils.create_dialog(user_id_1, user_id_2)
 
 
 # uncomment for debug locale
