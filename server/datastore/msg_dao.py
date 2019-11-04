@@ -1,7 +1,7 @@
 from bson import ObjectId
 
 from server.datastore.datastore import database
-from server.entities.chats.message import Message
+from server.entities.chats.inner_classes.message import Message
 
 msg_collection = database['messages']
 
