@@ -1,6 +1,6 @@
 class User:
     def __init__(self, login, password, nickname, avatar_url, birthday, id="",
-                 event_id_list=[], friend_id_list=[], chat_id_list=[]):
+                 event_id_list=[], friend_id_list=[], chat_id_list=[], invite_id_list=[]):
         self.id = id
         self.login = login
         self.password = password
@@ -11,6 +11,7 @@ class User:
         self.event_id_list = event_id_list
         self.friend_id_list = friend_id_list
         self.chat_id_list = chat_id_list
+        self.invite_id_list = invite_id_list
 
     def set_id(self, id):
         self.id = id
@@ -43,5 +44,6 @@ class User:
             'birthday': self.birthday,
             'event_id_list': self.event_id_list,
             'friend_id_list': self.friend_id_list,
-            'chat_id_list': self.chat_id_list
+            'chat_id_list': self.chat_id_list,
+            'invite_id_list': self.invite_id_list
         }
