@@ -1,10 +1,10 @@
-class Chat:
-    def __init__(self, id="", msg_id_list=[]):
-        self.id = id
-        self.msg_id_list = msg_id_list
+from server.entities.datastore_object import DatastoreObject
 
-    def set_id(self, id):
-        self.id = id
+
+class Chat(DatastoreObject):
+    def __init__(self, id="", msg_id_list=[]):
+        super().__init__(id)
+        self.msg_id_list = msg_id_list
 
     def add_msg(self, msg_id):
         self.msg_id_list.append(msg_id)

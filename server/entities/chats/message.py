@@ -1,13 +1,13 @@
-class Message:
+from server.entities.datastore_object import DatastoreObject
+
+
+class Message(DatastoreObject):
     def __init__(self, user_id, chat_id, datetime, text, id=""):
+        super().__init__(id)
         self.chat_id = chat_id
-        self.id = id
         self.user_id = user_id
         self.datetime = datetime
         self.text = text
-
-    def set_id(self, id):
-        self.id = id
 
     def to_json(self):
         return {

@@ -1,6 +1,9 @@
-class Event:
+from server.entities.datastore_object import DatastoreObject
+
+
+class Event(DatastoreObject):
     def __init__(self, name, private, datetime, address, description, id=""):
-        self.id = id
+        super().__init__(id)
         self.name = name
         self.is_private = private  # true or false
         self.datetime = datetime

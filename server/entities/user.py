@@ -1,7 +1,10 @@
-class User:
+from server.entities.datastore_object import DatastoreObject
+
+
+class User(DatastoreObject):
     def __init__(self, login, password, nickname, avatar_url, birthday, id="",
                  event_id_list=[], friend_id_list=[], chat_id_list=[], invite_id_list=[]):
-        self.id = id
+        super().__init__(id)
         self.login = login
         self.password = password
         self.nickname = nickname
@@ -12,9 +15,6 @@ class User:
         self.friend_id_list = friend_id_list
         self.chat_id_list = chat_id_list
         self.invite_id_list = invite_id_list
-
-    def set_id(self, id):
-        self.id = id
 
     def add_event(self, id):
         self.event_id_list.append(id)
