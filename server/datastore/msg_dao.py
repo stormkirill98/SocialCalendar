@@ -12,7 +12,7 @@ def save_msg(msg):
 
     id = msg_collection.insert_one(json).inserted_id
     msg.set_id(id)
-    return msg
+    return id
 
 
 def get_msg(id):

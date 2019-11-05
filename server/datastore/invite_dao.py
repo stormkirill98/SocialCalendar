@@ -12,7 +12,7 @@ def save_invite(invite):
 
     id = invites_collection.insert_one(json).inserted_id
     invite.set_id(id)
-    return invite
+    return id
 
 
 def get_invite(id):

@@ -19,14 +19,14 @@ def save_chat(chat):
 
 def save_chat_in_suitable_collection(chat, collection):
     """Save chat to collection
-    :return chat with set id"""
+    :return id"""
 
     json = chat.to_json()
     json.pop('id')
 
     id = collection.insert_one(json).inserted_id
     chat.set_id(id)
-    return chat
+    return id
 
 
 # getting chats
