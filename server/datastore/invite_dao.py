@@ -18,6 +18,7 @@ def save_invite(invite):
 def get_invite(id):
     json = invites_collection.find_one({'_id': ObjectId(id)})
     return Invite(json['sender_id'],
+                  json['receiver_id'],
                   json['type'],
                   json['place_id'],
                   str(json['_id']))
