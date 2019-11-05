@@ -21,6 +21,7 @@ def accept_invite(user_id, invite_id):
         group_event_utils.add_member(user_id, invite.place_id)
 
     invite_dao.delete_invite(invite_id)
+    user_dao.delete_invite(invite_id)
 
 
 # not test
@@ -36,3 +37,5 @@ def send_msg(user_id, chat_id, chat_type, msg_text):
 # not test
 def send_invite(user_id, receiver_id, invite_type, place_id):
     invite = Invite(user_id, receiver_id, invite_type, place_id)
+    invite_id = invite_dao.save_invite(invite)
+    user_dao.add_invite(receiver_id, invite_id)
