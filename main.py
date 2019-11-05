@@ -1,8 +1,7 @@
 from datetime import datetime
 from random import randrange
 
-from bson import ObjectId
-from flask import Flask
+from flask import Flask, request
 
 from server.datastore import user_dao
 from server.entities.user import User
@@ -14,6 +13,12 @@ app = Flask(__name__)
 @app.route('/')
 def run():
     return "Hello world"
+
+
+@app.route('/index', methods=['POST', 'GET'])
+def index():
+    print(request.get_json())
+    return "sdasdas"
 
 
 @app.route('/create_user')
