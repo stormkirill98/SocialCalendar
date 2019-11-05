@@ -16,16 +16,17 @@ def save_user(user):
 
 
 def get_user(id):
-    saved_user = users_collection.find_one({'_id': ObjectId(id)})
-    return User(saved_user['login'],
-                saved_user['password'],
-                saved_user['nickname'],
-                saved_user['avatar_url'],
-                saved_user['birthday'],
-                str(saved_user['_id']),
-                saved_user['event_id_list'],
-                saved_user['friend_id_list'],
-                saved_user['chat_id_list'])
+    json = users_collection.find_one({'_id': ObjectId(id)})
+    return User(json['login'],
+                json['password'],
+                json['nickname'],
+                json['avatar_url'],
+                json['birthday'],
+                str(json['_id']),
+                json['event_id_list'],
+                json['friend_id_list'],
+                json['chat_id_list'],
+                json['invite_id_list'])
 
 
 def delete_user(id):
@@ -72,4 +73,16 @@ def add_chat(user_id, chat_id):
 def delete_chat(user_id, chat_id):
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'chat_id_list': ObjectId(chat_id)}})
+    return result.modified_count
+
+
+def add_invite(user_id, invite_id):
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$push': {'invite_id_list': ObjectId(invite_id)}})
+    return result.modified_count
+
+
+def delete_invite(user_id, invite_id):
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$pull': {'invite_id_list': ObjectId(invite_id)}})
     return result.modified_count
