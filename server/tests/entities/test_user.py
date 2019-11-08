@@ -50,6 +50,20 @@ class TestUser(TestCase):
         self.user.delete_chat("chat_id_2")
         self.assertEqual(len(self.user.chat_id_list), 0)
 
+    def test_add_invite(self):
+        self.assertEqual(len(self.user.invite_id_list), 0)
+        self.user.add_invite("invite_id_1")
+        self.assertEqual(len(self.user.invite_id_list), 1)
+        self.user.add_invite("invite_id_2")
+        self.assertEqual(len(self.user.invite_id_list), 2)
+
+    def test_delete_invite(self):
+        self.assertEqual(len(self.user.invite_id_list), 2)
+        self.user.delete_invite("invite_id_1")
+        self.assertEqual(len(self.user.invite_id_list), 1)
+        self.user.delete_invite("invite_id_2")
+        self.assertEqual(len(self.user.invite_id_list), 0)
+
     def test_to_json(self):
         self.user.add_chat("chat_id_1")
         self.user.add_friend("friend_id_1")

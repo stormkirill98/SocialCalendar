@@ -34,6 +34,12 @@ class User(DatastoreObject):
     def delete_chat(self, id):
         self.chat_id_list.remove(id)
 
+    def add_invite(self, id):
+        self.invite_id_list.append(id)
+
+    def delete_invite(self, id):
+        self.invite_id_list.remove(id)
+
     def to_json(self):
         return {
             'id': self.id,
