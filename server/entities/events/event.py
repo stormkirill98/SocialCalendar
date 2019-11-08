@@ -1,4 +1,4 @@
-from server.entities.datastore_object import DatabaseObject
+from server.entities.database_object import DatabaseObject
 
 
 class Event(DatabaseObject):
