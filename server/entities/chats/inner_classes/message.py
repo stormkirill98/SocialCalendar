@@ -1,7 +1,7 @@
-from server.entities.datastore_object import DatastoreObject
+from server.entities.datastore_object import DatabaseObject
 
 
-class Message(DatastoreObject):
+class Message(DatabaseObject):
     def __init__(self, user_id, chat_id, datetime, text, id=""):
         super().__init__(id)
         self.chat_id = chat_id

@@ -1,7 +1,7 @@
-from server.entities.datastore_object import DatastoreObject
+from server.entities.datastore_object import DatabaseObject
 
 
-class EventMember(DatastoreObject):
+class EventMember(DatabaseObject):
     def __init__(self, chat_id, user_id,
                  is_can_invite_user=False,
                  is_can_delete_user=False,

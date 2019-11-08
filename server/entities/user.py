@@ -1,7 +1,7 @@
-from server.entities.datastore_object import DatastoreObject
+from server.entities.datastore_object import DatabaseObject
 
 
-class User(DatastoreObject):
+class User(DatabaseObject):
     def __init__(self, login, password, nickname, avatar_url, birthday, id="",
                  event_id_list=[], friend_id_list=[], chat_id_list=[], invite_id_list=[]):
         super().__init__(id)
