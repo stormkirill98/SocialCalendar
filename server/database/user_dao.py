@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.datastore.datastore import database, id_is_valid
+from server.database import database, id_is_valid
 from server.entities.user import User
 
 users_collection = database['users']

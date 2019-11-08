@@ -35,7 +35,8 @@ def send_msg(user_id, chat_id, chat_type, msg_text):
 
 
 # not test
-def send_invite(user_id, receiver_id, invite_type, place_id):
-    invite = Invite(user_id, receiver_id, invite_type, place_id)
+def send_invite(user_id, receiver_id, invite_type, event_id=""):
+    invite = Invite(user_id, receiver_id, invite_type, event_id)
     invite_id = invite_dao.save_invite(invite)
     user_dao.add_invite(receiver_id, invite_id)
+    return invite_id

@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.datastore.datastore import database
+from server.database.database import database
 from server.entities.events.group_events.event_member import EventMember
 
 event_member_collection = database['event_members']

@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.datastore.datastore import database, id_is_valid
+from server.database.database import database, id_is_valid
 from server.entities.chats.dialog import Dialog
 from server.entities.chats.event_chat import EventChat
 

@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.datastore.datastore import database
+from server.database.database import database
 from server.entities.invite import Invite
 
 invites_collection = database['invites']

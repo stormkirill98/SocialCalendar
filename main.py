@@ -3,7 +3,7 @@ from random import randrange
 
 from flask import Flask, request
 
-from server.datastore import user_dao
+from server.database import user_dao
 from server.entities.user import User
 
 app = Flask(__name__)
