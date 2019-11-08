@@ -21,7 +21,7 @@ def accept_invite(user_id, invite_id):
         group_event_utils.add_member(user_id, invite.place_id)
 
     invite_dao.delete_invite(invite_id)
-    user_dao.delete_invite(invite_id)
+    user_dao.delete_invite(user_id, invite_id)
 
 
 # not test
