@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from server.datastore import invite_dao, user_dao, msg_dao, chat_dao
+from server.database import invite_dao, user_dao, msg_dao, chat_dao
 from server.entities.chats.inner_classes.message import Message
 from server.entities.invite import Invite
 from server.enums import InviteType, ChatType

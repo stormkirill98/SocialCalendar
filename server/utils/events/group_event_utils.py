@@ -1,4 +1,4 @@
-from server.datastore.events import group_event_dao, event_member_dao
+from server.database.events import group_event_dao, event_member_dao
 from server.entities.events.group_events.event_member import EventMember
 
 

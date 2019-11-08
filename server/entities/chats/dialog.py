@@ -7,9 +7,6 @@ class Dialog(Chat):
         self.user_id_1 = user_id_1
         self.user_id_2 = user_id_2
 
-    def set_id(self, id):
-        self.id = id
-
     def to_json(self):
         return {
             'id': self.id,
