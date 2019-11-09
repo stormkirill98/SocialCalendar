@@ -1,9 +1,9 @@
 from bson import ObjectId
 
-from server.database import database, id_is_valid
+from server.database.database import db, id_is_valid
 from server.entities.user import User
 
-users_collection = database['users']
+users_collection = db['users']
 
 
 def save_user(user):
@@ -37,7 +37,7 @@ def is_exists(id):
     if not id_is_valid(id):
         return False
 
-    return users_collection.find({'_id': ObjectId(id)}).count() > 0
+    return users_collection.count_documents({'_id': ObjectId(id)}) > 0
 
 
 def add_event(user_id, event_id):

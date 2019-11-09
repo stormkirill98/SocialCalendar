@@ -28,7 +28,7 @@ def is_exists(id):
     if not id_is_valid(id):
         return False
 
-    return invites_collection.find({'_id': ObjectId(id)}).count() > 0
+    return invites_collection.count_documents({'_id': ObjectId(id)}) > 0
 
 
 def delete_invite(id):
