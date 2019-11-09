@@ -1,5 +1,6 @@
 from bson import ObjectId
 
+from server.database import database
 from server.database.database import db, id_is_valid
 from server.entities.user import User
 
@@ -34,10 +35,7 @@ def delete_user(id):
 
 
 def is_exists(id):
-    if not id_is_valid(id):
-        return False
-
-    return users_collection.count_documents({'_id': ObjectId(id)}) > 0
+    return database.is_exist(id, users_collection)
 
 
 def add_event(user_id, event_id):

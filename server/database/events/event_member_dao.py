@@ -1,5 +1,6 @@
 from bson import ObjectId
 
+from server.database import database
 from server.database.database import db
 from server.entities.events.group_events.event_member import EventMember
 
@@ -39,4 +40,8 @@ def get_by_user_event(user_id, event_id):
                        json['is_can_change_event'],
                        json['_id'])
 
+
 # TODO create setters for permissions
+
+def is_exists(id):
+    return database.is_exist(id, event_member_collection)

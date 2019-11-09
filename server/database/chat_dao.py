@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.database.database import db, id_is_valid
+from server.database.database import db, id_is_valid, is_exist
 from server.entities.chats.dialog import Dialog
 from server.entities.chats.event_chat import EventChat
 
@@ -69,14 +69,8 @@ def add_msg_to_event_chat(event_chat_id, msg_id):
 
 # chats are exists to database
 def dialog_is_exist(id):
-    if not id_is_valid(id):
-        return False
-
-    return dialogs_collection.count_documents({'_id': ObjectId(id)}) > 0
+    return is_exist(id, dialogs_collection)
 
 
 def event_chat_is_exist(id):
-    if not id_is_valid(id):
-        return False
-
-    return event_chats_collection.count_documents({'_id': ObjectId(id)}) > 0
+    return is_exist(id, event_chats_collection)

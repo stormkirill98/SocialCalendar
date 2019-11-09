@@ -1,5 +1,6 @@
 from bson import ObjectId
 
+from server.database import database
 from server.database.database import db, id_is_valid
 from server.entities.invite import Invite
 
@@ -28,10 +29,7 @@ def get_invite(id):
 
 
 def is_exists(id):
-    if not id_is_valid(id):
-        return False
-
-    return invites_collection.count_documents({'_id': ObjectId(id)}) > 0
+    return database.is_exist(id, invites_collection)
 
 
 def delete_invite(id):

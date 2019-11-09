@@ -1,5 +1,6 @@
 from bson import ObjectId
 
+from server.database import database
 from server.database.database import db, id_is_valid
 from server.entities.events.group_events.group_event import GroupEvent
 
@@ -53,7 +54,4 @@ def set_chat_id(group_event_id, chat_id):
 
 
 def is_exists(id):
-    if not id_is_valid(id):
-        return False
-
-    return group_event_collection.count_documents({'_id': ObjectId(id)}) > 0
+    return database.is_exist(id, group_event_collection)

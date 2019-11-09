@@ -1,5 +1,6 @@
 from bson import ObjectId
 
+from server.database import database
 from server.database.database import db
 from server.entities.chats.inner_classes.message import Message
 
@@ -25,3 +26,7 @@ def get_msg(id):
 
 def delete_msg(id):
     return msg_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+
+
+def is_exists(id):
+    return database.is_exist(id, msg_collection)
