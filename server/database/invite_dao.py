@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.database.database import db
+from server.database.database import db, id_is_valid
 from server.entities.invite import Invite
 
 invites_collection = db['invites']
@@ -22,6 +22,13 @@ def get_invite(id):
                   json['type'],
                   json['place_id'],
                   str(json['_id']))
+
+
+def is_exists(id):
+    if not id_is_valid(id):
+        return False
+
+    return invites_collection.find({'_id': ObjectId(id)}).count() > 0
 
 
 def delete_invite(id):
