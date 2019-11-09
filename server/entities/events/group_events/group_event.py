@@ -6,6 +6,12 @@ class GroupEvent(Event):
         super().__init__(name, is_private, datetime, address, description, id)
         self.member_id_list = member_id_list
 
+    def add_member(self, member_id):
+        self.member_id_list.append(member_id)
+
+    def delete_member(self, member_id):
+        self.member_id_list.remove(member_id)
+
     def to_json(self):
         return {
             'id': self.id,
