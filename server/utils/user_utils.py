@@ -1,10 +1,13 @@
 from datetime import datetime
 
 from server.database import invite_dao, user_dao, msg_dao, chat_dao
+from server.database.events import group_event_dao, event_member_dao
 from server.entities.chats.inner_classes.message import Message
+from server.entities.events.group_events.event_member import EventMember
 from server.entities.events.group_events.group_event import GroupEvent
 from server.entities.invite import Invite
 from server.enums import InviteType, ChatType
+from server.utils.chats import event_chat_utils
 from server.utils.events import group_event_utils
 
 
@@ -32,7 +35,20 @@ def decline_invite(invite_id):
 
 # not tested
 def create_group_event(user_id, group_event: GroupEvent):
-    group_event.
+    group_event_dao.save(group_event)
+    group_event.set_id(group_event.id)
+
+    # add user which create this event to event
+    member = EventMember(group_event.id, user_id, True, True, True)
+    event_member_dao.save(member)
+
+    group_event.add_member(member.id)
+    group_event_dao.add_member(group_event.id, member.id)
+
+    # create chat for this event
+    event_chat_utils.create_event_chat(group_event.id)
+
+    return group_event.id
 
 
 # not tested
