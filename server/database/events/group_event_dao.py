@@ -37,3 +37,9 @@ def add_member(group_event_id, member_id):
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$push': {'member_id_list': ObjectId(member_id)}})
     return result.modified_count
+
+
+def delete_member(group_event_id, member_id):
+    result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
+                                               {'pull': {'member_id_list': ObjectId(member_id)}})
+    return result.modified_count
