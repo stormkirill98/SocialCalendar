@@ -117,3 +117,6 @@ class TestUserUtils(TestCase):
         self.assertNotIn(self.invite_to_event_id_test_accept_invite, receiver_user.invite_id_list)
 
         self.assertEqual(event_member_dao.delete(member.id), 1)
+
+    def test_send_msg(self):
+        pass
