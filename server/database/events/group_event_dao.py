@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.database.database import db
+from server.database.database import db, id_is_valid
 from server.entities.events.group_events.group_event import GroupEvent
 
 group_event_collection = db['group_events']
@@ -50,3 +50,10 @@ def set_chat_id(group_event_id, chat_id):
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$set': {'chat_id': ObjectId(chat_id)}})
     return result.modified_count
+
+
+def is_exists(id):
+    if not id_is_valid(id):
+        return False
+
+    return group_event_collection.count_documents({'_id': ObjectId(id)}) > 0

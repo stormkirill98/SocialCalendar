@@ -72,11 +72,11 @@ def dialog_is_exist(id):
     if not id_is_valid(id):
         return False
 
-    return dialogs_collection.find({'_id': ObjectId(id)}).count() > 0
+    return dialogs_collection.count_documents({'_id': ObjectId(id)}) > 0
 
 
 def event_chat_is_exist(id):
     if not id_is_valid(id):
         return False
 
-    return event_chats_collection.find({'_id': ObjectId(id)}).count() > 0
+    return event_chats_collection.count_documents({'_id': ObjectId(id)}) > 0
