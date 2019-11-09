@@ -11,6 +11,13 @@ from server.utils.chats import event_chat_utils
 from server.utils.events import group_event_utils
 
 
+def send_invite(user_id, receiver_id, invite_type, event_id=""):
+    invite = Invite(user_id, receiver_id, invite_type, event_id)
+    invite_id = invite_dao.save_invite(invite)
+    user_dao.add_invite(receiver_id, invite_id)
+    return invite_id
+
+
 def accept_invite(invite_id):
     invite = invite_dao.get_invite(invite_id)
 
@@ -46,9 +53,25 @@ def create_group_event(user_id, group_event: GroupEvent):
     group_event_dao.add_member(group_event.id, member.id)
 
     # create chat for this event
-    event_chat_utils.create_event_chat(group_event.id)
+    chat_id = event_chat_utils.create_event_chat(group_event.id)
+    group_event_dao.set_chat_id(group_event.id, chat_id)
 
     return group_event.id
+
+
+# not tested
+def delete_group_event(user_id, group_event_id):
+    group_event = group_event_dao.get(group_event_id)
+
+    for member_id in group_event.member_id_list:
+        event_member_dao.delete(member_id)
+
+    event_chat_utils.delete_event_chat(group_event.chat_id)
+
+    user_dao.delete_chat(user_id, group_event.chat_id)
+    user_dao.delete_event(user_id, group_event.id)
+
+    group_event_dao.delete(group_event_id)
 
 
 # not tested
@@ -59,10 +82,3 @@ def send_msg(user_id, chat_id, chat_type, msg_text):
         chat_dao.add_msg_to_dialog(chat_id, msg_id)
     else:
         chat_dao.add_msg_to_event_chat(chat_id, msg_id)
-
-
-def send_invite(user_id, receiver_id, invite_type, event_id=""):
-    invite = Invite(user_id, receiver_id, invite_type, event_id)
-    invite_id = invite_dao.save_invite(invite)
-    user_dao.add_invite(receiver_id, invite_id)
-    return invite_id

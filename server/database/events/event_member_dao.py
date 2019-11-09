@@ -38,3 +38,5 @@ def get_by_user_event(user_id, event_id):
                        json['is_can_delete_user'],
                        json['is_can_change_event'],
                        json['_id'])
+
+# TODO create setters for permissions

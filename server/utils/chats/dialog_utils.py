@@ -1,5 +1,6 @@
 from server.database import chat_dao, user_dao, msg_dao
 from server.entities.chats.dialog import Dialog
+from server.utils.chats import chat_utils
 
 
 def create_dialog(user_id_1, user_id_2):
@@ -36,9 +37,7 @@ def delete_dialog(dialog_id):
     user_dao.delete_chat(dialog.user_id_1, dialog_id)
     user_dao.delete_chat(dialog.user_id_2, dialog_id)
 
-    # delete msg's
-    for msg_id in dialog.msg_id_list:
-        msg_dao.delete_msg(msg_id)
+    chat_utils.delete_all_msg(dialog)
 
     # delete dialog
     chat_dao.delete_dialog(dialog_id)
