@@ -40,10 +40,8 @@ def decline_invite(invite_id):
     user_dao.delete_invite(invite.receiver_id, invite_id)
 
 
-# not tested
 def create_group_event(user_id, group_event: GroupEvent):
     group_event_dao.save(group_event)
-    group_event.set_id(group_event.id)
 
     # add user which create this event to event
     member = EventMember(group_event.id, user_id, True, True, True)
@@ -55,6 +53,9 @@ def create_group_event(user_id, group_event: GroupEvent):
     # create chat for this event
     chat_id = event_chat_utils.create_event_chat(group_event.id)
     group_event_dao.set_chat_id(group_event.id, chat_id)
+
+    user_dao.add_event(user_id, group_event.id)
+    user_dao.add_chat(user_id, chat_id)
 
     return group_event.id
 
