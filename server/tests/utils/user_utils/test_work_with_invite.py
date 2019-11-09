@@ -9,7 +9,7 @@ from server.enums import InviteType
 from server.utils import user_utils
 
 
-class TestUserUtils(TestCase):
+class TestFunctionForInvite(TestCase):
     def setUp(self):
         self.sender_invites = user_dao.save_user(
             User("user1", "password", "nickname", "avatar_url", datetime(1998, 5, 7)))
@@ -132,6 +132,3 @@ class TestUserUtils(TestCase):
         # check that invite was delete
         self.assertFalse(invite_dao.is_exists(self.invite_id_test_decline_invite))
         self.assertNotIn(self.invite_id_test_decline_invite, receiver_user.invite_id_list)
-
-    def test_send_msg(self):
-        pass

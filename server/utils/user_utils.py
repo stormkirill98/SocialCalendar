@@ -63,11 +63,14 @@ def create_group_event(user_id, group_event: GroupEvent):
 def delete_group_event(user_id, group_event_id):
     group_event = group_event_dao.get(group_event_id)
 
+    # delete members
     for member_id in group_event.member_id_list:
         event_member_dao.delete(member_id)
 
+    # delete chat
     event_chat_utils.delete_event_chat(group_event.chat_id)
 
+    # clear user
     user_dao.delete_chat(user_id, group_event.chat_id)
     user_dao.delete_event(user_id, group_event.id)
 
