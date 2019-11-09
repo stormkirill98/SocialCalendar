@@ -1,11 +1,11 @@
 from bson import ObjectId
 
-from server.database.database import database, id_is_valid
+from server.database.database import db, id_is_valid
 from server.entities.chats.dialog import Dialog
 from server.entities.chats.event_chat import EventChat
 
-event_chats_collection = database['event_chats']
-dialogs_collection = database['dialogs']
+event_chats_collection = db['event_chats']
+dialogs_collection = db['dialogs']
 
 
 def save_chat(chat):

@@ -1,9 +1,9 @@
 from bson import ObjectId
 
-from server.database.database import database
+from server.database.database import db
 from server.entities.events.group_events.group_event import GroupEvent
 
-group_event_collection = database['group_events']
+group_event_collection = db['group_events']
 
 
 def save(group_event):

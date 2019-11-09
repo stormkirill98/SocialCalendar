@@ -1,9 +1,9 @@
 from bson import ObjectId
 
-from server.database.database import database
+from server.database.database import db
 from server.entities.invite import Invite
 
-invites_collection = database['invites']
+invites_collection = db['invites']
 
 
 def save_invite(invite):
