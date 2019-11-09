@@ -18,6 +18,9 @@ def save_user(user):
 
 def get_user(id):
     json = users_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
     return User(json['login'],
                 json['password'],
                 json['nickname'],

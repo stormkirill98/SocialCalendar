@@ -22,6 +22,9 @@ def delete(id):
 
 def get(id):
     json = event_member_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
     return EventMember(json['event_id'],
                        json['user_id'],
                        json['is_can_invite_user'],
@@ -33,6 +36,9 @@ def get(id):
 def get_by_user_event(user_id, event_id):
     json = event_member_collection.find_one({'user_id': ObjectId(user_id),
                                              'event_id': ObjectId(event_id)})
+    if json is None:
+        return None
+
     return EventMember(json['event_id'],
                        json['user_id'],
                        json['is_can_invite_user'],

@@ -18,6 +18,9 @@ def save_msg(msg):
 
 def get_msg(id):
     json = msg_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
     return Message(json['user_id'],
                    json['datetime'],
                    json['test'],

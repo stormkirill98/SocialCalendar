@@ -32,6 +32,9 @@ def save_chat_in_suitable_collection(chat, collection):
 # getting chats
 def get_dialog(id):
     json = dialogs_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
     return Dialog(json['user_id_1'],
                   json['user_id_2'],
                   json['_id'],
@@ -40,6 +43,9 @@ def get_dialog(id):
 
 def get_event_chat(id):
     json = event_chats_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
     return EventChat(json['event_id'],
                      json['_id'],
                      json['msg_id_list'])
