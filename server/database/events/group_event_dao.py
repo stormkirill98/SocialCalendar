@@ -30,6 +30,7 @@ def get(id):
                       json['address'],
                       json['description'],
                       json['member_id_list'],
+                      json['chat_id'],
                       json['_id'])
 
 
@@ -41,5 +42,11 @@ def add_member(group_event_id, member_id):
 
 def delete_member(group_event_id, member_id):
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
-                                               {'pull': {'member_id_list': ObjectId(member_id)}})
+                                               {'$pull': {'member_id_list': ObjectId(member_id)}})
+    return result.modified_count
+
+
+def set_chat_id(group_event_id, chat_id):
+    result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
+                                               {'$set': {'chat_id': ObjectId(chat_id)}})
     return result.modified_count
