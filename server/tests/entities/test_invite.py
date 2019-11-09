@@ -5,7 +5,7 @@ from server.entities.invite import Invite
 
 class TestInvite(TestCase):
     def setUp(self):
-        self.invite = Invite("sender_id", "receiver_id", "invite_type", "id", "event_id")
+        self.invite = Invite("sender_id", "receiver_id", "invite_type", "event_id", "id")
         
     def test_to_json(self):
         self.assertEqual(self.invite.to_json(), {

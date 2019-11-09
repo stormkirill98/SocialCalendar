@@ -21,16 +21,19 @@ def delete(id):
 
 def get(id):
     json = group_event_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
     return GroupEvent(json['name'],
                       json['is_private'],
                       json['datetime'],
                       json['address'],
                       json['description'],
                       json['member_id_list'],
-                      json['id'])
+                      json['_id'])
 
 
 def add_member(group_event_id, member_id):
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
-                                               {'$push': {'event_id_list': ObjectId(member_id)}})
+                                               {'$push': {'member_id_list': ObjectId(member_id)}})
     return result.modified_count

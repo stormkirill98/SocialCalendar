@@ -20,7 +20,7 @@ def get_msg(id):
     return Message(json['user_id'],
                    json['datetime'],
                    json['test'],
-                   str(json['_id']))
+                   json['_id'])
 
 
 def delete_msg(id):

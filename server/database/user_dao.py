@@ -11,7 +11,7 @@ def save_user(user):
     json.pop('id')
 
     id = users_collection.insert_one(json).inserted_id
-    user.set_id(str(id))
+    user.set_id(id)
     return id
 
 
@@ -22,7 +22,7 @@ def get_user(id):
                 json['nickname'],
                 json['avatar_url'],
                 json['birthday'],
-                str(json['_id']),
+                json['_id'],
                 json['event_id_list'],
                 json['friend_id_list'],
                 json['chat_id_list'],

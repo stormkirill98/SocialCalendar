@@ -34,14 +34,14 @@ def get_dialog(id):
     json = dialogs_collection.find_one({'_id': ObjectId(id)})
     return Dialog(json['user_id_1'],
                   json['user_id_2'],
-                  str(json['_id']),
+                  json['_id'],
                   json['msg_id_list'])
 
 
 def get_event_chat(id):
     json = event_chats_collection.find_one({'_id': ObjectId(id)})
     return EventChat(json['event_id'],
-                     str(json['_id']),
+                     json['_id'],
                      json['msg_id_list'])
 
 

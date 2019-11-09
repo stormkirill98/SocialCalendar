@@ -17,11 +17,14 @@ def save_invite(invite):
 
 def get_invite(id):
     json = invites_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
     return Invite(json['sender_id'],
                   json['receiver_id'],
                   json['type'],
-                  json['place_id'],
-                  str(json['_id']))
+                  json['event_id'],
+                  json['_id'])
 
 
 def is_exists(id):
@@ -32,4 +35,7 @@ def is_exists(id):
 
 
 def delete_invite(id):
+    if not id_is_valid(id):
+        return 0
+
     return invites_collection.delete_one({'_id': ObjectId(id)}).deleted_count
