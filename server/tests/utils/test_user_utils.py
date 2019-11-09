@@ -115,3 +115,5 @@ class TestUserUtils(TestCase):
         # check that invite was delete
         self.assertFalse(invite_dao.is_exists(self.invite_to_event_id_test_accept_invite))
         self.assertNotIn(self.invite_to_event_id_test_accept_invite, receiver_user.invite_id_list)
+
+        self.assertEqual(event_member_dao.delete(member.id), 1)

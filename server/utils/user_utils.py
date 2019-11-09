@@ -25,6 +25,8 @@ def accept_invite(invite_id):
 
 # TODO cancel_invite(invite_id)
 
+# TODO create_event
+
 # not test
 def send_msg(user_id, chat_id, chat_type, msg_text):
     msg = Message(user_id, chat_id, datetime.today(), msg_text)
