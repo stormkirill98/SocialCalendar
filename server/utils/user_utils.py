@@ -23,7 +23,6 @@ def accept_invite(invite_id):
     user_dao.delete_invite(invite.receiver_id, invite_id)
 
 
-# not test
 def decline_invite(invite_id):
     invite = invite_dao.get_invite(invite_id)
     invite_dao.delete_invite(invite_id)

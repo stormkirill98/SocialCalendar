@@ -118,5 +118,20 @@ class TestUserUtils(TestCase):
 
         self.assertEqual(event_member_dao.delete(member.id), 1)
 
+    def test_decline_invite(self):
+        self.invite_id_test_decline_invite = user_utils.send_invite(self.sender_invites, self.receiver_invites,
+                                                                    InviteType.FRIEND)
+
+        # check that invite was sent
+        self.assertTrue(invite_dao.is_exists(self.invite_id_test_decline_invite))
+
+        user_utils.decline_invite(self.invite_id_test_decline_invite)
+
+        receiver_user = user_dao.get_user(self.receiver_invites)
+
+        # check that invite was delete
+        self.assertFalse(invite_dao.is_exists(self.invite_id_test_decline_invite))
+        self.assertNotIn(self.invite_id_test_decline_invite, receiver_user.invite_id_list)
+
     def test_send_msg(self):
         pass
