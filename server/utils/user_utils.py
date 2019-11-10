@@ -44,7 +44,7 @@ def create_group_event(user_id, group_event: GroupEvent):
     group_event_dao.save(group_event)
 
     # add user which create this event to event
-    member = EventMember(group_event.id, user_id, True, True, True)
+    member = EventMember(group_event.id, user_id, True, True, True, True)
     event_member_dao.save(member)
 
     group_event.add_member(member.id)

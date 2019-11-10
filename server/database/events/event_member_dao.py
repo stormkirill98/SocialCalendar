@@ -25,12 +25,7 @@ def get(id):
     if json is None:
         return None
 
-    return EventMember(json['event_id'],
-                       json['user_id'],
-                       json['is_can_invite_user'],
-                       json['is_can_delete_user'],
-                       json['is_can_change_event'],
-                       json['_id'])
+    return create_event_from_json(json)
 
 
 def get_by_user_event(user_id, event_id):
@@ -39,15 +34,20 @@ def get_by_user_event(user_id, event_id):
     if json is None:
         return None
 
+    return create_event_from_json(json)
+
+
+# TODO create setters for permissions
+
+def create_event_from_json(json):
     return EventMember(json['event_id'],
                        json['user_id'],
                        json['is_can_invite_user'],
                        json['is_can_delete_user'],
                        json['is_can_change_event'],
+                       json['is_can_remove_event'],
                        json['_id'])
 
-
-# TODO create setters for permissions
 
 def is_exists(id):
     return database.is_exist(id, event_member_collection)

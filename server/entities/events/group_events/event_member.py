@@ -6,11 +6,13 @@ class EventMember(DatabaseObject):
                  is_can_invite_user=False,
                  is_can_delete_user=False,
                  is_can_change_event=False,
+                 is_can_delete_event=True,
                  id=""):
         super().__init__(id)
         self.is_can_invite_user = is_can_invite_user
         self.is_can_delete_user = is_can_delete_user
         self.is_can_change_event = is_can_change_event
+        self.is_can_remove_event = is_can_delete_event
         self.user_id = user_id
         self.event_id = event_id
 
@@ -20,6 +22,7 @@ class EventMember(DatabaseObject):
             'is_can_invite_user': self.is_can_invite_user,
             'is_can_delete_user': self.is_can_delete_user,
             'is_can_change_event': self.is_can_change_event,
+            'is_can_remove_event': self.is_can_remove_event,
             'user_id': self.user_id,
             'event_id': self.event_id
         }
