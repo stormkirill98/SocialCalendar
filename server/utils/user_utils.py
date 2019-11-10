@@ -8,7 +8,7 @@ from server.entities.events.group_events.group_event import GroupEvent
 from server.entities.invite import Invite
 from server.enums import InviteType, ChatType
 from server.utils.chats import event_chat_utils
-from server.utils.events import group_event_utils
+from server.utils.events import group_event_utils, event_member_utils
 
 
 def send_invite(user_id, receiver_id, invite_type, event_id=""):
@@ -61,22 +61,21 @@ def create_group_event(user_id, group_event: GroupEvent):
 
 
 # not tested
-def delete_group_event(user_id, group_event_id):
+def delete_group_event(removing_member_id, group_event_id):
+    # TODO check permissions on delete event
     group_event = group_event_dao.get(group_event_id)
 
     # delete members
     for member_id in group_event.member_id_list:
-        event_member_dao.delete(member_id)
+        event_member_utils.delete_event_member(member_id)
 
     # delete chat
     event_chat_utils.delete_event_chat(group_event.chat_id)
 
-    # clear user
-    user_dao.delete_chat(user_id, group_event.chat_id)
-    user_dao.delete_event(user_id, group_event.id)
-
     group_event_dao.delete(group_event_id)
 
+
+# TODO leave event
 
 # not tested
 def send_msg(user_id, chat_id, chat_type, msg_text):
