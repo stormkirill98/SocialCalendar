@@ -6,7 +6,7 @@ class EventMember(DatabaseObject):
                  is_can_invite_user=False,
                  is_can_delete_user=False,
                  is_can_change_event=False,
-                 is_can_delete_event=True,
+                 is_can_delete_event=False,
                  id=""):
         super().__init__(id)
         self.is_can_invite_user = is_can_invite_user

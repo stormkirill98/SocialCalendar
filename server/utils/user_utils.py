@@ -28,7 +28,7 @@ def accept_invite(invite_id):
     else:
         # invite to event
         user_dao.add_event(invite.receiver_id, invite.event_id)
-        group_event_utils.add_member(invite.receiver_id, invite.event_id)
+        group_event_utils.add_member(invite.event_id, invite.receiver_id)
 
     invite_dao.delete_invite(invite_id)
     user_dao.delete_invite(invite.receiver_id, invite_id)

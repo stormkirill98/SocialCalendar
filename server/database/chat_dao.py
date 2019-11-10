@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.database.database import db, id_is_valid, is_exist
+from server.database.database import db, is_exist
 from server.entities.chats.dialog import Dialog
 from server.entities.chats.event_chat import EventChat
 
@@ -43,6 +43,16 @@ def get_dialog(id):
 
 def get_event_chat(id):
     json = event_chats_collection.find_one({'_id': ObjectId(id)})
+    if json is None:
+        return None
+
+    return EventChat(json['event_id'],
+                     json['_id'],
+                     json['msg_id_list'])
+
+
+def get_event_chat_by_event_id(event_id):
+    json = event_chats_collection.find_one({'event_id': ObjectId(event_id)})
     if json is None:
         return None
 
