@@ -62,7 +62,15 @@ def create_group_event(user_id, group_event: GroupEvent):
 
 # not tested
 def delete_group_event(removing_member_id, group_event_id):
-    # TODO check permissions on delete event
+    """delete event by id
+    :return True if event was delete
+    :return False if event wasn't delete
+    """
+    # check that member can delete this event
+    removing_member = event_member_dao.get(removing_member_id)
+    if not removing_member.is_can_remove_event:
+        return False
+
     group_event = group_event_dao.get(group_event_id)
 
     # delete members
@@ -73,6 +81,7 @@ def delete_group_event(removing_member_id, group_event_id):
     event_chat_utils.delete_event_chat(group_event.chat_id)
 
     group_event_dao.delete(group_event_id)
+    return True
 
 
 # TODO leave event

@@ -45,7 +45,7 @@ def create_event_from_json(json):
                        json['is_can_invite_user'],
                        json['is_can_delete_user'],
                        json['is_can_change_event'],
-                       json['is_can_remove_event'],
+                       json['is_can_delete_event'],
                        json['_id'])
 
 
