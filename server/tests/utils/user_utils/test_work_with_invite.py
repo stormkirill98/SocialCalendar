@@ -1,7 +1,7 @@
 from datetime import datetime
 from unittest import TestCase
 
-from server.database import user_dao, invite_dao
+from server.database import user_dao, invite_dao, chat_dao
 from server.database.events import group_event_dao, event_member_dao
 from server.entities.events.group_events.group_event import GroupEvent
 from server.entities.user import User
@@ -24,6 +24,9 @@ class TestFunctionForInvite(TestCase):
         self.invite_to_friend_id_test_accept_invite = ""
         self.invite_to_event_id_test_accept_invite = ""
 
+        self.chat_id = ""
+        self.member_id = ""
+
     def tearDown(self):
         user_dao.delete_user(self.sender_invites)
         user_dao.delete_user(self.receiver_invites)
@@ -34,6 +37,9 @@ class TestFunctionForInvite(TestCase):
 
         invite_dao.delete_invite(self.invite_to_friend_id_test_accept_invite)
         invite_dao.delete_invite(self.invite_to_event_id_test_accept_invite)
+
+        chat_dao.delete_event_chat(self.chat_id)
+        event_member_dao.delete(self.member_id)
 
     def test_send_invite(self):
         # check that users were create
@@ -106,6 +112,10 @@ class TestFunctionForInvite(TestCase):
         receiver_user = user_dao.get_user(invite_to_event.receiver_id)
         event = group_event_dao.get(invite_to_event.event_id)
         member = event_member_dao.get_by_user_event(receiver_user.id, event.id)
+
+        # id's for removing after tests
+        self.chat_id = event.chat_id
+        self.member_id = member.id
 
         # check that user became event member
         self.assertIn(event.id, receiver_user.event_id_list)

@@ -15,6 +15,6 @@ def add_member(event_id, user_id,
 
     user_dao.add_event(user_id, event_id)
     chat_id = chat_dao.get_event_chat_by_event_id(event_id)
-    user_dao.add_chat(chat_id)
+    user_dao.add_chat(user_id, chat_id)
 
     return member_id

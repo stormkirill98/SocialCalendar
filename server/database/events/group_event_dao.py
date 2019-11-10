@@ -17,6 +17,9 @@ def save(group_event):
 
 
 def delete(id):
+    if not id_is_valid(id):
+        return 0
+
     return group_event_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 

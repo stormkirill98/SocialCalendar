@@ -1,6 +1,6 @@
 from bson import ObjectId
 
-from server.database.database import db, is_exist
+from server.database.database import db, is_exist, id_is_valid
 from server.entities.chats.dialog import Dialog
 from server.entities.chats.event_chat import EventChat
 
@@ -67,6 +67,9 @@ def delete_dialog(id):
 
 
 def delete_event_chat(id):
+    if not id_is_valid(id):
+        return 0
+
     return event_chats_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 

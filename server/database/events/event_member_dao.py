@@ -1,7 +1,7 @@
 from bson import ObjectId
 
 from server.database import database
-from server.database.database import db
+from server.database.database import db, id_is_valid
 from server.entities.events.group_events.event_member import EventMember
 
 event_member_collection = db['event_members']
@@ -17,6 +17,9 @@ def save(event_member):
 
 
 def delete(id):
+    if not id_is_valid(id):
+        return 0
+
     return event_member_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 
