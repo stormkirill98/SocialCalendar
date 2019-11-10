@@ -42,48 +42,72 @@ def is_exists(id):
 
 
 def add_event(user_id, event_id):
+    if not id_is_valid(user_id) or not id_is_valid(event_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'event_id_list': ObjectId(event_id)}})
     return result.modified_count
 
 
 def delete_event(user_id, event_id):
+    if not id_is_valid(user_id) or not id_is_valid(event_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'event_id_list': ObjectId(event_id)}})
     return result.modified_count
 
 
 def add_friend(user_id, friend_id):
+    if not id_is_valid(user_id) or not id_is_valid(friend_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'friend_id_list': ObjectId(friend_id)}})
     return result.modified_count
 
 
 def delete_friend(user_id, friend_id):
+    if not id_is_valid(user_id) or not id_is_valid(friend_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'friend_id_list': ObjectId(friend_id)}})
     return result.modified_count
 
 
 def add_chat(user_id, chat_id):
+    if not id_is_valid(user_id) or not id_is_valid(chat_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'chat_id_list': ObjectId(chat_id)}})
     return result.modified_count
 
 
 def delete_chat(user_id, chat_id):
+    if not id_is_valid(user_id) or not id_is_valid(chat_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'chat_id_list': ObjectId(chat_id)}})
     return result.modified_count
 
 
 def add_invite(user_id, invite_id):
+    if not id_is_valid(user_id) or not id_is_valid(invite_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'invite_id_list': ObjectId(invite_id)}})
     return result.modified_count
 
 
 def delete_invite(user_id, invite_id):
+    if not id_is_valid(user_id) or not id_is_valid(invite_id):
+        return 0
+
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'invite_id_list': ObjectId(invite_id)}})
     return result.modified_count

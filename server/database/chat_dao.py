@@ -63,6 +63,9 @@ def get_event_chat_by_event_id(event_id):
 
 # chat deleting
 def delete_dialog(id):
+    if not id_is_valid(id):
+        return 0
+
     return dialogs_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 

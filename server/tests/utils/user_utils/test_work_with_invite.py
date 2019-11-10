@@ -16,7 +16,7 @@ class TestFunctionForInvite(TestCase):
         self.receiver_invites = user_dao.save_user(
             User("user2", "password", "nickname", "avatar_url", datetime(2000, 2, 20)))
         self.group_event_id = group_event_dao.save(
-            GroupEvent("group_event", False, datetime.today(), "address", "description", [self.sender_invites]))
+            GroupEvent("group_event", False, datetime.today(), "address", "description"))
 
         self.invite_to_friend_id_test_send = ""
         self.invite_to_event_id_test_send = ""

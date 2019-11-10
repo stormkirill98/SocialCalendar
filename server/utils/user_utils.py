@@ -68,7 +68,7 @@ def delete_group_event(removing_member_id, group_event_id):
     """
     # check that member can delete this event
     removing_member = event_member_dao.get(removing_member_id)
-    if not removing_member.is_can_remove_event:
+    if not removing_member.is_can_delete_event:
         return False
 
     group_event = group_event_dao.get(group_event_id)

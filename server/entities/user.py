@@ -1,3 +1,4 @@
+from server.database.database import id_is_valid
 from server.entities.database_object import DatabaseObject
 
 
@@ -17,27 +18,43 @@ class User(DatabaseObject):
         self.invite_id_list = invite_id_list
 
     def add_event(self, id):
+        if not id_is_valid(id):
+            return
         self.event_id_list.append(id)
 
     def delete_event(self, id):
+        if not id_is_valid(id):
+            return
         self.event_id_list.remove(id)
 
     def add_friend(self, id):
+        if not id_is_valid(id):
+            return
         self.friend_id_list.append(id)
 
     def delete_friend(self, id):
+        if not id_is_valid(id):
+            return
         self.friend_id_list.remove(id)
 
     def add_chat(self, id):
+        if not id_is_valid(id):
+            return
         self.chat_id_list.append(id)
 
     def delete_chat(self, id):
+        if not id_is_valid(id):
+            return
         self.chat_id_list.remove(id)
 
     def add_invite(self, id):
+        if not id_is_valid(id):
+            return
         self.invite_id_list.append(id)
 
     def delete_invite(self, id):
+        if not id_is_valid(id):
+            return
         self.invite_id_list.remove(id)
 
     def to_json(self):
