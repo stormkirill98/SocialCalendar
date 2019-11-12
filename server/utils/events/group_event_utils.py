@@ -1,4 +1,4 @@
-from server.database import user_dao, chat_dao
+from server.database import user_dao
 from server.database.events import group_event_dao, event_member_dao
 from server.entities.events.group_events.event_member import EventMember
 

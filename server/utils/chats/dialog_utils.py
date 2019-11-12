@@ -14,7 +14,7 @@ def create_dialog(user_id_1, user_id_2):
 
     # create and save dialog
     dialog = Dialog(user_id_1, user_id_2)
-    dialog = chat_dao.save_chat(dialog)
+    chat_dao.save_chat(dialog)
 
     # add chat to users
     user_dao.add_chat(user_id_1, dialog.id)
