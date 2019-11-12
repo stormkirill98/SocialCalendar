@@ -89,6 +89,19 @@ def add_msg_to_event_chat(event_chat_id, msg_id):
     return result.modified_count
 
 
+# message removing
+def delete_msg_from_dialog(dialog_id, msg_id):
+    result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
+                                           {'$pull': {'msg_id_list': msg_id}})
+    return result.modified_count
+
+
+def delete_msg_from_event_chat(event_chat_id, msg_id):
+    result = event_chats_collection.update_one({'_id': ObjectId(event_chat_id)},
+                                               {'$pull': {'msg_id_list': msg_id}})
+    return result.modified_count
+
+
 # chats are exists to database
 def dialog_is_exist(id):
     return is_exist(id, dialogs_collection)
