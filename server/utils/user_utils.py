@@ -83,7 +83,6 @@ def delete_group_event(removing_member_id, group_event_id):
     return True
 
 
-# not test
 def leave_group_event(leaving_member_id, group_event_id):
     group_event = group_event_dao.get(group_event_id)
 

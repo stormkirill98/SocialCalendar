@@ -18,9 +18,13 @@ class TestFunctionForGroupEvent(TestCase):
 
         self.group_event_id_test_create = ""
         self.group_event_id_test_delete = ""
+        self.group_event_id_test_leave = ""
+
         self.member_id_test_create = ""
         self.member_id_test_delete_1 = ""
         self.member_id_test_delete_2 = ""
+        self.member_id_test_leave_1 = ""
+        self.member_id_test_leave_2 = ""
         self.event_chat_id = ""
 
     def tearDown(self):
@@ -29,9 +33,13 @@ class TestFunctionForGroupEvent(TestCase):
 
         group_event_dao.delete(self.group_event_id_test_create)
         group_event_dao.delete(self.group_event_id_test_delete)
+        group_event_dao.delete(self.group_event_id_test_leave)
+
         event_member_dao.delete(self.member_id_test_create)
         event_member_dao.delete(self.member_id_test_delete_1)
         event_member_dao.delete(self.member_id_test_delete_2)
+        event_member_dao.delete(self.member_id_test_leave_1)
+        event_member_dao.delete(self.member_id_test_leave_2)
         chat_dao.delete_event_chat(self.event_chat_id)
 
     def test_create_group_event(self):
@@ -112,4 +120,44 @@ class TestFunctionForGroupEvent(TestCase):
         self.assertNotIn(group_event.id, user2.event_id_list)
 
         # check that event was remove
+        self.assertFalse(group_event_dao.is_exists(group_event.id))
+
+    def test_leave_event(self):
+        group_event = GroupEvent("name", True, datetime.today(), "address", "description")
+        group_event.member_id_list.clear()  # hz, no pochemuto was not empty
+
+        # create
+        self.group_event_id_test_leave = user_utils.create_group_event(self.user_id_1, group_event)
+
+        # add member
+        self.member_id_test_leave_2 = group_event_utils.add_member(self.group_event_id_test_leave, self.user_id_2)
+
+        group_event = group_event_dao.get(self.group_event_id_test_leave)
+        event_chat = chat_dao.get_event_chat(group_event.chat_id)
+
+        # for clearing after test
+        self.event_chat_id = event_chat.id
+        self.member_id_test_leave_1 = group_event.member_id_list[0]
+
+        # check that in group 2 members
+        self.assertEqual(len(group_event.member_id_list), 2)
+
+        user_utils.leave_group_event(self.member_id_test_leave_2, group_event.id)
+
+        # check that user were clear
+        user2 = user_dao.get_user(self.user_id_2)
+        self.assertNotIn(event_chat.id, user2.chat_id_list)
+        self.assertNotIn(group_event.id, user2.event_id_list)
+
+        # check that member was remove
+        self.assertFalse(event_member_dao.is_exists(self.member_id_test_delete_1))
+
+        # check that member was remove from event
+        group_event = group_event_dao.get(self.group_event_id_test_leave)
+        self.assertNotIn(self.member_id_test_leave_2, group_event.member_id_list)
+
+        self.member_id_test_leave_1 = group_event.member_id_list[0]
+        user_utils.leave_group_event(self.member_id_test_leave_1, group_event.id)
+
+        # check that event was remove because this member is last
         self.assertFalse(group_event_dao.is_exists(group_event.id))
