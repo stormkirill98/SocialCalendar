@@ -36,7 +36,41 @@ def get_by_user_event(user_id, event_id):
     return create_event_from_json(json)
 
 
-# TODO create setters for permissions
+def set_can_invite_user(group_event_id, is_can_invite_user):
+    if not id_is_valid(group_event_id):
+        return 0
+
+    result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
+                                                {'$set': {'is_can_invite_user': is_can_invite_user}})
+    return result.modified_count
+
+
+def set_can_delete_user(group_event_id, is_can_delete_user):
+    if not id_is_valid(group_event_id):
+        return 0
+
+    result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
+                                                {'$set': {'is_can_delete_user': is_can_delete_user}})
+    return result.modified_count
+
+
+def set_can_change_event(group_event_id, is_can_change_event):
+    if not id_is_valid(group_event_id):
+        return 0
+
+    result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
+                                                {'$set': {'is_can_change_event': is_can_change_event}})
+    return result.modified_count
+
+
+def set_can_delete_event(group_event_id, is_can_delete_event):
+    if not id_is_valid(group_event_id):
+        return 0
+
+    result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
+                                                {'$set': {'is_can_delete_event': is_can_delete_event}})
+    return result.modified_count
+
 
 def create_event_from_json(json):
     if json is None:
