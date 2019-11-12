@@ -17,6 +17,9 @@ def save_invite(invite):
 
 
 def get_invite(id):
+    if not id_is_valid(id):
+        return None
+
     json = invites_collection.find_one({'_id': ObjectId(id)})
     if json is None:
         return None
@@ -29,6 +32,9 @@ def get_invite(id):
 
 
 def is_exists(id):
+    if not id_is_valid(id):
+        return False
+
     return database.is_exist(id, invites_collection)
 
 

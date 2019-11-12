@@ -101,6 +101,9 @@ def leave_group_event(leaving_member_id, group_event_id):
     event_member_dao.delete(leaving_member.id)
 
 
+# TODO create single_event, remove single_event, change events
+
+
 # not tested
 def send_msg(user_id, chat_id, chat_type, msg_text):
     msg = Message(user_id, chat_id, datetime.today(), msg_text)

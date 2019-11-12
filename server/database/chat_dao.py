@@ -31,6 +31,9 @@ def save_chat_in_suitable_collection(chat, collection):
 
 # getting chats
 def get_dialog(id):
+    if not id_is_valid(id):
+        return None
+
     json = dialogs_collection.find_one({'_id': ObjectId(id)})
     if json is None:
         return None
@@ -42,23 +45,19 @@ def get_dialog(id):
 
 
 def get_event_chat(id):
-    json = event_chats_collection.find_one({'_id': ObjectId(id)})
-    if json is None:
+    if not id_is_valid(id):
         return None
 
-    return EventChat(json['event_id'],
-                     json['_id'],
-                     json['msg_id_list'])
+    json = event_chats_collection.find_one({'_id': ObjectId(id)})
+    return create_event_chat_from_json(json)
 
 
 def get_event_chat_by_event_id(event_id):
-    json = event_chats_collection.find_one({'event_id': ObjectId(event_id)})
-    if json is None:
+    if not id_is_valid(event_id):
         return None
 
-    return EventChat(json['event_id'],
-                     json['_id'],
-                     json['msg_id_list'])
+    json = event_chats_collection.find_one({'event_id': ObjectId(event_id)})
+    return create_event_chat_from_json(json)
 
 
 # chat deleting
@@ -78,12 +77,18 @@ def delete_event_chat(id):
 
 # message adding
 def add_msg_to_dialog(dialog_id, msg_id):
+    if not id_is_valid(dialog_id) or not id_is_valid(msg_id):
+        return 0
+
     result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
                                            {'$push': {'msg_id_list': msg_id}})
     return result.modified_count
 
 
 def add_msg_to_event_chat(event_chat_id, msg_id):
+    if not id_is_valid(event_chat_id) or not id_is_valid(msg_id):
+        return 0
+
     result = event_chats_collection.update_one({'_id': ObjectId(event_chat_id)},
                                                {'$push': {'msg_id_list': msg_id}})
     return result.modified_count
@@ -91,12 +96,18 @@ def add_msg_to_event_chat(event_chat_id, msg_id):
 
 # message removing
 def delete_msg_from_dialog(dialog_id, msg_id):
+    if not id_is_valid(dialog_id) or not id_is_valid(msg_id):
+        return 0
+
     result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
                                            {'$pull': {'msg_id_list': msg_id}})
     return result.modified_count
 
 
 def delete_msg_from_event_chat(event_chat_id, msg_id):
+    if not id_is_valid(event_chat_id) or not id_is_valid(msg_id):
+        return 0
+
     result = event_chats_collection.update_one({'_id': ObjectId(event_chat_id)},
                                                {'$pull': {'msg_id_list': msg_id}})
     return result.modified_count
@@ -104,8 +115,23 @@ def delete_msg_from_event_chat(event_chat_id, msg_id):
 
 # chats are exists to database
 def dialog_is_exist(id):
+    if not id_is_valid(id):
+        return False
+
     return is_exist(id, dialogs_collection)
 
 
 def event_chat_is_exist(id):
+    if not id_is_valid(id):
+        return False
+
     return is_exist(id, event_chats_collection)
+
+
+def create_event_chat_from_json(json):
+    if json is None:
+        return None
+
+    return EventChat(json['event_id'],
+                     json['_id'],
+                     json['msg_id_list'])

@@ -6,8 +6,6 @@ CLIENT = MongoClient("mongodb+srv://admin:admin@socialcalendar-kjwvs.gcp.mongodb
 DB = CLIENT.database
 
 
-# TODO check all id on validate in dao classes
-# TODO check all json in getters in dao classes
 def id_is_valid(id):
     return bson.objectid.ObjectId.is_valid(id)
 

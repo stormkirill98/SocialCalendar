@@ -24,6 +24,9 @@ def delete(id):
 
 
 def get(id):
+    if not id_is_valid(id):
+        return None
+
     json = group_event_collection.find_one({'_id': ObjectId(id)})
     if json is None:
         return None
@@ -39,22 +42,34 @@ def get(id):
 
 
 def add_member(group_event_id, member_id):
+    if not id_is_valid(group_event_id) or not id_is_valid(member_id):
+        return 0
+
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$push': {'member_id_list': ObjectId(member_id)}})
     return result.modified_count
 
 
 def delete_member(group_event_id, member_id):
+    if not id_is_valid(group_event_id) or not id_is_valid(member_id):
+        return 0
+
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$pull': {'member_id_list': ObjectId(member_id)}})
     return result.modified_count
 
 
 def set_chat_id(group_event_id, chat_id):
+    if not id_is_valid(group_event_id) or not id_is_valid(chat_id):
+        return 0
+
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$set': {'chat_id': ObjectId(chat_id)}})
     return result.modified_count
 
 
 def is_exists(id):
+    if not id_is_valid(id):
+        return False
+
     return database.is_exist(id, group_event_collection)

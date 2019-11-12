@@ -17,6 +17,9 @@ def save_user(user):
 
 
 def get_user(id):
+    if not id_is_valid(id):
+        return None
+
     json = users_collection.find_one({'_id': ObjectId(id)})
     if json is None:
         return None
@@ -34,10 +37,16 @@ def get_user(id):
 
 
 def delete_user(id):
+    if not id_is_valid(id):
+        return 0
+
     return users_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 
 def is_exists(id):
+    if not id_is_valid(id):
+        return False
+
     return database.is_exist(id, users_collection)
 
 
