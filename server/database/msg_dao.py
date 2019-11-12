@@ -1,10 +1,10 @@
 from bson import ObjectId
 
 from server.database import database
-from server.database.database import db
+from server.database.database import DB
 from server.entities.chats.inner_classes.message import Message
 
-msg_collection = db['messages']
+msg_collection = DB['messages']
 
 
 def save_msg(msg):

@@ -3,7 +3,7 @@ from bson import ObjectId
 from pymongo import MongoClient
 
 CLIENT = MongoClient("mongodb+srv://admin:admin@socialcalendar-kjwvs.gcp.mongodb.net/test?retryWrites=true&w=majority")
-db = CLIENT.database
+DB = CLIENT.database
 
 
 # TODO check all id on validate in dao classes

@@ -2,4 +2,5 @@ from server.entities.events.event import Event
 
 
 class SingleEvent(Event):
-    pass
+    def __init__(self, name, is_private, datetime, address, description, id=""):
+        super().__init__(name, is_private, datetime, address, description, id)

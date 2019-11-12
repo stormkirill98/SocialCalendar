@@ -1,10 +1,10 @@
 from bson import ObjectId
 
 from server.database import database
-from server.database.database import db, id_is_valid
+from server.database.database import DB, id_is_valid
 from server.entities.user import User
 
-users_collection = db['users']
+users_collection = DB['users']
 
 
 def save_user(user):

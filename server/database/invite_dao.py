@@ -1,10 +1,10 @@
 from bson import ObjectId
 
 from server.database import database
-from server.database.database import db, id_is_valid
+from server.database.database import DB, id_is_valid
 from server.entities.invite import Invite
 
-invites_collection = db['invites']
+invites_collection = DB['invites']
 
 
 def save_invite(invite):

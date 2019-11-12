@@ -1,10 +1,10 @@
 from bson import ObjectId
 
 from server.database import database
-from server.database.database import db, id_is_valid
+from server.database.database import DB, id_is_valid
 from server.entities.events.group_events.group_event import GroupEvent
 
-group_event_collection = db['group_events']
+group_event_collection = DB['group_events']
 
 
 def save(group_event):
