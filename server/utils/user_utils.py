@@ -60,7 +60,6 @@ def create_group_event(user_id, group_event: GroupEvent):
     return group_event.id
 
 
-# not tested
 def delete_group_event(removing_member_id, group_event_id):
     """delete event by id
     :return True if event was delete
@@ -84,7 +83,24 @@ def delete_group_event(removing_member_id, group_event_id):
     return True
 
 
-# TODO leave event
+# not test
+def leave_group_event(leaving_member_id, group_event_id):
+    group_event = group_event_dao.get(group_event_id)
+
+    # delete event if this member is last
+    if len(group_event.member_id_list) == 1:
+        delete_group_event(leaving_member_id, group_event_id)
+        return
+
+    leaving_member = event_member_dao.get(leaving_member_id)
+
+    group_event_dao.delete_member(group_event_id, leaving_member_id)
+
+    user_dao.delete_chat(leaving_member.user_id, group_event.chat_id)
+    user_dao.delete_event(leaving_member.user_id, group_event.id)
+
+    event_member_dao.delete(leaving_member.id)
+
 
 # not tested
 def send_msg(user_id, chat_id, chat_type, msg_text):
