@@ -1,4 +1,4 @@
-from server.database import chat_dao, user_dao, msg_dao
+from server.database import chat_dao, user_dao
 from server.entities.chats.dialog import Dialog
 from server.utils.chats import chat_utils
 
