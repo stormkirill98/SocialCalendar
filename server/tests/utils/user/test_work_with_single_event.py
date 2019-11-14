@@ -32,3 +32,16 @@ class TestFunctionForSingleEvent(TestCase):
         user = user_dao.get_user(self.user_id)
 
         self.assertIn(single_event.id, user.event_id_list)
+
+    def test_delete_single_event(self):
+        single_event = SingleEvent("name", True, datetime.today(), "address", "descisadsda")
+
+        self.single_event_id_test_delete = user_utils.create_single_event(self.user_id, single_event)
+
+        user_utils.delete_single_event(self.user_id, single_event.id)
+
+        user = user_dao.get_user(self.user_id)
+
+        self.assertFalse(single_event_dao.is_exist(single_event.id))
+        self.assertNotIn(single_event.id, user.event_id_list)
+

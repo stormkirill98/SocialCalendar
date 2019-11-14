@@ -109,7 +109,6 @@ def create_single_event(user_id, single_event: SingleEvent):
     return single_event.id
 
 
-# not tested
 def delete_single_event(user_id, single_event_id):
     user_dao.delete_event(user_id, single_event_id)
     single_event_dao.delete(single_event_id)
