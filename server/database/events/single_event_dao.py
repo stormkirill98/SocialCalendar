@@ -1,5 +1,6 @@
 from bson import ObjectId
 
+from server.database import database
 from server.database.database import DB, id_is_valid
 from server.entities.events.single_event import SingleEvent
 
@@ -36,3 +37,10 @@ def get(id):
                        json['address'],
                        json['description'],
                        json['_id'])
+
+
+def is_exist(id):
+    if not id_is_valid(id):
+        return False
+
+    return database.is_exist(id, single_event_collection)

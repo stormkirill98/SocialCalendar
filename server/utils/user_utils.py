@@ -102,7 +102,6 @@ def leave_group_event(leaving_member_id, group_event_id):
     event_member_dao.delete(leaving_member.id)
 
 
-# not tested
 def create_single_event(user_id, single_event: SingleEvent):
     single_event_dao.save(single_event)
     user_dao.add_event(user_id, single_event.id)
