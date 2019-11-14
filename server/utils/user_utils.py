@@ -1,10 +1,11 @@
 from datetime import datetime
 
 from server.database import invite_dao, user_dao, msg_dao, chat_dao
-from server.database.events import group_event_dao, event_member_dao
+from server.database.events import group_event_dao, event_member_dao, single_event_dao
 from server.entities.chats.inner_classes.message import Message
 from server.entities.events.group_events.event_member import EventMember
 from server.entities.events.group_events.group_event import GroupEvent
+from server.entities.events.single_event import SingleEvent
 from server.entities.invite import Invite
 from server.enums import InviteType, ChatType
 from server.utils.chats import event_chat_utils
@@ -101,7 +102,18 @@ def leave_group_event(leaving_member_id, group_event_id):
     event_member_dao.delete(leaving_member.id)
 
 
-# TODO create single_event, remove single_event, change events
+# not tested
+def create_single_event(user_id, single_event: SingleEvent):
+    single_event_dao.save(single_event)
+    user_dao.add_event(user_id, single_event.id)
+
+    return single_event.id
+
+
+# not tested
+def delete_single_event(user_id, single_event_id):
+    user_dao.delete_event(user_id, single_event_id)
+    single_event_dao.delete(single_event_id)
 
 
 # not tested
