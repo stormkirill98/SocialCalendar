@@ -88,6 +88,7 @@ class TestFunctionForGroupEvent(TestCase):
 
         # add member
         self.member_id_test_delete_2 = group_event_utils.add_member(self.group_event_id_test_delete, self.user_id_2)
+        self.assertIsNotNone(self.member_id_test_delete_2)
 
         group_event = group_event_dao.get(self.group_event_id_test_delete)
         event_chat = chat_dao.get_event_chat(group_event.chat_id)
@@ -131,6 +132,7 @@ class TestFunctionForGroupEvent(TestCase):
 
         # add member
         self.member_id_test_leave_2 = group_event_utils.add_member(self.group_event_id_test_leave, self.user_id_2)
+        self.assertIsNotNone(self.member_id_test_leave_2)
 
         group_event = group_event_dao.get(self.group_event_id_test_leave)
         event_chat = chat_dao.get_event_chat(group_event.chat_id)
