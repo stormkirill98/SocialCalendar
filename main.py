@@ -16,7 +16,7 @@ def run():
 
 @app.route('/index', methods=['POST', 'GET'])
 def index():
-    print(request.get_json())
+    print(request.method)
     return "Welcome"
 
 
@@ -38,4 +38,4 @@ def get_user(user_id):
 
 
 # uncomment for debug locale
-app.run()
+# app.run()
