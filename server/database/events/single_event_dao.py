@@ -11,23 +11,23 @@ def save(single_event):
     json = single_event.to_json()
     json.pop('id')
 
-    id = single_event_collection.insert_one(json).inserted_id
-    single_event.set_id(id)
-    return id
+    single_event_id = single_event_collection.insert_one(json).inserted_id
+    single_event.set_id(single_event_id)
+    return single_event_id
 
 
-def delete(id):
-    if not id_is_valid(id):
+def delete(single_event_id):
+    if not id_is_valid(single_event_id):
         return 0
 
-    return single_event_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+    return single_event_collection.delete_one({'_id': ObjectId(single_event_id)}).deleted_count
 
 
-def get(id):
-    if not id_is_valid(id):
+def get(single_event_id):
+    if not id_is_valid(single_event_id):
         return None
 
-    json = single_event_collection.find_one({'_id': ObjectId(id)})
+    json = single_event_collection.find_one({'_id': ObjectId(single_event_id)})
     if json is None:
         return None
 
@@ -39,8 +39,8 @@ def get(id):
                        json['_id'])
 
 
-def is_exist(id):
-    if not id_is_valid(id):
+def is_exist(single_event_id):
+    if not id_is_valid(single_event_id):
         return False
 
-    return database.is_exist(id, single_event_collection)
+    return database.is_exist(single_event_id, single_event_collection)

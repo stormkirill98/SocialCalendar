@@ -11,9 +11,9 @@ def save(group_event):
     json = group_event.to_json()
     json.pop('id')
 
-    id = group_event_collection.insert_one(json).inserted_id
-    group_event.set_id(id)
-    return id
+    group_event_id = group_event_collection.insert_one(json).inserted_id
+    group_event.set_id(group_event_id)
+    return group_event_id
 
 
 def delete(id):
@@ -23,11 +23,11 @@ def delete(id):
     return group_event_collection.delete_one({'_id': ObjectId(id)}).deleted_count
 
 
-def get(id):
-    if not id_is_valid(id):
+def get(group_event_id):
+    if not id_is_valid(group_event_id):
         return None
 
-    json = group_event_collection.find_one({'_id': ObjectId(id)})
+    json = group_event_collection.find_one({'_id': ObjectId(group_event_id)})
     if json is None:
         return None
 
@@ -68,8 +68,8 @@ def set_chat_id(group_event_id, chat_id):
     return result.modified_count
 
 
-def is_exists(id):
-    if not id_is_valid(id):
+def is_exists(group_event_id):
+    if not id_is_valid(group_event_id):
         return False
 
-    return database.is_exist(id, group_event_collection)
+    return database.is_exist(group_event_id, group_event_collection)

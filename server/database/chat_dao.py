@@ -24,17 +24,17 @@ def save_chat_in_suitable_collection(chat, collection):
     json = chat.to_json()
     json.pop('id')
 
-    id = collection.insert_one(json).inserted_id
-    chat.set_id(id)
-    return id
+    chat_id = collection.insert_one(json).inserted_id
+    chat.set_id(chat_id)
+    return chat_id
 
 
 # getting chats
-def get_dialog(id):
-    if not id_is_valid(id):
+def get_dialog(dialog_id):
+    if not id_is_valid(dialog_id):
         return None
 
-    json = dialogs_collection.find_one({'_id': ObjectId(id)})
+    json = dialogs_collection.find_one({'_id': ObjectId(dialog_id)})
     if json is None:
         return None
 
@@ -44,11 +44,11 @@ def get_dialog(id):
                   json['msg_id_list'])
 
 
-def get_event_chat(id):
-    if not id_is_valid(id):
+def get_event_chat(event_chat_id):
+    if not id_is_valid(event_chat_id):
         return None
 
-    json = event_chats_collection.find_one({'_id': ObjectId(id)})
+    json = event_chats_collection.find_one({'_id': ObjectId(event_chat_id)})
     return create_event_chat_from_json(json)
 
 
@@ -61,18 +61,18 @@ def get_event_chat_by_event_id(event_id):
 
 
 # chat deleting
-def delete_dialog(id):
-    if not id_is_valid(id):
+def delete_dialog(dialog_id):
+    if not id_is_valid(dialog_id):
         return 0
 
-    return dialogs_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+    return dialogs_collection.delete_one({'_id': ObjectId(dialog_id)}).deleted_count
 
 
-def delete_event_chat(id):
-    if not id_is_valid(id):
+def delete_event_chat(event_chat_id):
+    if not id_is_valid(event_chat_id):
         return 0
 
-    return event_chats_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+    return event_chats_collection.delete_one({'_id': ObjectId(event_chat_id)}).deleted_count
 
 
 # message adding
@@ -114,18 +114,18 @@ def delete_msg_from_event_chat(event_chat_id, msg_id):
 
 
 # chats are exists to database
-def dialog_is_exist(id):
-    if not id_is_valid(id):
+def dialog_is_exist(dialog_id):
+    if not id_is_valid(dialog_id):
         return False
 
-    return is_exist(id, dialogs_collection)
+    return is_exist(dialog_id, dialogs_collection)
 
 
-def event_chat_is_exist(id):
-    if not id_is_valid(id):
+def event_chat_is_exist(event_chat_id):
+    if not id_is_valid(event_chat_id):
         return False
 
-    return is_exist(id, event_chats_collection)
+    return is_exist(event_chat_id, event_chats_collection)
 
 
 def create_event_chat_from_json(json):
