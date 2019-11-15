@@ -11,16 +11,16 @@ def save_user(user):
     json = user.to_json()
     json.pop('id')
 
-    id = users_collection.insert_one(json).inserted_id
-    user.set_id(id)
-    return id
+    user_id = users_collection.insert_one(json).inserted_id
+    user.set_id(user_id)
+    return user_id
 
 
-def get_user(id):
-    if not id_is_valid(id):
+def get_user(user_id):
+    if not id_is_valid(user_id):
         return None
 
-    json = users_collection.find_one({'_id': ObjectId(id)})
+    json = users_collection.find_one({'_id': ObjectId(user_id)})
     if json is None:
         return None
 
@@ -36,18 +36,18 @@ def get_user(id):
                 json['invite_id_list'])
 
 
-def delete_user(id):
-    if not id_is_valid(id):
+def delete_user(user_id):
+    if not id_is_valid(user_id):
         return 0
 
-    return users_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+    return users_collection.delete_one({'_id': ObjectId(user_id)}).deleted_count
 
 
-def is_exists(id):
-    if not id_is_valid(id):
+def is_exists(user_id):
+    if not id_is_valid(user_id):
         return False
 
-    return database.is_exist(id, users_collection)
+    return database.is_exist(user_id, users_collection)
 
 
 def add_event(user_id, event_id):
