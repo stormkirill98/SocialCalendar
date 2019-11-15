@@ -20,10 +20,10 @@ def update_user(user: User):
     if not id_is_valid(user.id):
         return 0
 
-    result = users_collection.update_one({'_id': ObjectId(user.id)},
-                                         {'$set': {'nickname': user.nickname,
-                                                   'avatar_url': user.avatar_url}})
-    return result.modified_count
+    # result = users_collection.update_one({'_id': ObjectId(user.id)},
+    #                                      {'$set': {'nickname': user.nickname,
+    #                                                'avatar_url': user.avatar_url}})
+    # return result.modified_count
 
 
 def get_user(user_id):
@@ -34,9 +34,9 @@ def get_user(user_id):
     if json is None:
         return None
 
-    return User(json['login'],
-                json['password'],
-                json['nickname'],
+    return User(json['name'],
+                json['email'],
+                json['profile_pic'],
                 json['avatar_url'],
                 json['birthday'],
                 json['_id'],
