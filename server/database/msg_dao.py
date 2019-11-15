@@ -7,7 +7,7 @@ from server.entities.chats.inner_classes.message import Message
 msg_collection = DB['messages']
 
 
-def save_msg(msg):
+def save_msg(msg: Message):
     json = msg.to_json()
     json.pop('id')
 

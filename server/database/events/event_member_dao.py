@@ -7,7 +7,7 @@ from server.entities.events.group_events.event_member import EventMember
 event_member_collection = DB['event_members']
 
 
-def save(event_member):
+def save(event_member: EventMember):
     json = event_member.to_json()
     json.pop('id')
 

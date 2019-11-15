@@ -7,13 +7,23 @@ from server.entities.user import User
 users_collection = DB['users']
 
 
-def save_user(user):
+def save_user(user: User):
     json = user.to_json()
     json.pop('id')
 
     user_id = users_collection.insert_one(json).inserted_id
     user.set_id(user_id)
     return user_id
+
+
+def update_user(user: User):
+    if not id_is_valid(user.id):
+        return 0
+
+    result = users_collection.update_one({'_id': ObjectId(user.id)},
+                                         {'$set': {'nickname': user.nickname,
+                                                   'avatar_url': user.avatar_url}})
+    return result.modified_count
 
 
 def get_user(user_id):

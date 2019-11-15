@@ -7,7 +7,7 @@ from server.entities.invite import Invite
 invites_collection = DB['invites']
 
 
-def save_invite(invite):
+def save_invite(invite: Invite):
     json = invite.to_json()
     json.pop('id')
 

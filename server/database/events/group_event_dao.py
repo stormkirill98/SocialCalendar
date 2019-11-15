@@ -7,13 +7,26 @@ from server.entities.events.group_events.group_event import GroupEvent
 group_event_collection = DB['group_events']
 
 
-def save(group_event):
+def save(group_event: GroupEvent):
     json = group_event.to_json()
     json.pop('id')
 
     group_event_id = group_event_collection.insert_one(json).inserted_id
     group_event.set_id(group_event_id)
     return group_event_id
+
+
+def update(group_event: GroupEvent):
+    if not id_is_valid(group_event.id):
+        return 0
+
+    result = group_event_collection.update_one({'_id': ObjectId(group_event.id)},
+                                               {'$set': {'name': group_event.name,
+                                                         'is_private': group_event.is_private,
+                                                         'datetime': group_event.datetime,
+                                                         'address': group_event.address,
+                                                         'description': group_event.description}})
+    return result.modified_count
 
 
 def delete(id):
