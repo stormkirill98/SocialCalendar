@@ -11,16 +11,16 @@ def save_invite(invite):
     json = invite.to_json()
     json.pop('id')
 
-    id = invites_collection.insert_one(json).inserted_id
-    invite.set_id(id)
-    return id
+    invite_id = invites_collection.insert_one(json).inserted_id
+    invite.set_id(invite_id)
+    return invite_id
 
 
-def get_invite(id):
-    if not id_is_valid(id):
+def get_invite(invite_id):
+    if not id_is_valid(invite_id):
         return None
 
-    json = invites_collection.find_one({'_id': ObjectId(id)})
+    json = invites_collection.find_one({'_id': ObjectId(invite_id)})
     if json is None:
         return None
 
@@ -31,15 +31,15 @@ def get_invite(id):
                   json['_id'])
 
 
-def is_exists(id):
-    if not id_is_valid(id):
+def is_exists(invite_id):
+    if not id_is_valid(invite_id):
         return False
 
-    return database.is_exist(id, invites_collection)
+    return database.is_exist(invite_id, invites_collection)
 
 
-def delete_invite(id):
-    if not id_is_valid(id):
+def delete_invite(invite_id):
+    if not id_is_valid(invite_id):
         return 0
 
-    return invites_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+    return invites_collection.delete_one({'_id': ObjectId(invite_id)}).deleted_count
