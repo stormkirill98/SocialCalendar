@@ -72,29 +72,29 @@ def callback(client: WebApplicationClient):
     # Now that you have tokens (yay) let's find and hit the URL
     # from Google that gives you the user's profile information,
     # including their Google profile image and email
-    userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
-    uri, headers, body = client.add_token(userinfo_endpoint)
-    userinfo_response = requests.get(uri, headers=headers, data=body)
+    user_info_endpoint = google_provider_cfg["userinfo_endpoint"]
+    uri, headers, body = client.add_token(user_info_endpoint)
+    user_info_response = requests.get(uri, headers=headers, data=body)
 
     # You want to make sure their email is verified.
     # The user authenticated with Google, authorized your
     # app, and now you've verified their email through Google!
-    if userinfo_response.json().get("email_verified"):
-        unique_id = userinfo_response.json()["sub"]
-        users_email = userinfo_response.json()["email"]
-        picture = userinfo_response.json()["picture"]
-        users_name = userinfo_response.json()["given_name"]
+    if user_info_response.json().get("email_verified"):
+        unique_id = user_info_response.json()["sub"]
+        users_email = user_info_response.json()["email"]
+        picture = user_info_response.json()["picture"]
+        users_name = user_info_response.json()["name"]
     else:
         return "User email not available or not verified by Google.", 400
 
     # Create a user in your db with the information provided
     # by Google
     user = User(
-        users_name, users_email, picture, "", "", unique_id
+        unique_id, users_name, users_email, picture, ""
     )
 
     # Doesn't exist? Add it to the database.
-    if not user_dao.is_exists(unique_id):
+    if not user_dao.is_exist_by_google_id(unique_id):
         user_dao.save_user(user)
 
     # Begin user session by logging the user in

@@ -5,9 +5,10 @@ from server.entities.database_object import DatabaseObject
 
 
 class User(DatabaseObject, UserMixin):
-    def __init__(self, name, email, profile_pic, birthday, id="",
+    def __init__(self, google_id, name, email, profile_pic, birthday, id="",
                  event_id_list=[], friend_id_list=[], chat_id_list=[], invite_id_list=[]):
         super().__init__(id)
+        self.google_id = google_id
         self.name = name
         self.email = email
         self.profile_pic = profile_pic
@@ -61,6 +62,7 @@ class User(DatabaseObject, UserMixin):
     def to_json(self):
         return {
             'id': self.id,
+            'google_id': self.google_id,
             'name': self.name,
             'email': self.email,
             'profile_pic': self.profile_pic,

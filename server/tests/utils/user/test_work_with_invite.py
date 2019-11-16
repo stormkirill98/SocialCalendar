@@ -43,8 +43,8 @@ class TestFunctionForInvite(TestCase):
 
     def test_send_invite(self):
         # check that users were create
-        self.assertTrue(user_dao.is_exists(self.sender_invites))
-        self.assertTrue(user_dao.is_exists(self.receiver_invites))
+        self.assertTrue(user_dao.is_exist_by_id(self.sender_invites))
+        self.assertTrue(user_dao.is_exist_by_id(self.receiver_invites))
 
         # send invite from user_1 to user_2 in friends
         self.invite_to_friend_id_test_send = user_utils.send_invite(self.sender_invites, self.receiver_invites,

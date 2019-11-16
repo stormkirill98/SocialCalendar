@@ -7,7 +7,7 @@ def create_dialog(user_id_1, user_id_2):
     """Create and save dialog to mongoDB,
        then add this dialog to users on mongoDB"""
 
-    if not user_dao.is_exists(user_id_1) or not user_dao.is_exists(user_id_2):
+    if not user_dao.is_exist_by_id(user_id_1) or not user_dao.is_exist_by_id(user_id_2):
         print("create_dialog: id='{id1}' or id='{id2}' are not valid or are not exists".format(id1=user_id_1,
                                                                                                id2=user_id_2))
         return None

@@ -4,7 +4,8 @@ from flask import Flask, redirect, url_for
 from flask_login import (
     LoginManager,
     current_user,
-    login_required, logout_user)
+    login_required,
+    logout_user)
 from oauthlib.oauth2 import WebApplicationClient
 
 from server import auth

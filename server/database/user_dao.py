@@ -34,7 +34,8 @@ def get_user(user_id):
     if json is None:
         return None
 
-    return User(json['name'],
+    return User(json['google_id'],
+                json['name'],
                 json['email'],
                 json['profile_pic'],
                 json['birthday'],
@@ -52,11 +53,15 @@ def delete_user(user_id):
     return users_collection.delete_one({'_id': ObjectId(user_id)}).deleted_count
 
 
-def is_exists(user_id):
+def is_exist_by_id(user_id):
     if not id_is_valid(user_id):
         return False
 
     return database.is_exist(user_id, users_collection)
+
+
+def is_exist_by_google_id(google_id):
+    return users_collection.count_documents({'google_id': google_id}) > 0
 
 
 def add_event(user_id, event_id):
