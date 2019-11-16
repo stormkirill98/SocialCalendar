@@ -5,13 +5,12 @@ from server.entities.database_object import DatabaseObject
 
 
 class User(DatabaseObject, UserMixin):
-    def __init__(self, name, email, profile_pic, avatar_url, birthday, id="",
+    def __init__(self, name, email, profile_pic, birthday, id="",
                  event_id_list=[], friend_id_list=[], chat_id_list=[], invite_id_list=[]):
         super().__init__(id)
         self.name = name
         self.email = email
         self.profile_pic = profile_pic
-        self.avatar_url = avatar_url
         self.birthday = birthday
 
         self.event_id_list = event_id_list
@@ -65,7 +64,6 @@ class User(DatabaseObject, UserMixin):
             'name': self.name,
             'email': self.email,
             'profile_pic': self.profile_pic,
-            'avatar_url': self.avatar_url,
             'birthday': self.birthday,
             'event_id_list': self.event_id_list,
             'friend_id_list': self.friend_id_list,

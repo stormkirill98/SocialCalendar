@@ -37,7 +37,6 @@ def get_user(user_id):
     return User(json['name'],
                 json['email'],
                 json['profile_pic'],
-                json['avatar_url'],
                 json['birthday'],
                 json['_id'],
                 json['event_id_list'],
