@@ -96,6 +96,8 @@ def callback(client: WebApplicationClient):
     # Doesn't exist? Add it to the database.
     if not user_dao.is_exist_by_google_id(unique_id):
         user_dao.save_user(user)
+    else:
+        user = user_dao.get_user_by_google_id(unique_id)
 
     # Begin user session by logging the user in
     login_user(user)
