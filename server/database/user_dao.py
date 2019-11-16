@@ -31,6 +31,18 @@ def get_user(user_id):
         return None
 
     json = users_collection.find_one({'_id': ObjectId(user_id)})
+    return create_user_from_json(json)
+
+
+def get_user_by_google_id(google_id):
+    if google_id is None:
+        return None
+
+    json = users_collection.find_one({'google_id': google_id})
+    return create_user_from_json(json)
+
+
+def create_user_from_json(json):
     if json is None:
         return None
 
