@@ -90,6 +90,10 @@ def callback(client: WebApplicationClient):
     if user is None:
         user = User(unique_id, users_name, users_email, picture, "")
         user_dao.save_user(user)
+    else:
+        if user.profile_pic != picture:
+            user.profile_pic = picture
+            user_dao.update_picture(user.id, picture)
 
     # Begin user session by logging the user in
     login_user(user)
