@@ -19,9 +19,7 @@ except ImportError as error:
 # Configuration
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
-GOOGLE_DISCOVERY_URL = (
-    "https://accounts.google.com/.well-known/openid-configuration"
-)
+GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 
 
 def get_google_provider_cfg():
@@ -87,17 +85,11 @@ def callback(client: WebApplicationClient):
     else:
         return "User email not available or not verified by Google.", 400
 
-    # Create a user in your db with the information provided
-    # by Google
-    user = User(
-        unique_id, users_name, users_email, picture, ""
-    )
-
-    # Doesn't exist? Add it to the database.
-    if not user_dao.is_exist_by_google_id(unique_id):
+    # Create a user in your db with the information provided by Google
+    user = user_dao.get_user_by_google_id(unique_id)
+    if user is None:
+        user = User(unique_id, users_name, users_email, picture, "")
         user_dao.save_user(user)
-    else:
-        user = user_dao.get_user_by_google_id(unique_id)
 
     # Begin user session by logging the user in
     login_user(user)
