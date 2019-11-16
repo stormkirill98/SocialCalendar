@@ -146,3 +146,12 @@ def delete_invite(user_id, invite_id):
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'invite_id_list': ObjectId(invite_id)}})
     return result.modified_count
+
+
+def update_picture(user_id, picture):
+    if not id_is_valid(user_id) or picture is None:
+        return 0
+
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$set': {'profile_pic': picture}})
+    return result.modified_count
