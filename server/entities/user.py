@@ -1,8 +1,10 @@
+from flask_login import UserMixin
+
 from server.database.database import id_is_valid
 from server.entities.database_object import DatabaseObject
 
 
-class User(DatabaseObject):
+class User(DatabaseObject, UserMixin):
     def __init__(self, name, email, profile_pic, avatar_url, birthday, id="",
                  event_id_list=[], friend_id_list=[], chat_id_list=[], invite_id_list=[]):
         super().__init__(id)
