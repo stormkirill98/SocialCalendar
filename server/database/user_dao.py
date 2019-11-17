@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from bson import ObjectId
 
 from server.database import database
@@ -16,14 +18,13 @@ def save_user(user: User):
     return user_id
 
 
-def update_user(user: User):
-    if not id_is_valid(user.id):
+def set_user_birthday(user_id, birthday: datetime):
+    if not id_is_valid(user_id):
         return 0
 
-    # result = users_collection.update_one({'_id': ObjectId(user.id)},
-    #                                      {'$set': {'nickname': user.nickname,
-    #                                                'avatar_url': user.avatar_url}})
-    # return result.modified_count
+    result = users_collection.update_one({'_id': ObjectId(user_id)},
+                                         {'$set': {'birthday': birthday}})
+    return result.modified_count
 
 
 def get_user(user_id):
