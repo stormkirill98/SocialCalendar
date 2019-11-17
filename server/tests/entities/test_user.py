@@ -63,20 +63,3 @@ class TestUser(TestCase):
         self.assertEqual(len(self.user.invite_id_list), 1)
         self.user.delete_invite("invite_id_2")
         self.assertEqual(len(self.user.invite_id_list), 0)
-
-    def test_to_json(self):
-        self.user.add_chat("chat_id_1")
-        self.user.add_friend("friend_id_1")
-        self.user.add_event("event_id_1")
-        self.assertEqual(self.user.to_json(), {
-            'id': "id",
-            'login': "login",
-            'password': "password",
-            'nickname': "nickname",
-            'avatar_url': "avatar_url",
-            'birthday': datetime(1998, 5, 7),
-            'event_id_list': ['event_id_1'],
-            'friend_id_list': ['friend_id_1'],
-            'chat_id_list': ['chat_id_1'],
-            'invite_id_list': []
-        })
