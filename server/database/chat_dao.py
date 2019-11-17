@@ -30,6 +30,9 @@ def save_chat_in_suitable_collection(chat, collection):
 
 
 # getting chats
+def get_chat(chat_id):
+
+
 def get_dialog(dialog_id):
     if not id_is_valid(dialog_id):
         return None
