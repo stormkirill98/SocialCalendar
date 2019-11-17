@@ -115,7 +115,7 @@ def delete_single_event(user_id, single_event_id):
     single_event_dao.delete(single_event_id)
 
 
-# not tested
+# not tested, but is worked
 def send_msg(user_id, chat_id, msg_text):
     msg = Message(user_id, chat_id, datetime.today(), msg_text)
     msg_id = msg_dao.save_msg(msg)
