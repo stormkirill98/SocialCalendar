@@ -155,3 +155,10 @@ def update_picture(user_id, picture):
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$set': {'profile_pic': picture}})
     return result.modified_count
+
+
+def get_filtered_users(regx):
+    if regx is None:
+        return None
+
+    return users_collection.find({'searched_field': {'$regex': regx}})
