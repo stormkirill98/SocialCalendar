@@ -38,7 +38,7 @@ def login(client: WebApplicationClient):
         redirect_uri=request.base_url + "/callback",
         scope=["openid", "email", "profile"],
     )
-    return redirect(request_uri)
+    return request_uri
 
 
 def callback(client: WebApplicationClient):
@@ -97,6 +97,3 @@ def callback(client: WebApplicationClient):
 
     # Begin user session by logging the user in
     login_user(user)
-
-    # Send user back to homepage
-    return redirect(url_for("index"))

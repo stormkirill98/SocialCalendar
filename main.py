@@ -45,12 +45,14 @@ def index():
 
 @app.route("/login")
 def login():
-    return auth.login(client)
+    request_uri = auth.login(client)
+    return redirect(request_uri)
 
 
 @app.route("/login/callback")
 def callback():
-    return auth.callback(client)
+    auth.callback(client)
+    return redirect(url_for("index"))
 
 
 @app.route("/logout")
