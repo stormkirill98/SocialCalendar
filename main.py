@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, request
 from flask_login import (
     LoginManager,
     current_user,
@@ -60,6 +60,99 @@ def callback():
 def logout():
     logout_user()
     return redirect(url_for("index"))
+
+
+@app.route("/events", methods=['GET'])
+def events():
+    if request.method == 'GET':
+        """Get events start-end sorted by datetime
+        :arg start - number first require event
+        :arg end - number last require event"""
+        # TODO better set count days forward and back relatively today
+        pass
+
+
+@app.route("/event", methods=['GET', 'POST', 'PUT'])
+def event():
+    if request.method == 'GET':
+        """Get event by ID"""
+        pass
+
+    if request.method == 'POST':
+        """Create new event"""
+        pass
+
+    if request.method == 'PUT':
+        """Add member, remove member; update name, is_private, datetime, address, description"""
+        pass
+
+
+@app.route("/chats", methods=['GET', 'POST'])
+def chats():
+    if request.method == 'GET':
+        """Get chats start-end sorted by last msg datetime
+        :arg start - number first require chat
+        :arg end - number last require chat"""
+        pass
+
+    if request.method == 'POST':
+        """Create new dialog"""
+        pass
+
+
+@app.route("/chat", methods=['GET', 'POST', 'PUT', 'DELETE'])
+def chat():
+    if request.method == 'GET':
+        """Get chat by id"""
+        pass
+
+    if request.method == 'POST':
+        """send msg
+        :arg user_id - who send
+        :arg chat_id - where send
+        :arg text - text of msg"""
+        pass
+
+    if request.method == 'PUT':
+        """update msg
+        :arg msg_id
+        :arg text - text of msg"""
+        pass
+
+    if request.method == 'DELETE':
+        """delete msg
+        :arg msg_id"""
+        pass
+
+
+@app.route("/chats", methods=['GET', 'POST'])
+def chats():
+    if request.method == 'GET':
+        """Get chats start-end sorted by last msg datetime
+        :arg start - number first require chat
+        :arg end - number last require chat"""
+        pass
+
+    if request.method == 'POST':
+        """Create new dialog"""
+        pass
+
+
+@app.route("/friends", methods=['GET', 'POST', 'DELETE'])
+def friends():
+    if request.method == 'GET':
+        """Get all friends"""
+        pass
+
+    if request.method == 'POST':
+        """Send invite to friends
+        :arg user_id - who invite to friends"""
+        pass
+
+    if request.method == 'DELETE':
+        """Remove user from friends
+        :arg user_id - who remove from friends"""
+        pass
 
 
 if __name__ == "__main__":
