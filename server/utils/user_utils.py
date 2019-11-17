@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 
 from server.database import invite_dao, user_dao, msg_dao, chat_dao
@@ -122,3 +123,16 @@ def send_msg(user_id, chat_id, chat_type, msg_text):
         chat_dao.add_msg_to_dialog(chat_id, msg_id)
     else:
         chat_dao.add_msg_to_event_chat(chat_id, msg_id)
+
+
+# not tested
+def search_users(filtered_str: str):
+    """Does search by searched field which contain name and email"""
+
+    regx = re.compile('.*' + filtered_str + '.*', re.IGNORECASE)
+
+    users = user_dao.get_filtered_users(regx)
+    if users is None:
+        return list()
+    else:
+        return list(users)
