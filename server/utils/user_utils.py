@@ -116,12 +116,12 @@ def delete_single_event(user_id, single_event_id):
 
 
 # not tested
-def send_msg(user_id, chat_id, chat_type, msg_text):
+def send_msg(user_id, chat_id, msg_text):
     msg = Message(user_id, chat_id, datetime.today(), msg_text)
     msg_id = msg_dao.save_msg(msg)
-    if chat_type == ChatType.DIALOG:
+    if chat_dao.dialog_is_exist(chat_id):
         chat_dao.add_msg_to_dialog(chat_id, msg_id)
-    else:
+    if chat_dao.event_chat_is_exist(chat_id):
         chat_dao.add_msg_to_event_chat(chat_id, msg_id)
 
 
