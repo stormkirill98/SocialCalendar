@@ -31,6 +31,13 @@ def save_chat_in_suitable_collection(chat, collection):
 
 # getting chats
 def get_chat(chat_id):
+    if dialog_is_exist(chat_id):
+        return get_dialog(chat_id)
+
+    if event_chat_is_exist(chat_id):
+        return get_event_chat(chat_id)
+
+    return None
 
 
 def get_dialog(dialog_id):
