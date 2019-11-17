@@ -67,6 +67,7 @@ class User(DatabaseObject, UserMixin):
             'email': self.email,
             'profile_pic': self.profile_pic,
             'birthday': self.birthday,
+            'searched_field': self.name + " " + self.email,
             'event_id_list': self.event_id_list,
             'friend_id_list': self.friend_id_list,
             'chat_id_list': self.chat_id_list,
