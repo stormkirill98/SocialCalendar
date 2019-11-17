@@ -59,6 +59,20 @@ class User(DatabaseObject, UserMixin):
             return
         self.invite_id_list.remove(id)
 
+    def to_json_for_db(self):
+        return {
+            'google_id': self.google_id,
+            'name': self.name,
+            'email': self.email,
+            'profile_pic': self.profile_pic,
+            'birthday': self.birthday,
+            'searched_field': self.name + " " + self.email,
+            'event_id_list': self.event_id_list,
+            'friend_id_list': self.friend_id_list,
+            'chat_id_list': self.chat_id_list,
+            'invite_id_list': self.invite_id_list
+        }
+
     def to_json(self):
         return {
             'id': self.id,
@@ -67,7 +81,6 @@ class User(DatabaseObject, UserMixin):
             'email': self.email,
             'profile_pic': self.profile_pic,
             'birthday': self.birthday,
-            'searched_field': self.name + " " + self.email,
             'event_id_list': self.event_id_list,
             'friend_id_list': self.friend_id_list,
             'chat_id_list': self.chat_id_list,

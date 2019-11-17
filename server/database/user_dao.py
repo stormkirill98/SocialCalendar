@@ -10,8 +10,7 @@ users_collection = DB['users']
 
 
 def save_user(user: User):
-    json = user.to_json()
-    json.pop('id')
+    json = user.to_json_for_db()
 
     user_id = users_collection.insert_one(json).inserted_id
     user.set_id(user_id)
