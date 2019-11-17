@@ -11,6 +11,16 @@ def delete_all_msg(chat: Chat):
 
 
 def get_chats(user_id, count=5):
+    user_chats = get_sorted_chats(user_id)
+    return user_chats[:count]
+
+
+def get_add_chats(user_id, start_num, end_num):
+    user_chats = get_sorted_chats(user_id)
+    return user_chats[start_num: end_num]
+
+
+def get_sorted_chats(user_id):
     user = user_dao.get_user(user_id)
 
     user_chats = []
@@ -25,7 +35,7 @@ def get_chats(user_id, count=5):
     user_chats.sort(key=lambda x: get_datetime_last_msg(x),
                     reverse=True)
 
-    return user_chats[:count]
+    return user_chats
 
 
 def get_datetime_last_msg(chat: Chat):
