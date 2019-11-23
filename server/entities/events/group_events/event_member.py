@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from server.entities.database_object import DatabaseObject
 
 
@@ -23,6 +25,6 @@ class EventMember(DatabaseObject):
             'is_can_delete_user': self.is_can_delete_user,
             'is_can_change_event': self.is_can_change_event,
             'is_can_delete_event': self.is_can_delete_event,
-            'user_id': self.user_id,
-            'event_id': self.event_id
+            'user_id': ObjectId(self.user_id),
+            'event_id': ObjectId(self.event_id)
         }

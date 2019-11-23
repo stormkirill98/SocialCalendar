@@ -1,5 +1,4 @@
 import os
-import json
 
 from flask import Flask, redirect, url_for, request
 from flask_login import (
@@ -78,7 +77,7 @@ def events():
         return "Error. This method is not handle"
 
 
-@app.route("/event", methods=['GET', 'POST', 'PUT'])
+@app.route("/event", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def event():
     if request.method == 'GET':
         """Get event by ID
@@ -92,8 +91,13 @@ def event():
         return event_utils.create_event(event_json, current_user)
 
     if request.method == 'PUT':
-        """Add member, remove member; update name, is_private, datetime, address, description"""
-        pass
+        """Update name, is_private, datetime, address, description"""
+        event_json = request.get_json()
+        return event_utils.update_event(event_json, current_user)
+
+    if request.method == 'DELETE':
+        """Delete event by ID
+        :arg id - event id"""
 
 
 @app.route("/chat", methods=['GET', 'POST', 'PUT', 'DELETE'])

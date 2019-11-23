@@ -30,6 +30,9 @@ def get(event_member_id):
 
 
 def get_by_user_event(user_id, event_id):
+    if not id_is_valid(user_id) or not id_is_valid(event_id):
+        return None
+
     json = event_member_collection.find_one({'user_id': ObjectId(user_id),
                                              'event_id': ObjectId(event_id)})
 

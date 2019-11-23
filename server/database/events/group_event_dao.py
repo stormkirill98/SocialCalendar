@@ -2,6 +2,8 @@ from bson import ObjectId
 
 from server.database import database
 from server.database.database import DB, id_is_valid
+from server.database.events import event_dao
+from server.entities.events.event import Event
 from server.entities.events.group_events.group_event import GroupEvent
 
 group_event_collection = DB['group_events']
@@ -17,16 +19,7 @@ def save(group_event: GroupEvent):
 
 
 def update(group_event: GroupEvent):
-    if not id_is_valid(group_event.id):
-        return 0
-
-    result = group_event_collection.update_one({'_id': ObjectId(group_event.id)},
-                                               {'$set': {'name': group_event.name,
-                                                         'is_private': group_event.is_private,
-                                                         'datetime': group_event.datetime,
-                                                         'address': group_event.address,
-                                                         'description': group_event.description}})
-    return result.modified_count
+    return event_dao.update(group_event, group_event_collection)
 
 
 def delete(id):
