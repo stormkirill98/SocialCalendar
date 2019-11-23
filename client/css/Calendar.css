@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Algerian";
+    src: url(../fonts/Algerian.TTF);
+}
+
+header .navbar-brand {
+    font-size: 40px;
+    padding: 0;
+    margin: 0;
+    font-family: "Algerian";
+}
+
+header .nav-item {
+    font-size: 25px;
+    margin-left: 30px;
+}
+
+header .nav-item a::after {
+    content: '';
+    display: block;
+    width: 100%;
+    background-color: rgb(80, 90, 134);
+    ;
+    height: 3px;
+    transform: scale(0);
+    transition: all .3s;
+}
+
+header .nav-item a:hover::after {
+    transform: scale(1);
+}
+
+header .auth-box {
+    display: flex;
+}
+
+header .auth-name {
+    text-decoration: none;
+    display: inline-block;
+    color: #000000;
+    margin-left: 15px;
+    align-self: flex-start;
+}
+
+header {
+    margin-bottom: 10px;
+}
+
+main {
+    counter-reset: day;
+}
+
+.month-grid {
+    display: grid;
+    background: #613434;
+    padding: 15px;
+    margin: 0;
+    border-width: 2px;
+    background: #CDCDCD;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 70px repeat(5, 1fr);
+    grid-gap: 20px;
+}
+
+.day-name {
+    background: #3D3D3D;
+    /* width: 100px; */
+    height: 70px;
+    display: flex;
+    /* padding: 10px; */
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff
+}
+
+
+/* .day-plate:nth-child(1),
+.day-plate:nth-child(2),
+.day-plate:nth-child(3),
+.day-plate:nth-child(4),
+.day-plate:nth-child(5),
+.day-plate:nth-child(6),
+.day-plate:nth-child(7){
+    height: 70px;  
+} */
+
+.day-plate {
+    background: #3D3D3D;
+    /* width: 100px; */
+    height: 100px;
+    display: flex;
+    padding: 10px;
+    font-size: 30px;
+    justify-content: center;
+    color: #ffffff
+}
+
+.day-plate::before {
+    counter-increment: day;
+    content: counter(day);
+}
+
+@media (max-width: 991.98px) {
+    /* .auth-box,
+    .auth-img,
+    .auth-name
+    {
+        display: none;
+    } */
+    header .navbar-brand {
+        font-size: 20px;
+        padding: 0;
+        margin: 0;
+    }
+    header .nav-item {
+        margin-left: 0px;
+        font-size: 16px;
+    }
+    /* Две эти штуки почему то не робят */
+    header .navbar-toggler.colapsed {
+        align-self: flex-end;
+    }
+    header .navbar-toggler {
+        align-self: flex-end;
+    }
+    header .auth-box {
+        align-self: flex-end;
+    }
+    .navbar-brand {
+        display: none;
+    }
+    li {
+        display: inline-block;
+    }
+    .day-name:nth-child(1) {
+        content: initial;
+        content: "ПН"
+    }
+    .day-name:nth-child(2) {
+        content: none;
+        content: "ВТ"
+    }
+    .day-name:nth-child(3){
+        content: none;
+        content: "СР"
+    }   
+    .day-name:nth-child(4){
+        content: none;
+        content: "ЧТ"
+    }
+    .day-name:nth-child(5){
+        content: none;
+        content: "ПТ"
+    }
+    .day-name:nth-child(6){
+        content: none;
+        content: "СБ"
+    }
+    .day-name:nth-child(7) {
+        content: none;
+        content: "ВС"
+    }
+}
