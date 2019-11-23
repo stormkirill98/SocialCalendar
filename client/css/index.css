@@ -10,7 +10,8 @@
 
 body{
     background-image: url(../Auth-background.jpg);
-    height: 100vh;
+    height: 70vh;
+    /* width: 100%; */
     background-size: cover;
     background-position-x: center;
     min-width: 320px;
@@ -50,14 +51,25 @@ body{
 
 }
 
-@media (max-width: 1356px) { 
+.google-img{
+    margin-top: 10px;
+    width: 198px;
+    cursor: pointer;
+}
+
+@media (max-width: 1367px) { 
     .title{
         font-size: 100px;
     }
+
     .login,
     .password{
         width: 200px; 
         font-size: 20px; 
+    }
+
+    .google-img{
+        width: 132px;
     }
 }
 
@@ -71,16 +83,40 @@ body{
         width: 150px; 
         font-size: 15px; 
     }
+
+    .google-img{
+        width: 99px;
+    }
+}
+
+@media (max-width: 750px) { 
+    .title{
+        font-size: 40px;
+    }
+
+    .login,
+    .password{
+        width: 120px; 
+        font-size: 12px; 
+    }
+
+    .google-img{
+        width: 79px;
+    }
 }
 
 @media (max-width: 480px) { 
     .title{
         font-size: 30px;
     }
-    
+
     .login,
     .password{
         width: 100px; 
         font-size: 10px; 
+    }
+
+    .google-img{
+        width: 66px;
     }
 }
