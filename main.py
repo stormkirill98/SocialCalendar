@@ -1,4 +1,5 @@
 import os
+import json
 
 from flask import Flask, redirect, url_for, request
 from flask_login import (
@@ -11,6 +12,7 @@ from oauthlib.oauth2 import WebApplicationClient
 from server import auth
 from server.auth import GOOGLE_CLIENT_ID
 from server.database import user_dao
+from server.utils.events import event_utils
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
@@ -65,11 +67,15 @@ def logout():
 @app.route("/events", methods=['GET'])
 def events():
     if request.method == 'GET':
-        """Get events start-end sorted by datetime
-        :arg start - number first require event
-        :arg end - number last require event"""
-        # TODO better set count days forward and back relatively today
-        pass
+        """Get events in json for month of year
+        :arg month
+        :arg year"""
+        month = request.args['month']
+        year = request.args['year']
+
+        return json.dumps(event_utils.get_events(month, year, current_user))
+    else:
+        return "Error. This method is not handle"
 
 
 @app.route("/event", methods=['GET', 'POST', 'PUT'])
@@ -84,19 +90,6 @@ def event():
 
     if request.method == 'PUT':
         """Add member, remove member; update name, is_private, datetime, address, description"""
-        pass
-
-
-@app.route("/chats", methods=['GET', 'POST'])
-def chats():
-    if request.method == 'GET':
-        """Get chats start-end sorted by last msg datetime
-        :arg start - number first require chat
-        :arg end - number last require chat"""
-        pass
-
-    if request.method == 'POST':
-        """Create new dialog"""
         pass
 
 
