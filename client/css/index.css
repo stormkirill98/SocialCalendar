@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face{
+    font-family: "Algerian";
+    src: url(../fonts/Algerian.TTF);
+}
+
+body{
+    background-image: url(../Auth-background.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position-x: center;
+    min-width: 320px;
+}
+
+.main{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-start;
+    margin-top: 30vh;
+}
+
+.title{
+    font-family: "Algerian";
+    font-size: 150px;
+}
+
+.login{
+    border-radius: 7px; 
+    outline: none; 
+    width: 300px; 
+    font-size: 30px; 
+    font-family: Tahoma;
+    margin-top: 10px;
+}
+
+.password{
+    border-radius: 7px; 
+    outline: none; 
+    width: 300px; 
+    font-size: 30px; 
+    font-family: Tahoma;
+    margin-top: 10px;
+
+}
+
+@media (max-width: 1356px) { 
+    .title{
+        font-size: 100px;
+    }
+    .login,
+    .password{
+        width: 200px; 
+        font-size: 20px; 
+    }
+}
+
+@media (max-width: 959px) { 
+    .title{
+        font-size: 50px;
+    }
+
+    .login,
+    .password{
+        width: 150px; 
+        font-size: 15px; 
+    }
+}
+
+@media (max-width: 480px) { 
+    .title{
+        font-size: 30px;
+    }
+    
+    .login,
+    .password{
+        width: 100px; 
+        font-size: 10px; 
+    }
+}
