@@ -4,6 +4,7 @@ from datetime import datetime
 from bson import json_util
 from werkzeug.exceptions import abort
 
+from server.database.database import id_is_valid
 from server.database.events import event_dao, event_member_dao, group_event_dao, single_event_dao
 from server.entities.events.event import Event
 from server.entities.events.group_events.group_event import GroupEvent
@@ -87,7 +88,7 @@ def update_event(event_json, user: User):
         return abort(401)
 
     event_id = event_json.get('id')
-    if event_id is None:
+    if event_id is None or not id_is_valid(event_id):
         return abort(400)
 
     event_type = event_json.get('type')
@@ -132,7 +133,7 @@ def delete_event(event_id, user):
     if user is None or not user.is_authenticated:
         return abort(401)
 
-    if event_id is None:
+    if event_id is None or not id_is_valid(event_id):
         return abort(400)
 
     if group_event_dao.is_exist(event_id):
