@@ -69,8 +69,8 @@ def events():
         """Get events in json for month of year
         :arg month
         :arg year"""
-        month = request.args['month']
-        year = request.args['year']
+        month = request.args.get('month')
+        year = request.args.get("year")
 
         return event_utils.get_events(month, year, current_user)
     else:
@@ -82,7 +82,7 @@ def event():
     if request.method == 'GET':
         """Get event by ID
         :arg id - event id"""
-        event_id = request.args['id']
+        event_id = request.args.get('id')
         return event_utils.get_event(event_id)
 
     if request.method == 'POST':
@@ -98,6 +98,8 @@ def event():
     if request.method == 'DELETE':
         """Delete event by ID
         :arg id - event id"""
+        event_id = request.args.get('id')
+        return event_utils.delete_event(event_id, current_user)
 
 
 @app.route("/chat", methods=['GET', 'POST', 'PUT', 'DELETE'])

@@ -62,16 +62,11 @@ def create_group_event(user_id, group_event: GroupEvent):
     return group_event.id
 
 
-def delete_group_event(removing_member_id, group_event_id):
+def delete_group_event(group_event_id):
     """delete event by id
     :return True if event was delete
     :return False if event wasn't delete
     """
-    # check that member can delete this event
-    removing_member = event_member_dao.get(removing_member_id)
-    if not removing_member.is_can_delete_event:
-        return False
-
     group_event = group_event_dao.get(group_event_id)
 
     # delete members
@@ -81,8 +76,7 @@ def delete_group_event(removing_member_id, group_event_id):
     # delete chat
     event_chat_utils.delete_event_chat(group_event.chat_id)
 
-    group_event_dao.delete(group_event_id)
-    return True
+    return group_event_dao.delete(group_event_id)
 
 
 def leave_group_event(leaving_member_id, group_event_id):
@@ -90,7 +84,7 @@ def leave_group_event(leaving_member_id, group_event_id):
 
     # delete event if this member is last
     if len(group_event.member_id_list) == 1:
-        delete_group_event(leaving_member_id, group_event_id)
+        delete_group_event(group_event_id)
         return
 
     leaving_member = event_member_dao.get(leaving_member_id)
@@ -112,7 +106,7 @@ def create_single_event(user_id, single_event: SingleEvent):
 
 def delete_single_event(user_id, single_event_id):
     user_dao.delete_event(user_id, single_event_id)
-    single_event_dao.delete(single_event_id)
+    return single_event_dao.delete(single_event_id)
 
 
 # not tested, but is worked

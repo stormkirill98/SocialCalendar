@@ -128,6 +128,34 @@ def update_event(event_json, user: User):
     return '', 204
 
 
+def delete_event(event_id, user):
+    if user is None or not user.is_authenticated:
+        return abort(401)
+
+    if event_id is None:
+        return abort(400)
+
+    if group_event_dao.is_exist(event_id):
+        event_member = event_member_dao.get_by_user_event(user.id, event_id)
+        if event_member is None:
+            return abort(404)
+
+        if not event_member.is_can_delete_event:
+            return abort(403, "User can not delete this event")
+
+        if not user_utils.delete_group_event(event_id):
+            return abort(500)
+    else:
+        if single_event_dao.is_exist(event_id):
+            if not user_utils.delete_single_event(user.id, event_id):
+                return abort(500)
+        else:
+            # event with this id is not exists in database
+            return abort(404)
+
+    return '', 205
+
+
 def update_event_fields(event_json, event: Event):
     event_name = event_json.get('name')
     event_is_private = event_json.get('is_private')

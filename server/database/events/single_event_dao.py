@@ -23,9 +23,9 @@ def update(single_event: SingleEvent):
 
 def delete(single_event_id):
     if not id_is_valid(single_event_id):
-        return 0
+        return False
 
-    return single_event_collection.delete_one({'_id': ObjectId(single_event_id)}).deleted_count
+    return single_event_collection.delete_one({'_id': ObjectId(single_event_id)}).deleted_count > 0
 
 
 def get(single_event_id):

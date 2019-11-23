@@ -24,9 +24,9 @@ def update(group_event: GroupEvent):
 
 def delete(id):
     if not id_is_valid(id):
-        return 0
+        return False
 
-    return group_event_collection.delete_one({'_id': ObjectId(id)}).deleted_count
+    return group_event_collection.delete_one({'_id': ObjectId(id)}).deleted_count > 0
 
 
 def get(group_event_id):
@@ -74,7 +74,7 @@ def set_chat_id(group_event_id, chat_id):
     return result.modified_count
 
 
-def is_exists(group_event_id):
+def is_exist(group_event_id):
     if not id_is_valid(group_event_id):
         return False
 

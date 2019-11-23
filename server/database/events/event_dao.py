@@ -6,7 +6,7 @@ from server.entities.events.event import Event
 
 
 def get_event(event_id):
-    if group_event_dao.is_exists(event_id):
+    if group_event_dao.is_exist(event_id):
         return group_event_dao.get(event_id)
 
     if single_event_dao.is_exist(event_id):

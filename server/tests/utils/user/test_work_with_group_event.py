@@ -50,7 +50,7 @@ class TestFunctionForGroupEvent(TestCase):
         group_event = group_event_dao.get(self.group_event_id_test_create)
 
         # check that group event was create
-        self.assertTrue(group_event_dao.is_exists(self.group_event_id_test_create))
+        self.assertTrue(group_event_dao.is_exist(self.group_event_id_test_create))
 
         event_member = event_member_dao.get_by_user_event(user.id, group_event.id)
 
@@ -100,7 +100,7 @@ class TestFunctionForGroupEvent(TestCase):
         user_utils.delete_group_event(self.member_id_test_delete_2, group_event.id)
 
         # check that group_event already is exist
-        self.assertTrue(group_event_dao.is_exists(self.group_event_id_test_delete))
+        self.assertTrue(group_event_dao.is_exist(self.group_event_id_test_delete))
 
         # delete by member with permission on it
         user_utils.delete_group_event(self.member_id_test_delete_1, group_event.id)
@@ -121,7 +121,7 @@ class TestFunctionForGroupEvent(TestCase):
         self.assertNotIn(group_event.id, user2.event_id_list)
 
         # check that event was remove
-        self.assertFalse(group_event_dao.is_exists(group_event.id))
+        self.assertFalse(group_event_dao.is_exist(group_event.id))
 
     def test_leave_event(self):
         group_event = GroupEvent("name", True, datetime.today(), "address", "description")
@@ -162,4 +162,4 @@ class TestFunctionForGroupEvent(TestCase):
         user_utils.leave_group_event(self.member_id_test_leave_1, group_event.id)
 
         # check that event was remove because this member is last
-        self.assertFalse(group_event_dao.is_exists(group_event.id))
+        self.assertFalse(group_event_dao.is_exist(group_event.id))
