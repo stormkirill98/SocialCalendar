@@ -73,7 +73,7 @@ def events():
         month = request.args['month']
         year = request.args['year']
 
-        return json.dumps(event_utils.get_events(month, year, current_user))
+        return event_utils.get_events(month, year, current_user)
     else:
         return "Error. This method is not handle"
 
@@ -81,8 +81,10 @@ def events():
 @app.route("/event", methods=['GET', 'POST', 'PUT'])
 def event():
     if request.method == 'GET':
-        """Get event by ID"""
-        pass
+        """Get event by ID
+        :arg id - event id"""
+        event_id = request.args['id']
+        return event_utils.get_event(event_id)
 
     if request.method == 'POST':
         """Create new event"""

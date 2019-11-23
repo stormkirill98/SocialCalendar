@@ -1,5 +1,4 @@
 import calendar
-
 from datetime import datetime
 
 from bson import json_util
@@ -7,6 +6,17 @@ from werkzeug.exceptions import abort
 
 from server.database.events import event_dao
 from server.entities.user import User
+
+
+def get_event(event_id):
+    if event_id is None:
+        return abort(400)
+
+    event = event_dao.get_event(event_id)
+    if event is None:
+        return abort(404)
+
+    return json_util.dumps(event.__dict__)
 
 
 def get_events(month, year, user: User):
@@ -17,7 +27,7 @@ def get_events(month, year, user: User):
         return abort(400)
 
     if not month.isdigit() or not year.isdigit():
-        return abort(400, {'message': 'Month and must be number'})
+        return abort(400, {'message': 'Month and year must be number'})
 
     month = int(month)
     year = int(year)
