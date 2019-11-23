@@ -4,7 +4,7 @@ from server.database import database
 from server.database.database import DB, id_is_valid
 from server.entities.events.single_event import SingleEvent
 
-single_event_collection = DB['group_events']
+single_event_collection = DB['single_events']
 
 
 def save(single_event: SingleEvent):

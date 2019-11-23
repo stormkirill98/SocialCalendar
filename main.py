@@ -88,7 +88,8 @@ def event():
 
     if request.method == 'POST':
         """Create new event"""
-        pass
+        event_json = request.get_json()
+        return event_utils.create_event(event_json, current_user)
 
     if request.method == 'PUT':
         """Add member, remove member; update name, is_private, datetime, address, description"""

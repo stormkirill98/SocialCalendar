@@ -1,0 +1,2 @@
+SINGLE = 'single'
+GROUP = 'group'
