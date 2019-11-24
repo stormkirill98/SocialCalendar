@@ -12,7 +12,7 @@ from server import auth
 from server.auth import GOOGLE_CLIENT_ID
 from server.database import user_dao
 from server.utils import user_utils
-from server.utils.chats import chat_utils
+from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils
 
 app = Flask(__name__)
@@ -133,13 +133,14 @@ def chat_msg():
         :arg chat_id - where send
         :arg text - text of msg"""
         received_json = request.get_json()
-        return user_utils.send_msg(received_json, current_user)
+        return msg_utils.send_msg(received_json, current_user)
 
     if request.method == 'PUT':
         """update msg
         :arg id - msg id
         :arg text - text of msg"""
-        pass
+        received_json = request.get_json()
+        return msg_utils.update_msg(received_json, current_user)
 
     if request.method == 'DELETE':
         """delete msg

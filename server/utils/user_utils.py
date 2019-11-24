@@ -132,36 +132,6 @@ def delete_single_event(user_id, single_event_id):
     return single_event_dao.delete(single_event_id)
 
 
-def send_msg(json, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
-    chat_id = json.get('chat_id')
-    if chat_id is None or not id_is_valid(chat_id):
-        return abort(400, "Chat id is not valid")
-
-    if not chat_dao.chat_is_exist(chat_id):
-        return abort(404)
-
-    if ObjectId(chat_id) not in user.chat_id_list:
-        return abort(403)
-
-    msg_text = json.get('text')
-    if msg_text is None:
-        return abort(400, "Text of message is not defined")
-
-    msg = Message(user.id, chat_id, datetime.today(), msg_text)
-    msg_id = msg_dao.save_msg(msg)
-    if chat_dao.dialog_is_exist(chat_id):
-        if not chat_dao.add_msg_to_dialog(chat_id, msg_id):
-            return abort(500)
-    if chat_dao.event_chat_is_exist(chat_id):
-        if not chat_dao.add_msg_to_event_chat(chat_id, msg_id):
-            return abort(500)
-
-    return '', 204
-
-
 def search_users(filtered_str: str):
     """Search by searched field which contain name and email"""
 

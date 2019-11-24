@@ -16,13 +16,13 @@ def save_msg(msg: Message):
     return msg_id
 
 
-def change_text(msg_id, text):
+def update_text(msg_id, text):
     if not id_is_valid(msg_id):
-        return 0
+        return False
 
     result = msg_collection.update_one({'_id': ObjectId(msg_id)},
                                        {'$set': {'text': text}})
-    return result.matched_count
+    return result.matched_count > 0
 
 
 def get_msg(msg_id):
