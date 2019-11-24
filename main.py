@@ -145,7 +145,8 @@ def chat_msg():
     if request.method == 'DELETE':
         """delete msg
         :arg id - msg id"""
-        pass
+        msg_id = request.args.get('id')
+        return msg_utils.delete_msg(msg_id)
 
 
 @app.route("/chats", methods=['GET'])

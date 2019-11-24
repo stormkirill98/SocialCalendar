@@ -42,9 +42,9 @@ def get_msg(msg_id):
 
 def delete_msg(msg_id):
     if not id_is_valid(msg_id):
-        return 0
+        return False
 
-    return msg_collection.delete_one({'_id': ObjectId(msg_id)}).deleted_count
+    return msg_collection.delete_one({'_id': ObjectId(msg_id)}).deleted_count > 0
 
 
 def is_exists(msg_id):

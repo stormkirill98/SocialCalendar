@@ -58,3 +58,16 @@ def update_msg(json, user: User):
         return abort(500)
 
     return '', 204
+
+
+def delete_msg(msg_id):
+    if msg_id is None or not id_is_valid(msg_id):
+        return abort(400, "Message id is not valid")
+
+    if not msg_dao.is_exists(msg_id):
+        return abort(404)
+
+    if not msg_dao.delete_msg(msg_id):
+        return abort(500)
+
+    return '', 204
