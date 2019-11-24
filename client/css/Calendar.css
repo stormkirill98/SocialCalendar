@@ -1,3 +1,5 @@
+@import "Header.css";
+
 * {
     margin: 0;
     padding: 0;
@@ -6,48 +8,6 @@
 @font-face {
     font-family: "Algerian";
     src: url(../fonts/Algerian.TTF);
-}
-
-header .navbar-brand {
-    font-size: 40px;
-    padding: 0;
-    margin: 0;
-    font-family: "Algerian";
-}
-
-header .nav-item {
-    font-size: 25px;
-    margin-left: 30px;
-}
-
-header .nav-item a::after {
-    content: '';
-    display: block;
-    width: 100%;
-    background-color: rgb(80, 90, 134);
-    height: 3px;
-    transform: scale(0);
-    transition: all .3s;
-}
-
-header .nav-item a:hover::after {
-    transform: scale(1);
-}
-
-header .auth-box {
-    display: flex;
-}
-
-header .auth-name {
-    text-decoration: none;
-    display: inline-block;
-    color: #000000;
-    margin-left: 15px;
-    align-self: flex-start;
-}
-
-header {
-    margin-bottom: 0px;
 }
 
 main {
@@ -153,32 +113,6 @@ main {
 .event-details:nth-child(1){margin-top: 0;}
 
 @media (max-width: 1200px) {
-    
-    header .navbar-brand {
-        font-size: 20px;
-        padding: 0;
-        margin: 0;
-    }
-    header .nav-item {
-        margin-left: 0px;
-        font-size: 16px;
-    }
-    /* Две эти штуки почему то не робят */
-    header .navbar-toggler.colapsed {
-        align-self: flex-end;
-    }
-    header .navbar-toggler {
-        align-self: flex-end;
-    }
-    header .auth-box {
-        align-self: flex-end;
-    }
-    .navbar-brand {
-        display: none;
-    }
-    li {
-        display: inline-block;
-    }
     .day-name:nth-child(1)::after{ content: "ПН" }
     .day-name:nth-child(2)::after{ content: "ВТ" }
     .day-name:nth-child(3)::after{ content: "СР" }   
