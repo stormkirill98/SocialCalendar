@@ -122,11 +122,7 @@ def chat():
 
     if request.method == 'POST':
         """Create new dialog"""
-        pass
-
-    if request.method == 'DELETE':
-        """Delete chat by id
-        :arg id - chat id"""
+        # TODO request create new dialog
         pass
 
 
@@ -134,10 +130,10 @@ def chat():
 def chat_msg():
     if request.method == 'POST':
         """send msg
-        :arg user_id - who send
         :arg chat_id - where send
         :arg text - text of msg"""
-        pass
+        received_json = request.get_json()
+        return user_utils.send_msg(received_json, current_user)
 
     if request.method == 'PUT':
         """update msg

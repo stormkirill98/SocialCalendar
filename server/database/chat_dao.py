@@ -73,57 +73,64 @@ def get_event_chat_by_event_id(event_id):
 # chat deleting
 def delete_dialog(dialog_id):
     if not id_is_valid(dialog_id):
-        return 0
+        return False
 
-    return dialogs_collection.delete_one({'_id': ObjectId(dialog_id)}).deleted_count
+    return dialogs_collection.delete_one({'_id': ObjectId(dialog_id)}).deleted_count > 0
 
 
 def delete_event_chat(event_chat_id):
     if not id_is_valid(event_chat_id):
-        return 0
+        return False
 
-    return event_chats_collection.delete_one({'_id': ObjectId(event_chat_id)}).deleted_count
+    return event_chats_collection.delete_one({'_id': ObjectId(event_chat_id)}).deleted_count > 0
 
 
 # message adding
 def add_msg_to_dialog(dialog_id, msg_id):
     if not id_is_valid(dialog_id) or not id_is_valid(msg_id):
-        return 0
+        return False
 
     result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
                                            {'$push': {'msg_id_list': msg_id}})
-    return result.matched_count
+    return result.matched_count > 0
 
 
 def add_msg_to_event_chat(event_chat_id, msg_id):
     if not id_is_valid(event_chat_id) or not id_is_valid(msg_id):
-        return 0
+        return False
 
     result = event_chats_collection.update_one({'_id': ObjectId(event_chat_id)},
                                                {'$push': {'msg_id_list': msg_id}})
-    return result.matched_count
+    return result.matched_count > 0
 
 
 # message removing
 def delete_msg_from_dialog(dialog_id, msg_id):
     if not id_is_valid(dialog_id) or not id_is_valid(msg_id):
-        return 0
+        return False
 
     result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
                                            {'$pull': {'msg_id_list': msg_id}})
-    return result.matched_count
+    return result.matched_count > 0
 
 
 def delete_msg_from_event_chat(event_chat_id, msg_id):
     if not id_is_valid(event_chat_id) or not id_is_valid(msg_id):
-        return 0
+        return False
 
     result = event_chats_collection.update_one({'_id': ObjectId(event_chat_id)},
                                                {'$pull': {'msg_id_list': msg_id}})
-    return result.matched_count
+    return result.matched_count > 0
 
 
 # chats are exists to database
+def chat_is_exist(chat_id):
+    if dialog_is_exist(chat_id) or event_chat_is_exist(chat_id):
+        return True
+
+    return False
+
+
 def dialog_is_exist(dialog_id):
     if not id_is_valid(dialog_id):
         return False
