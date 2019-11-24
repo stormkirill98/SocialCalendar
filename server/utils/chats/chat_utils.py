@@ -1,15 +1,30 @@
 from datetime import datetime
 
+from bson import json_util, ObjectId
 from werkzeug.exceptions import abort
 
 from server.database import msg_dao, user_dao, chat_dao
+from server.database.database import id_is_valid
 from server.entities.chats.chat import Chat
 from server.entities.user import User
 
 
 def get_chat(chat_id, user: User):
-    if chat_id not in user.chat_id_list:
+    if user is None or not user.is_authenticated:
+        return abort(401)
+
+    if chat_id is None or not id_is_valid(chat_id):
+        return abort(400)
+
+    if ObjectId(chat_id) not in user.chat_id_list:
         return abort(403)
+
+    chat = chat_dao.get_chat(chat_id)
+    if chat is None:
+        return abort(404)
+
+    chat.convert_all_msg_id_in_msg_entity()
+    return json_util.dumps(chat.__dict__)
 
 
 def delete_all_msg(chat: Chat):

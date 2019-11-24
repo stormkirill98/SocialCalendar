@@ -1,7 +1,7 @@
 import calendar
 from datetime import datetime
 
-from bson import json_util
+from bson import json_util, ObjectId
 from werkzeug.exceptions import abort
 
 from server.database.database import id_is_valid
@@ -21,7 +21,7 @@ def get_event(event_id, user: User):
     if event_id is None or not id_is_valid(event_id):
         return abort(400)
 
-    if event_id not in user.event_id_list:
+    if ObjectId(event_id) not in user.event_id_list:
         return abort(403)
 
     event = event_dao.get_event(event_id)
