@@ -51,10 +51,7 @@ header{
 }
 
 .dialogues-main-box{
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 5%;
 }
 
 .dialogue{
