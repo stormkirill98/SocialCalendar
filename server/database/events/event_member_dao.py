@@ -18,9 +18,9 @@ def save(event_member: EventMember):
 
 def delete(event_member_id):
     if not id_is_valid(event_member_id):
-        return 0
+        return False
 
-    return event_member_collection.delete_one({'_id': ObjectId(event_member_id)}).deleted_count
+    return event_member_collection.delete_one({'_id': ObjectId(event_member_id)}).deleted_count > 0
 
 
 def get(event_member_id):
@@ -45,7 +45,7 @@ def set_can_invite_user(group_event_id, is_can_invite_user):
 
     result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
                                                 {'$set': {'is_can_invite_user': is_can_invite_user}})
-    return result.modified_count
+    return result.matched_count
 
 
 def set_can_delete_user(group_event_id, is_can_delete_user):
@@ -54,7 +54,7 @@ def set_can_delete_user(group_event_id, is_can_delete_user):
 
     result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
                                                 {'$set': {'is_can_delete_user': is_can_delete_user}})
-    return result.modified_count
+    return result.matched_count
 
 
 def set_can_change_event(group_event_id, is_can_change_event):
@@ -63,7 +63,7 @@ def set_can_change_event(group_event_id, is_can_change_event):
 
     result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
                                                 {'$set': {'is_can_change_event': is_can_change_event}})
-    return result.modified_count
+    return result.matched_count
 
 
 def set_can_delete_event(group_event_id, is_can_delete_event):
@@ -72,7 +72,7 @@ def set_can_delete_event(group_event_id, is_can_delete_event):
 
     result = event_member_collection.update_one({'_id': ObjectId(group_event_id)},
                                                 {'$set': {'is_can_delete_event': is_can_delete_event}})
-    return result.modified_count
+    return result.matched_count
 
 
 def create_event_from_json(json):

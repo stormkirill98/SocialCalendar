@@ -11,6 +11,7 @@ from oauthlib.oauth2 import WebApplicationClient
 from server import auth
 from server.auth import GOOGLE_CLIENT_ID
 from server.database import user_dao
+from server.utils import user_utils
 from server.utils.events import event_utils
 
 app = Flask(__name__)
@@ -88,7 +89,7 @@ def event():
     if request.method == 'POST':
         """Create new event"""
         event_json = request.get_json()
-        return event_utils.create_event(event_json, current_user)
+        return event_utils.create_event(event_json, current_user)  # TODO check that current user was be update
 
     if request.method == 'PUT':
         """Update name, is_private, datetime, address, description"""
@@ -102,12 +103,33 @@ def event():
         return event_utils.delete_event(event_id, current_user)
 
 
-@app.route("/chat", methods=['GET', 'POST', 'PUT', 'DELETE'])
+@app.route("/event/group/leave", methods=['DELETE'])
+def group_event():
+    if request.method == 'DELETE':
+        """Leave group event by ID
+        :arg id - event id"""
+        event_id = request.args.get('id')
+        return user_utils.leave_group_event(event_id, current_user)
+
+
+@app.route("/chat", methods=['GET', 'POST', 'DELETE'])
 def chat():
     if request.method == 'GET':
         """Get chat by id"""
         pass
 
+    if request.method == 'POST':
+        """Create new dialog"""
+        pass
+
+    if request.method == 'DELETE':
+        """Delete chat by id
+        :arg id - chat id"""
+        pass
+
+
+@app.route("/chat/msg", methods=['POST', 'PUT', 'DELETE'])
+def chat_msg():
     if request.method == 'POST':
         """send msg
         :arg user_id - who send
@@ -117,26 +139,22 @@ def chat():
 
     if request.method == 'PUT':
         """update msg
-        :arg msg_id
+        :arg id - msg id
         :arg text - text of msg"""
         pass
 
     if request.method == 'DELETE':
         """delete msg
-        :arg msg_id"""
+        :arg id - msg id"""
         pass
 
 
-@app.route("/chats", methods=['GET', 'POST'])
+@app.route("/chats", methods=['GET'])
 def chats():
     if request.method == 'GET':
         """Get chats start-end sorted by last msg datetime
         :arg start - number first require chat
         :arg end - number last require chat"""
-        pass
-
-    if request.method == 'POST':
-        """Create new dialog"""
         pass
 
 
@@ -146,15 +164,28 @@ def friends():
         """Get all friends"""
         pass
 
-    if request.method == 'POST':
-        """Send invite to friends
-        :arg user_id - who invite to friends"""
-        pass
-
     if request.method == 'DELETE':
         """Remove user from friends
         :arg user_id - who remove from friends"""
         pass
+
+
+@app.route("/invites", methods=['GET', 'POST', 'DELETE'])
+def invites():
+    if request.method == 'GET':
+        """Get all invites"""
+        pass
+
+    if request.method == 'POST':
+        """Send invite
+        :arg type - to friends or to group event
+        :arg where - friend if or group event id"""
+        pass
+
+    if request.method == 'DELETE':
+        """Accept or decline invite
+        :arg id - invite id
+        :arg action - accept or decline"""
 
 
 if __name__ == "__main__":

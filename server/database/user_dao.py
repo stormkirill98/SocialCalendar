@@ -19,11 +19,11 @@ def save_user(user: User):
 
 def set_user_birthday(user_id, birthday: datetime):
     if not id_is_valid(user_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$set': {'birthday': birthday}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def get_user(user_id):
@@ -60,9 +60,9 @@ def create_user_from_json(json):
 
 def delete_user(user_id):
     if not id_is_valid(user_id):
-        return 0
+        return False
 
-    return users_collection.delete_one({'_id': ObjectId(user_id)}).deleted_count
+    return users_collection.delete_one({'_id': ObjectId(user_id)}).deleted_count > 0
 
 
 def is_exist_by_id(user_id):
@@ -78,83 +78,83 @@ def is_exist_by_google_id(google_id):
 
 def add_event(user_id, event_id):
     if not id_is_valid(user_id) or not id_is_valid(event_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'event_id_list': ObjectId(event_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def delete_event(user_id, event_id):
     if not id_is_valid(user_id) or not id_is_valid(event_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'event_id_list': ObjectId(event_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def add_friend(user_id, friend_id):
     if not id_is_valid(user_id) or not id_is_valid(friend_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'friend_id_list': ObjectId(friend_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def delete_friend(user_id, friend_id):
     if not id_is_valid(user_id) or not id_is_valid(friend_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'friend_id_list': ObjectId(friend_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def add_chat(user_id, chat_id):
     if not id_is_valid(user_id) or not id_is_valid(chat_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'chat_id_list': ObjectId(chat_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def delete_chat(user_id, chat_id):
     if not id_is_valid(user_id) or not id_is_valid(chat_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'chat_id_list': ObjectId(chat_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def add_invite(user_id, invite_id):
     if not id_is_valid(user_id) or not id_is_valid(invite_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$push': {'invite_id_list': ObjectId(invite_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def delete_invite(user_id, invite_id):
     if not id_is_valid(user_id) or not id_is_valid(invite_id):
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$pull': {'invite_id_list': ObjectId(invite_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def update_picture(user_id, picture):
     if not id_is_valid(user_id) or picture is None:
-        return 0
+        return False
 
     result = users_collection.update_one({'_id': ObjectId(user_id)},
                                          {'$set': {'profile_pic': picture}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def get_filtered_users(regx):

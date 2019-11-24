@@ -22,7 +22,7 @@ def change_text(msg_id, text):
 
     result = msg_collection.update_one({'_id': ObjectId(msg_id)},
                                        {'$set': {'text': text}})
-    return result.modified_count
+    return result.matched_count
 
 
 def get_msg(msg_id):

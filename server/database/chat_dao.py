@@ -92,7 +92,7 @@ def add_msg_to_dialog(dialog_id, msg_id):
 
     result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
                                            {'$push': {'msg_id_list': msg_id}})
-    return result.modified_count
+    return result.matched_count
 
 
 def add_msg_to_event_chat(event_chat_id, msg_id):
@@ -101,7 +101,7 @@ def add_msg_to_event_chat(event_chat_id, msg_id):
 
     result = event_chats_collection.update_one({'_id': ObjectId(event_chat_id)},
                                                {'$push': {'msg_id_list': msg_id}})
-    return result.modified_count
+    return result.matched_count
 
 
 # message removing
@@ -111,7 +111,7 @@ def delete_msg_from_dialog(dialog_id, msg_id):
 
     result = dialogs_collection.update_one({'_id': ObjectId(dialog_id)},
                                            {'$pull': {'msg_id_list': msg_id}})
-    return result.modified_count
+    return result.matched_count
 
 
 def delete_msg_from_event_chat(event_chat_id, msg_id):
@@ -120,7 +120,7 @@ def delete_msg_from_event_chat(event_chat_id, msg_id):
 
     result = event_chats_collection.update_one({'_id': ObjectId(event_chat_id)},
                                                {'$pull': {'msg_id_list': msg_id}})
-    return result.modified_count
+    return result.matched_count
 
 
 # chats are exists to database

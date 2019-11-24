@@ -1,6 +1,8 @@
 import re
 from datetime import datetime
 
+from werkzeug.exceptions import abort
+
 from server.database import invite_dao, user_dao, msg_dao, chat_dao
 from server.database.events import group_event_dao, event_member_dao, single_event_dao
 from server.entities.chats.inner_classes.message import Message
@@ -8,6 +10,7 @@ from server.entities.events.group_events.event_member import EventMember
 from server.entities.events.group_events.group_event import GroupEvent
 from server.entities.events.single_event import SingleEvent
 from server.entities.invite import Invite
+from server.entities.user import User
 from server.enums import InviteType, ChatType
 from server.utils.chats import event_chat_utils
 from server.utils.events import group_event_utils, event_member_utils
@@ -68,6 +71,8 @@ def delete_group_event(group_event_id):
     :return False if event wasn't delete
     """
     group_event = group_event_dao.get(group_event_id)
+    if group_event is None:
+        return False
 
     # delete members
     for member_id in group_event.member_id_list:
@@ -79,22 +84,36 @@ def delete_group_event(group_event_id):
     return group_event_dao.delete(group_event_id)
 
 
-def leave_group_event(leaving_member_id, group_event_id):
+def leave_group_event(group_event_id, user: User):
     group_event = group_event_dao.get(group_event_id)
+    if group_event is None:
+        return abort(404, "Group event is not found")
+
+    event_member = event_member_dao.get_by_user_event(user.id, group_event_id)
+    if event_member is None:
+        return abort(404, "Event member is not found")
 
     # delete event if this member is last
     if len(group_event.member_id_list) == 1:
-        delete_group_event(group_event_id)
-        return
+        if delete_group_event(group_event_id):
+            return '', 204
+        else:
+            return abort(500, "Group event was not delete")
 
-    leaving_member = event_member_dao.get(leaving_member_id)
+    leaving_member = event_member_dao.get(event_member.id)
+    if leaving_member is None:
+        return abort(404, "Event member is not found in database")
 
-    group_event_dao.delete_member(group_event_id, leaving_member_id)
+    if not group_event_dao.delete_member(group_event_id, event_member.id):
+        return abort(500, "Event member was not delete from event")
 
-    user_dao.delete_chat(leaving_member.user_id, group_event.chat_id)
-    user_dao.delete_event(leaving_member.user_id, group_event.id)
+    if not user_dao.delete_chat(leaving_member.user_id, group_event.chat_id):
+        return abort(500, "Chat was not delete from user")
+    if not user_dao.delete_event(leaving_member.user_id, group_event.id):
+        return abort(500, "Event was not delete from user")
 
     event_member_dao.delete(leaving_member.id)
+    return '', 204
 
 
 def create_single_event(user_id, single_event: SingleEvent):

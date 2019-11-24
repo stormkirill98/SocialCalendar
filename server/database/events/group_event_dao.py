@@ -3,7 +3,6 @@ from bson import ObjectId
 from server.database import database
 from server.database.database import DB, id_is_valid
 from server.database.events import event_dao
-from server.entities.events.event import Event
 from server.entities.events.group_events.group_event import GroupEvent
 
 group_event_collection = DB['group_events']
@@ -49,29 +48,29 @@ def get(group_event_id):
 
 def add_member(group_event_id, member_id):
     if not id_is_valid(group_event_id) or not id_is_valid(member_id):
-        return 0
+        return False
 
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$push': {'member_id_list': ObjectId(member_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def delete_member(group_event_id, member_id):
     if not id_is_valid(group_event_id) or not id_is_valid(member_id):
-        return 0
+        return False
 
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$pull': {'member_id_list': ObjectId(member_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def set_chat_id(group_event_id, chat_id):
     if not id_is_valid(group_event_id) or not id_is_valid(chat_id):
-        return 0
+        return False
 
     result = group_event_collection.update_one({'_id': ObjectId(group_event_id)},
                                                {'$set': {'chat_id': ObjectId(chat_id)}})
-    return result.modified_count
+    return result.matched_count > 0
 
 
 def is_exist(group_event_id):
