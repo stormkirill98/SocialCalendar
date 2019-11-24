@@ -225,7 +225,8 @@ def search_users():
     if request.method == 'GET':
         """Get users filtered by filtered string
         :arg filtered_str"""
-        pass
+        filtered_str = request.args.get('filtered_str')
+        return user_utils.search_users(filtered_str)
 
 
 if __name__ == "__main__":

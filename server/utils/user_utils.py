@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 
-from bson import ObjectId
+from bson import ObjectId, json_util
 from werkzeug.exceptions import abort
 
 from server.database import invite_dao, user_dao, msg_dao, chat_dao
@@ -132,10 +132,14 @@ def delete_single_event(user_id, single_event_id):
 def search_users(filtered_str: str):
     """Search by searched field which contain name and email"""
 
+    if filtered_str is None or len(filtered_str) == 0:
+        return abort(400)
+
     regx = re.compile('.*' + filtered_str + '.*', re.IGNORECASE)
 
     users = user_dao.get_filtered_users(regx)
+    users = list(users)
     if users is None:
-        return list()
+        return '', 204
     else:
-        return list(users)
+        return json_util.dumps(users), 200
