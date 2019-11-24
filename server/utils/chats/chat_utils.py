@@ -10,9 +10,6 @@ from server.entities.user import User
 
 
 def get_chat(chat_id, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     if chat_id is None or not id_is_valid(chat_id):
         return abort(400)
 

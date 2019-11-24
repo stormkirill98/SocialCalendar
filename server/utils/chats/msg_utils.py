@@ -10,9 +10,6 @@ from server.entities.user import User
 
 
 def send_msg(json, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     chat_id = json.get('chat_id')
     if chat_id is None or not id_is_valid(chat_id):
         return abort(400, "Chat id is not valid")
@@ -40,9 +37,6 @@ def send_msg(json, user: User):
 
 
 def update_msg(json, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     msg_id = json.get('id')
     if msg_id is None or not id_is_valid(msg_id):
         return abort(400, "Message id is not valid")

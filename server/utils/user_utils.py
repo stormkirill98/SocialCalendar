@@ -87,9 +87,6 @@ def delete_group_event(group_event_id):
 
 
 def leave_group_event(group_event_id, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     if group_event_id is None or not id_is_valid(group_event_id):
         return abort(400)
 

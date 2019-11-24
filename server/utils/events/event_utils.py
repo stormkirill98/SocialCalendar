@@ -15,9 +15,6 @@ from server.utils import user_utils
 
 
 def get_event(event_id, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     if event_id is None or not id_is_valid(event_id):
         return abort(400)
 
@@ -28,13 +25,10 @@ def get_event(event_id, user: User):
     if event is None:
         return abort(404)
 
-    return json_util.dumps(event.__dict__)
+    return json_util.dumps(event.__dict__), 200
 
 
 def get_events(month, year, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     if month is None or year is None:
         return abort(400)
 
@@ -56,13 +50,10 @@ def get_events(month, year, user: User):
                         23, 59, 59)
     events = [x for x in events if start_date <= x.datetime <= end_date]
 
-    return json_util.dumps([e.__dict__ for e in events])
+    return json_util.dumps([e.__dict__ for e in events]), 200
 
 
 def create_event(event_json, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     if not valid_event_json(event_json):
         return abort(400)
 
@@ -79,20 +70,17 @@ def create_event(event_json, user: User):
     if event_type == EventType.GROUP:
         event = GroupEvent(event_name, event_is_private, event_datetime, event_address, event_description)
         event_id = user_utils.create_group_event(user.id, event)
-        return json_util.dumps(event_id)
+        return json_util.dumps(event_id), 201
 
     if event_type == EventType.SINGLE:
         event = SingleEvent(event_name, event_is_private, event_datetime, event_address, event_description)
         event_id = user_utils.create_single_event(user.id, event)
-        return json_util.dumps(event_id)
+        return json_util.dumps(event_id), 201
 
     return abort(400)
 
 
 def update_event(event_json, user: User):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
     event_id = event_json.get('id')
     if event_id is None or not id_is_valid(event_id):
         return abort(400)
@@ -135,10 +123,7 @@ def update_event(event_json, user: User):
     return '', 204
 
 
-def delete_event(event_id, user):
-    if user is None or not user.is_authenticated:
-        return abort(401)
-
+def delete_event(event_id, user: User):
     if event_id is None or not id_is_valid(event_id):
         return abort(400)
 

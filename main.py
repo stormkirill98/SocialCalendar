@@ -7,6 +7,7 @@ from flask_login import (
     login_required,
     logout_user)
 from oauthlib.oauth2 import WebApplicationClient
+from werkzeug.exceptions import abort
 
 from server import auth
 from server.auth import GOOGLE_CLIENT_ID
@@ -67,6 +68,9 @@ def logout():
 
 @app.route("/events", methods=['GET'])
 def events():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'GET':
         """Get events in json for month of year
         :arg month
@@ -81,6 +85,9 @@ def events():
 
 @app.route("/event", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def event():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'GET':
         """Get event by ID
         :arg id - event id"""
@@ -106,6 +113,9 @@ def event():
 
 @app.route("/event/group/leave", methods=['DELETE'])
 def group_event():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'DELETE':
         """Leave group event by ID
         :arg id - event id"""
@@ -115,6 +125,9 @@ def group_event():
 
 @app.route("/chat", methods=['GET', 'POST', 'DELETE'])
 def chat():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'GET':
         """Get chat by id"""
         chat_id = request.args.get('id')
@@ -128,6 +141,9 @@ def chat():
 
 @app.route("/chat/msg", methods=['POST', 'PUT', 'DELETE'])
 def chat_msg():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'POST':
         """send msg
         :arg chat_id - where send
