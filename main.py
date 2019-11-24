@@ -167,27 +167,40 @@ def chat_msg():
 
 @app.route("/chats", methods=['GET'])
 def chats():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'GET':
-        """Get chats start-end sorted by last msg datetime
-        :arg start - number first require chat
-        :arg end - number last require chat"""
-        pass
+        """Get N chats sorted by last msg datetime
+        :arg count_getting - count already is get
+        :arg count - count require chat"""
+
+        count_getting = request.args.get('count_getting')
+        count = request.args.get('count')
+
+        return chat_utils.get_chats(current_user, count_getting, count)
 
 
 @app.route("/friends", methods=['GET', 'POST', 'DELETE'])
 def friends():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'GET':
         """Get all friends"""
         pass
 
     if request.method == 'DELETE':
         """Remove user from friends
-        :arg user_id - who remove from friends"""
+        :arg friend_id - who remove from friends"""
         pass
 
 
 @app.route("/invites", methods=['GET', 'POST', 'DELETE'])
 def invites():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'GET':
         """Get all invites"""
         pass
@@ -202,6 +215,17 @@ def invites():
         """Accept or decline invite
         :arg id - invite id
         :arg action - accept or decline"""
+
+
+@app.route("/search/users", methods=['GET'])
+def search_users():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
+    if request.method == 'GET':
+        """Get users filtered by filtered string
+        :arg filtered_str"""
+        pass
 
 
 if __name__ == "__main__":

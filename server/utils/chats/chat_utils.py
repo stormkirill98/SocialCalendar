@@ -30,14 +30,23 @@ def delete_all_msg(chat: Chat):
         msg_dao.delete_msg(msg_id)
 
 
-def get_chats(user_id, count=5):
-    user_chats = get_sorted_chats(user_id)
-    return user_chats[:count]
+def get_chats(user: User, count_getting, count):
+    if count_getting is None or count is None:
+        return abort(400)
 
+    if not count_getting.isdigit() or not count.isdigit():
+        return abort(400)
 
-def get_add_chats(user_id, start_num, end_num):
-    user_chats = get_sorted_chats(user_id)
-    return user_chats[start_num: end_num]
+    count_getting = int(count_getting)
+    count = int(count)
+
+    user_chats = get_sorted_chats(user.id)
+    user_chats = user_chats[count_getting: count_getting + count]
+
+    for chat in user_chats:
+        chat.convert_all_msg_id_in_msg_entity()
+
+    return json_util.dumps([e.__dict__ for e in user_chats]), 200
 
 
 def get_sorted_chats(user_id):
