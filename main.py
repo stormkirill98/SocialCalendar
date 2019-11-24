@@ -12,6 +12,7 @@ from server import auth
 from server.auth import GOOGLE_CLIENT_ID
 from server.database import user_dao
 from server.utils import user_utils
+from server.utils.chats import chat_utils
 from server.utils.events import event_utils
 
 app = Flask(__name__)
@@ -84,7 +85,7 @@ def event():
         """Get event by ID
         :arg id - event id"""
         event_id = request.args.get('id')
-        return event_utils.get_event(event_id)
+        return event_utils.get_event(event_id, current_user)
 
     if request.method == 'POST':
         """Create new event"""
@@ -116,7 +117,8 @@ def group_event():
 def chat():
     if request.method == 'GET':
         """Get chat by id"""
-        pass
+        chat_id = request.args.get('id')
+        return chat_utils.get_chat(chat_id, current_user)
 
     if request.method == 'POST':
         """Create new dialog"""

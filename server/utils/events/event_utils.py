@@ -14,9 +14,15 @@ from server.enums import EventType
 from server.utils import user_utils
 
 
-def get_event(event_id):
-    if event_id is None:
+def get_event(event_id, user: User):
+    if user is None or not user.is_authenticated:
+        return abort(401)
+
+    if event_id is None or not id_is_valid(event_id):
         return abort(400)
+
+    if event_id not in user.event_id_list:
+        return abort(403)
 
     event = event_dao.get_event(event_id)
     if event is None:

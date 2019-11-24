@@ -4,6 +4,7 @@ from datetime import datetime
 from werkzeug.exceptions import abort
 
 from server.database import invite_dao, user_dao, msg_dao, chat_dao
+from server.database.database import id_is_valid
 from server.database.events import group_event_dao, event_member_dao, single_event_dao
 from server.entities.chats.inner_classes.message import Message
 from server.entities.events.group_events.event_member import EventMember
@@ -85,6 +86,12 @@ def delete_group_event(group_event_id):
 
 
 def leave_group_event(group_event_id, user: User):
+    if user is None or not user.is_authenticated:
+        return abort(401)
+
+    if group_event_id is None or not id_is_valid(group_event_id):
+        return abort(400)
+
     group_event = group_event_dao.get(group_event_id)
     if group_event is None:
         return abort(404, "Group event is not found")
@@ -100,19 +107,15 @@ def leave_group_event(group_event_id, user: User):
         else:
             return abort(500, "Group event was not delete")
 
-    leaving_member = event_member_dao.get(event_member.id)
-    if leaving_member is None:
-        return abort(404, "Event member is not found in database")
-
     if not group_event_dao.delete_member(group_event_id, event_member.id):
         return abort(500, "Event member was not delete from event")
 
-    if not user_dao.delete_chat(leaving_member.user_id, group_event.chat_id):
+    if not user_dao.delete_chat(event_member.user_id, group_event.chat_id):
         return abort(500, "Chat was not delete from user")
-    if not user_dao.delete_event(leaving_member.user_id, group_event.id):
+    if not user_dao.delete_event(event_member.user_id, group_event.id):
         return abort(500, "Event was not delete from user")
 
-    event_member_dao.delete(leaving_member.id)
+    event_member_dao.delete(event_member.id)
     return '', 204
 
 

@@ -1,7 +1,15 @@
 from datetime import datetime
 
+from werkzeug.exceptions import abort
+
 from server.database import msg_dao, user_dao, chat_dao
 from server.entities.chats.chat import Chat
+from server.entities.user import User
+
+
+def get_chat(chat_id, user: User):
+    if chat_id not in user.chat_id_list:
+        return abort(403)
 
 
 def delete_all_msg(chat: Chat):
