@@ -86,3 +86,12 @@ class User(DatabaseObject, UserMixin):
             'chat_id_list': self.chat_id_list,
             'invite_id_list': self.invite_id_list
         }
+
+    def to_friend_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'profile_pic': self.profile_pic,
+            'birthday': self.birthday
+        }

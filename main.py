@@ -181,14 +181,14 @@ def chats():
         return chat_utils.get_chats(current_user, count_getting, count)
 
 
-@app.route("/friends", methods=['GET', 'POST', 'DELETE'])
+@app.route("/friends", methods=['GET', 'DELETE'])
 def friends():
     if current_user is None or not current_user.is_authenticated:
         return abort(401)
 
     if request.method == 'GET':
         """Get all friends"""
-        pass
+        return user_utils.get_friends(current_user)
 
     if request.method == 'DELETE':
         """Remove user from friends

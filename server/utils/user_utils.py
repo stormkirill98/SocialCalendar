@@ -1,19 +1,17 @@
 import re
-from datetime import datetime
 
-from bson import ObjectId, json_util
+from bson import json_util
 from werkzeug.exceptions import abort
 
-from server.database import invite_dao, user_dao, msg_dao, chat_dao
+from server.database import invite_dao, user_dao
 from server.database.database import id_is_valid
 from server.database.events import group_event_dao, event_member_dao, single_event_dao
-from server.entities.chats.inner_classes.message import Message
 from server.entities.events.group_events.event_member import EventMember
 from server.entities.events.group_events.group_event import GroupEvent
 from server.entities.events.single_event import SingleEvent
 from server.entities.invite import Invite
 from server.entities.user import User
-from server.enums import InviteType, ChatType
+from server.enums import InviteType
 from server.utils.chats import event_chat_utils
 from server.utils.events import group_event_utils, event_member_utils
 
@@ -139,7 +137,24 @@ def search_users(filtered_str: str):
 
     users = user_dao.get_filtered_users(regx)
     users = list(users)
+
     if users is None:
         return '', 204
-    else:
-        return json_util.dumps(users), 200
+
+    return json_util.dumps(users), 200
+
+
+def get_friends(user: User):
+    friend_list = []
+
+    for friend_id in user.friend_id_list:
+        friend = user_dao.get_user(friend_id)
+        if friend is None:
+            continue
+
+        friend_list.append(friend.to_friend_json())
+
+    if len(friend_list) == 0:
+        return '', 204
+
+    return json_util.dumps(friend_list), 200
