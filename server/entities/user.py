@@ -93,5 +93,16 @@ class User(DatabaseObject, UserMixin):
             'name': self.name,
             'email': self.email,
             'profile_pic': self.profile_pic,
+            'birthday': self.birthday,
+            'event_id_list': self.event_id_list,
+            'friend_id_list': self.friend_id_list,
+        }
+
+    def to_overview_friend_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'profile_pic': self.profile_pic,
             'birthday': self.birthday
         }

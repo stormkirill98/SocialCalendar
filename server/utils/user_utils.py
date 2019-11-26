@@ -152,9 +152,38 @@ def get_friends(user: User):
         if friend is None:
             continue
 
-        friend_list.append(friend.to_friend_json())
+        friend_list.append(friend.to_overview_friend_json())
 
     if len(friend_list) == 0:
         return '', 204
 
     return json_util.dumps(friend_list), 200
+
+
+def remove_friend(friend_id, user: User):
+    if friend_id is None or not id_is_valid(friend_id):
+        return abort(400)
+
+    friend = user_dao.get_user(friend_id)
+    if friend is None:
+        return abort(404)
+
+    success_delete_friends = user_dao.delete_friend(user.id, friend_id)
+    if not user_dao.delete_friend(friend_id, user.id):
+        success_delete_friends = False
+
+    if not success_delete_friends:
+        return abort(500)
+
+    return '', 204
+
+
+def get_friend(friend_id):
+    if friend_id is None or not id_is_valid(friend_id):
+        return abort(400)
+
+    friend = user_dao.get_user(friend_id)
+    if friend is None:
+        return abort(404)
+
+    return json_util.dumps(friend.to_friend_json())
