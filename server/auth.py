@@ -90,6 +90,7 @@ def callback(client: WebApplicationClient):
     if user is None:
         user = User(unique_id, users_name, users_email, picture, "")
         user_dao.save_user(user)
+        # TODO send request about birthday
     else:
         if user.profile_pic != picture:
             user.profile_pic = picture

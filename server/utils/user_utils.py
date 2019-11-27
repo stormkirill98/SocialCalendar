@@ -186,4 +186,20 @@ def get_friend(friend_id):
     if friend is None:
         return abort(404)
 
-    return json_util.dumps(friend.to_friend_json())
+    return json_util.dumps(friend.to_friend_json()), 200
+
+
+def get_invites(user: User):
+    invite_list = []
+
+    for invite_id in user.invite_id_list:
+        invite = invite_dao.get_invite(invite_id)
+        if invite is None:
+            continue
+
+        invite_list.append(invite.__dict__)
+
+    if len(invite_list) == 0:
+        return '', 204
+
+    return json_util.dumps(invite_list), 200

@@ -215,12 +215,12 @@ def invites():
 
     if request.method == 'GET':
         """Get all invites"""
-        pass
+        return user_utils.get_invites(current_user)
 
     if request.method == 'POST':
         """Send invite
         :arg type - to friends or to group event
-        :arg where - friend if or group event id"""
+        :arg where - friend id or group event id"""
         pass
 
     if request.method == 'DELETE':
