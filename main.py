@@ -133,11 +133,6 @@ def chat():
         chat_id = request.args.get('id')
         return chat_utils.get_chat(chat_id, current_user)
 
-    if request.method == 'POST':
-        """Create new dialog"""
-        # TODO request create new dialog
-        pass
-
 
 @app.route("/chat/msg", methods=['POST', 'PUT', 'DELETE'])
 def chat_msg():

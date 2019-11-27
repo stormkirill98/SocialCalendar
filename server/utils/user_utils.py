@@ -12,7 +12,7 @@ from server.entities.events.single_event import SingleEvent
 from server.entities.invite import Invite
 from server.entities.user import User
 from server.enums import InviteType
-from server.utils.chats import event_chat_utils
+from server.utils.chats import event_chat_utils, dialog_utils
 from server.utils.events import group_event_utils, event_member_utils
 
 
@@ -85,6 +85,7 @@ def accept_invite(invite):
         # invite to friend
         user_dao.add_friend(invite.receiver_id, invite.sender_id)
         user_dao.add_friend(invite.sender_id, invite.receiver_id)
+        dialog_utils.create_dialog(invite.receiver_id, invite.sender_id)
     else:
         # invite to event
         user_dao.add_event(invite.receiver_id, invite.event_id)
