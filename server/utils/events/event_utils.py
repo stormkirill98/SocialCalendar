@@ -25,6 +25,7 @@ def get_event(event_id, user: User):
     if event is None:
         return abort(404)
 
+    # TODO need load all members
     return json_util.dumps(event.__dict__), 200
 
 

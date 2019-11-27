@@ -208,7 +208,7 @@ def friend():
         return user_utils.remove_friend(friend_id, current_user)
 
 
-@app.route("/invites", methods=['GET', 'POST', 'DELETE'])
+@app.route("/invites", methods=['GET'])
 def invites():
     if current_user is None or not current_user.is_authenticated:
         return abort(401)
@@ -217,11 +217,19 @@ def invites():
         """Get all invites"""
         return user_utils.get_invites(current_user)
 
+
+@app.route("/invite", methods=['POST', 'DELETE'])
+def invite():
+    if current_user is None or not current_user.is_authenticated:
+        return abort(401)
+
     if request.method == 'POST':
         """Send invite
         :arg type - to friends or to group event
-        :arg where - friend id or group event id"""
-        pass
+        :arg receiver_id - who receive this invite
+        :arg event_id - optional is type is friend"""
+        received_json = request.get_json()
+        return user_utils.send_invite(received_json, current_user)
 
     if request.method == 'DELETE':
         """Accept or decline invite

@@ -16,11 +16,45 @@ from server.utils.chats import event_chat_utils
 from server.utils.events import group_event_utils, event_member_utils
 
 
-def send_invite(user_id, receiver_id, invite_type, event_id=""):
-    invite = Invite(user_id, receiver_id, invite_type, event_id)
+def send_invite(request_json, user: User):
+    if request_json is None:
+        return abort(400)
+
+    invite_type = request_json.get('type')
+
+    receiver_id = request_json.get('receiver_id')
+    if receiver_id == str(user.id):
+        return abort(400)
+
+    event_id = request_json.get('event_id')
+    if event_id is None:
+        if invite_type == InviteType.EVENT:
+            return abort(400)
+
+        event_id = ""
+
+    if not valid_invite_type(invite_type):
+        return abort(400)
+
+    if receiver_id is None or not id_is_valid(receiver_id):
+        return abort(400)
+
+    if event_id != "":
+        if event_id is None or not id_is_valid(event_id):
+            return abort(400)
+
+        # check that user can send invite to this event
+        event_member = event_member_dao.get_by_user_event(user.id, event_id)
+        if event_member is None:
+            return abort(404)
+
+        if not event_member.is_can_invite_user:
+            return abort(403)
+
+    invite = Invite(user.id, receiver_id, invite_type, event_id)
     invite_id = invite_dao.save_invite(invite)
     user_dao.add_invite(receiver_id, invite_id)
-    return invite_id
+    return '', 204
 
 
 def accept_invite(invite_id):
@@ -203,3 +237,13 @@ def get_invites(user: User):
         return '', 204
 
     return json_util.dumps(invite_list), 200
+
+
+def valid_invite_type(invite_type):
+    if invite_type is None:
+        return False
+
+    if invite_type != InviteType.EVENT and invite_type != InviteType.FRIEND:
+        return False
+
+    return True
