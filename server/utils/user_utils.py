@@ -57,9 +57,30 @@ def send_invite(request_json, user: User):
     return '', 204
 
 
-def accept_invite(invite_id):
-    invite = invite_dao.get_invite(invite_id)
+def handle_invite(invite_id, action, user: User):
+    if not id_is_valid(invite_id):
+        return abort(400)
 
+    if action != "accept" and action != "decline":
+        return abort(400)
+
+    invite = invite_dao.get_invite(invite_id)
+    if invite is None:
+        return abort(404)
+
+    # this invite send not this user
+    if str(user.id) != str(invite.receiver_id):
+        return abort(403)
+
+    if action == "accept":
+        accept_invite(invite)
+    else:
+        decline_invite(invite)
+
+    return '', 204
+
+
+def accept_invite(invite):
     if invite.type == InviteType.FRIEND:
         # invite to friend
         user_dao.add_friend(invite.receiver_id, invite.sender_id)
@@ -69,14 +90,13 @@ def accept_invite(invite_id):
         user_dao.add_event(invite.receiver_id, invite.event_id)
         group_event_utils.add_member(invite.event_id, invite.receiver_id)
 
-    invite_dao.delete_invite(invite_id)
-    user_dao.delete_invite(invite.receiver_id, invite_id)
+    invite_dao.delete_invite(invite.id)
+    user_dao.delete_invite(invite.receiver_id, invite.id)
 
 
-def decline_invite(invite_id):
-    invite = invite_dao.get_invite(invite_id)
-    invite_dao.delete_invite(invite_id)
-    user_dao.delete_invite(invite.receiver_id, invite_id)
+def decline_invite(invite):
+    invite_dao.delete_invite(invite.id)
+    user_dao.delete_invite(invite.receiver_id, invite.id)
 
 
 def create_group_event(user_id, group_event: GroupEvent):

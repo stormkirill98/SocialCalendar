@@ -235,6 +235,9 @@ def invite():
         """Accept or decline invite
         :arg id - invite id
         :arg action - accept or decline"""
+        invite_id = request.args.get('id')
+        action = request.args.get('action')
+        return user_utils.handle_invite(invite_id, action, current_user)
 
 
 @app.route("/search/users", methods=['GET'])
