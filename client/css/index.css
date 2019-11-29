@@ -31,18 +31,11 @@ body{
     font-size: 150px;
 }
 
-.input-log{
-    border-radius: 7px; 
-    outline: none; 
-    width: 300px; 
-    font-size: 20px; 
-    font-family: Tahoma;
-    margin-top: 10px;
-    padding: 7px 10px;
+.google-auth{
+    margin-top: 15vh;
 }
 
 .google-img{
-    margin-top: 10px;
     width: 198px;
     cursor: pointer;
 }
@@ -50,12 +43,6 @@ body{
 @media (max-width: 1367px) { 
     .title{
         font-size: 100px;
-    }
-
-    .login,
-    .password{
-        width: 200px; 
-        font-size: 20px; 
     }
 
     .google-img{
@@ -68,12 +55,6 @@ body{
         font-size: 50px;
     }
 
-    .login,
-    .password{
-        width: 150px; 
-        font-size: 15px; 
-    }
-
     .google-img{
         width: 99px;
     }
@@ -84,12 +65,6 @@ body{
         font-size: 40px;
     }
 
-    .login,
-    .password{
-        width: 120px; 
-        font-size: 12px; 
-    }
-
     .google-img{
         width: 79px;
     }
@@ -98,12 +73,6 @@ body{
 @media (max-width: 480px) { 
     .title{
         font-size: 30px;
-    }
-
-    .login,
-    .password{
-        width: 100px; 
-        font-size: 10px; 
     }
 
     .google-img{
