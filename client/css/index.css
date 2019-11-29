@@ -31,23 +31,14 @@ body{
     font-size: 150px;
 }
 
-.login{
+.input-log{
     border-radius: 7px; 
     outline: none; 
     width: 300px; 
-    font-size: 30px; 
+    font-size: 20px; 
     font-family: Tahoma;
     margin-top: 10px;
-}
-
-.password{
-    border-radius: 7px; 
-    outline: none; 
-    width: 300px; 
-    font-size: 30px; 
-    font-family: Tahoma;
-    margin-top: 10px;
-
+    padding: 7px 10px;
 }
 
 .google-img{
