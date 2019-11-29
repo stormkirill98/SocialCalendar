@@ -14,36 +14,47 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-success">
-            <a class="navbar-brand" href="Calendar.html">Social Calendar</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Calendar.html">Календарь</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="friends.html">Друзья</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="dialogues.html">Чаты</a>
-                    </li>
+    <header class="bg-success">
+        <nav class="nav navbar-light">
+            <div class="button">
+                <input type="checkbox" id="hmt" class="hidden-menu-ticker">
+                <label class="btn-menu" for="hmt">
+                    <span class="first"></span>
+                    <span class="second"></span>
+                    <span class="third"></span>
+                </label>
+                <ul class="hidden-menu">
+                    <li class="left-link"><a href="Calendar.html">Календарь</a></li>
+                    <li class="left-link"><a href="friends.html">Друзья</a></li>
+                    <li class="left-link"><a href="dialogues.html">Чаты</a></li>
                 </ul>
             </div>
+            <a class="navbar-brand" href="Calendar.html">Social Calendar</a>
+            <li class="nav-item">
+                <a class="nav-link" href="Calendar.html">Календарь</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="friends.html">Друзья</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="dialogues.html">Чаты</a>
+            </li>
+        </nav>
+        <div class="auth-box">
 
-            <div class="auth-box">
-                <a href="#" class="auth-img">
+            <div class="auth-left">
+                <a href="Calendar.html" class="auth-img">
                     <img src="img/icon.JPG" width="50" height="50" alt="Аватарка">
                 </a>
-                <a class="auth-name">Семён Петрович</a>
             </div>
-        </nav>
+
+            <div class="auth-right">
+                <a class="auth-name" href="Calendar.html">Семён Петрович</a>
+                <a href="Options.html">
+                    <img class="options" src="img/settings.png" alt="Настройки">
+                </a>
+            </div>
+        </div>
     </header>
 
     <div class="dialogues-main-box">

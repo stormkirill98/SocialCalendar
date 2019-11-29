@@ -113,8 +113,6 @@ main {
 .event-details:nth-child(1){margin-top: 0;}
 
 body.body{
-    height: 100%;
-    width: 100%;
     background: rgb(129, 122, 122);;
 }
 
@@ -174,6 +172,6 @@ body.body{
     }
 
     .events-area{
- 
+        min-width: 10px;
     }
 }
