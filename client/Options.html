@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/Options.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Настройки</title>
 </head>
 
 <body>
@@ -36,7 +39,6 @@
             </li>
         </nav>
         <div class="auth-box">
-
             <div class="auth-left">
                 <a href="Calendar.html" class="auth-img">
                     <img src="img/icon.JPG" width="50" height="50" alt="Аватарка">
@@ -45,12 +47,34 @@
 
             <div class="auth-right">
                 <a class="auth-name" href="Calendar.html">Семён Петрович</a>
-                <a href="Options.html">
-                    <img class="options" src="img/settings.png" alt="Настройки">
-                </a>
+                <div class="icons">
+                    <a href="Options.html">
+                        <img class="options" src="img/settings.png" alt="Настройки">
+                    </a>
+                    <a href="#">
+                        <img class="notification" src="img/notifications.png" alt="Оповещения">
+                    </a>
+                </div>
             </div>
         </div>
     </header>
+
+    <main>
+        <div class="change-options">
+            <div class="name">
+                Имя:
+                <input type="text">
+            </div>
+            <div class="lastname">
+                Фамилия:
+                <input type="text">
+            </div>
+            <div class="birthday">
+                День рождения:
+                <input type="text">
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

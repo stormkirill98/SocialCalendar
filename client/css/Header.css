@@ -91,8 +91,8 @@ header .auth-right img{
     left: -200px;
     transition: left .2s;
     z-index: 2;
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
+    /* -webkit-transform: translateZ(0); */
+    /* -webkit-backface-visibility: hidden; */
   }
   .hidden-menu-ticker {
     display: none;
@@ -107,8 +107,8 @@ header .auth-right img{
     transition: left .23s;
     z-index: 3;
     width: 25px;
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
+    /* -webkit-transform: translateZ(0); */
+    /* -webkit-backface-visibility: hidden; */
   }
   .btn-menu span {
     display: block;
@@ -129,14 +129,14 @@ header .auth-right img{
     left: 0;
   }
   .hidden-menu-ticker:checked ~ .btn-menu span.first {
-    -webkit-transform: rotate(45deg);
+    /* -webkit-transform: rotate(45deg); */
     top: 10px;
   }
   .hidden-menu-ticker:checked ~ .btn-menu span.second {
     opacity: 0;
   }
   .hidden-menu-ticker:checked ~ .btn-menu span.third {
-    -webkit-transform: rotate(-45deg);
+    /* -webkit-transform: rotate(-45deg); */
     top: -10px;
   }
 
