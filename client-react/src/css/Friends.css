@@ -1,0 +1,41 @@
+@import "Header.css";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face{
+    font-family: "Algerian";
+    src: url(../fonts/Algerian.TTF);
+}
+
+.friends-main-box{
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 5px;
+    background: rgb(203, 255, 203);
+}
+
+.friend{
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    padding: 5px;
+    margin: 5px 0px;
+    background:  rgb(202, 247, 144);
+}
+
+.friend-avatar{
+    width: 60px;
+    height: 60px;
+}
+
+.wrap{
+    display: flex;
+    align-items: center;
+}
+
+.button{
+    margin-left: 5px;
+}

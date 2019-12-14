@@ -1,0 +1,177 @@
+@import "Header.css";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Algerian";
+    src: url(../fonts/Algerian.TTF);
+}
+
+main {
+    counter-reset: day;
+    margin: 0 !important;
+    background: rgb(129, 122, 122);
+    min-width: 1120px;
+}
+
+.month-grid {
+    width: 70%;
+    flex: 1 auto;
+    display: grid;
+    padding: 20px;
+    border-width: 2px;
+    background: rgb(129, 122, 122);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows:  0.5fr repeat(5, 1fr);
+    gap: 20px;
+}
+
+.day-name,
+.day-plate{
+    background: #3D3D3D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    min-width: 100px;
+    
+}
+
+.day-name {
+    font-size: 30px;
+    border-radius: 2px;
+    /* min-width: 85px; */
+}
+
+.day-plate {
+    font-size: 40px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5); 
+    min-height: 100px;
+}
+
+.day-plate::before {
+    counter-increment: day;
+    content: counter(day);
+}
+
+.day-plate:hover {
+    cursor: pointer;
+    box-shadow: none;
+    border: 4px solid rgb(50, 50, 50);
+}
+
+.mini-events{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mini-events img,
+.mini-events a img{
+    border-radius: 4px;
+    height: 25px;
+    width: 25px;
+}
+.mini-events a{
+    display: flex;
+}
+
+.day-name:nth-child(1)::after{ content: "Понедельник" }
+.day-name:nth-child(2)::after{ content: "Вторник" }
+.day-name:nth-child(3)::after{ content: "Среда" }   
+.day-name:nth-child(4)::after{ content: "Четверг" }
+.day-name:nth-child(5)::after{ content: "Пятница" }
+.day-name:nth-child(6)::after{ content: "Суббота" }
+.day-name:nth-child(7)::after{ content: "Воскресенье"}
+
+.events-area{
+    background: rgb(129, 122, 122);
+    flex: 1 auto;
+    padding: 20px;
+}
+
+.events-list{
+    background: #3D3D3D;
+    overflow-y: auto;
+    height: 100%;
+    padding: 5px;
+}
+
+.event-details{
+    height: 50px;
+    background: rgb(103, 255, 82);
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 5px;
+}
+.event-details:nth-child(1){margin-top: 0;}
+
+body.body{
+    background: rgb(129, 122, 122);;
+}
+
+@media(max-width:1600px){
+    .day-name{
+        font-size: 22px;
+    }
+    .day-plate{
+        font-size: 35px;
+        min-height: 85px;
+    }
+}
+
+@media(max-width:1366px){
+    .day-name{
+        font-size: 18px;
+    }
+    .day-plate{
+        font-size: 25px;
+        min-height: 72px;
+    }
+}
+
+@media(max-width:1280px){
+    .day-name{
+        font-size: 16px;
+    }
+    .day-plate{
+        font-size: 25px;
+        min-height: 65px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .day-name:nth-child(1)::after{ content: "ПН" }
+    .day-name:nth-child(2)::after{ content: "ВТ" }
+    .day-name:nth-child(3)::after{ content: "СР" }   
+    .day-name:nth-child(4)::after{ content: "ЧТ" }
+    .day-name:nth-child(5)::after{ content: "ПТ" }
+    .day-name:nth-child(6)::after{ content: "СБ" }
+    .day-name:nth-child(7)::after{ content: "ВС" }
+    /* .day-name{
+        font-size: 16px;
+    }
+    .day-plate{
+        font-size: 25px;
+        min-height: 65px;
+    } */
+    .mini-events a img,
+    .mini-events img{
+        height: 20px;
+        width: 20px;
+    }
+
+    .day-name, .day-plate{
+        min-width: 70px;
+    }
+
+    .events-area{
+        min-width: 10px;
+    }
+}
