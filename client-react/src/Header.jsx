@@ -61,7 +61,7 @@ class Header extends React.Component {
 
 // ========================================
 
-ReactDOM.render(
-    <Main />,
-    document.getElementById('root')
-);
+// ReactDOM.render(
+//     <Header />,
+//     document.getElementById('root')
+// );
