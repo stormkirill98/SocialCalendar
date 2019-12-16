@@ -8,7 +8,7 @@ class Main extends React.Component {
             <>
                 <div class="title">Social Calendar</div>
                 <a href="Calendar.html" class="google-auth">
-                    <img src="img/SingInWithGoogle.png" alt="зайти через гугол" class="google-img" />>
+                    <img src="img/SingInWithGoogle.png" alt="зайти через гугол" class="google-img" />
                 </a>
             </>
         );
