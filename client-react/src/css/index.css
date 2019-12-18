@@ -8,7 +8,7 @@
     src: url(./../fonts/Algerian.TTF);
 }
 
-.wrap{
+.wrap-index-main{
     position: absolute;
     background-image: url(../img/Auth-background.jpg);
     height: 70vh;

@@ -4,7 +4,7 @@ import "../css/index.css";
 export default class Main extends React.Component {
     render() {
         return (
-            <div className="wrap">
+            <div className="wrap-index-main">
                 <div className="main">
                     <div className="title">Social Calendar</div>
                     <a href="Calendar" className="google-auth">
