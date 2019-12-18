@@ -5,49 +5,49 @@ export default class Header extends React.Component {
     render() {
         return (
             <>
-                <header class="bg-success">
-                    <nav class="nav navbar-light">
-                        <div class="button">
-                            <input type="checkbox" id="hmt" class="hidden-menu-ticker" />>
-                            <label class="btn-menu" for="hmt">
-                                <span class="first"></span>
-                                <span class="second"></span>
-                                <span class="third"></span>
+                <header className="bg-success">
+                    <nav className="nav navbar-light">
+                        <div className="button">
+                            <input type="checkbox" id="hmt" className="hidden-menu-ticker" />
+                            <label className="btn-menu" htmlFor="hmt">
+                                <span className="first"></span>
+                                <span className="second"></span>
+                                <span className="third"></span>
                             </label>
-                            <ul class="hidden-menu">
-                                <a class="hidden-menu-brand" href="Calendar.html">Social Calendar</a>
-                                <li class="left-link"><a href="Calendar.html">Календарь</a></li>
-                                <li class="left-link"><a href="friends.html">Друзья</a></li>
-                                <li class="left-link"><a href="dialogues.html">Чаты</a></li>
+                            <ul className="hidden-menu">
+                                <a className="hidden-menu-brand" href="/Calendar">Social Calendar</a>
+                                <li className="left-link"><a href="/Calendar">Календарь</a></li>
+                                <li className="left-link"><a href="friends">Друзья</a></li>
+                                <li className="left-link"><a href="dialogues">Чаты</a></li>
                             </ul>
                         </div>
-                        <a class="navbar-brand" href="Calendar.html">Social Calendar</a>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Calendar.html">Календарь</a>
+                        <a className="navbar-brand" href="Calendar">Social Calendar</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="Calendar">Календарь</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="friends.html">Друзья</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="friends">Друзья</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dialogues.html">Чаты</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="dialogues">Чаты</a>
                         </li>
                     </nav>
-                    <div class="auth-box">
+                    <div className="auth-box">
 
-                        <div class="auth-left">
-                            <a href="Calendar.html" class="auth-img">
+                        <div className="auth-left">
+                            <a href="Calendar" className="auth-img">
                                 <img src="img/icon.JPG" width="50" height="50" alt="Аватарка" />
                             </a>
                         </div>
 
-                        <div class="auth-right">
-                            <a class="auth-name" href="Calendar.html">Семён Петрович</a>
-                            <div class="icons">
-                                <a href="Options.html">
-                                    <img class="options" src="img/settings.png" alt="Настройки" />
+                        <div className="auth-right">
+                            <a className="auth-name" href="Calendar">Семён Петрович</a>
+                            <div className="icons">
+                                <a href="Options">
+                                    <img className="options" src="img/settings.png" alt="Настройки" />
                                 </a>
-                                <a href="#">
-                                    <img class="notification" src="img/notifications.png" alt="Оповещения" />
+                                <a href="Notifications">
+                                    <img className="notification" src="img/notifications.png" alt="Оповещения" />
                                 </a>
                             </div>
                         </div>
