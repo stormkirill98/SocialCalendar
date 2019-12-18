@@ -10,9 +10,9 @@ export default class Routing extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route path="/" component={Main}/>>
-                    <Route path="/Calendar" component={Main}/>>
+                    <Route path="/Calendar" component={Main} />
                     <Route path="/Event" component={Event} />
+                    <Route path="/" component={Main} />
                 </Switch>
             </Router>
         );
