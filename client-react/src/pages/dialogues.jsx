@@ -1,87 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+import React from "react";
+//import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "../css/dialogues.css";
+import Header from "../components/Header";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="imge/vnd.microsoft.icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/dialogues.css">
-
-    <title>Диалоги</title>
-</head>
-
-<body>
-    <header class="bg-success">
-        <nav class="nav navbar-light">
-            <div class="button">
-                <input type="checkbox" id="hmt" class="hidden-menu-ticker">
-                <label class="btn-menu" for="hmt">
-                    <span class="first"></span>
-                    <span class="second"></span>
-                    <span class="third"></span>
-                </label>
-                <ul class="hidden-menu">
-                    <a class="hidden-menu-brand" href="Calendar.html">Social Calendar</a>
-                    <li class="left-link"><a href="Calendar.html">Календарь</a></li>
-                    <li class="left-link"><a href="friends.html">Друзья</a></li>
-                    <li class="left-link"><a href="dialogues.html">Чаты</a></li>
-                </ul>
-            </div>
-            <a class="navbar-brand" href="Calendar.html">Social Calendar</a>
-            <li class="nav-item">
-                <a class="nav-link" href="Calendar.html">Календарь</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="friends.html">Друзья</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="dialogues.html">Чаты</a>
-            </li>
-        </nav>
-        <div class="auth-box">
-
-            <div class="auth-left">
-                <a href="Calendar.html" class="auth-img">
-                    <img src="img/icon.JPG" width="50" height="50" alt="Аватарка">
-                </a>
-            </div>
-
-            <div class="auth-right">
-                <a class="auth-name" href="Calendar.html">Семён Петрович</a>
-                <div class="icons">
-                    <a href="Options.html">
-                        <img class="options" src="SVG_icon/settings.svg" alt="Настройки">
-                    </a>
-                    <a href="#">
-                        <img class="notification" src="SVG_icon/bell.svg" alt="Оповещения">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="dialogues-main-box">
+export default class dialogues extends React.Component {
+    render() {
+        return (
+            <>
+            <Header/>
+            <div class="dialogues-main-box">
         <div class="wrap3">
             <div class="dialogues-box">
                 <h4 class="title">Список диалогов</h4>
                 <textarea class="text" placeholder="Поиск диалога..." rows="1"></textarea>
-                <!-- <input placeholder="Поиск диалога..." type="text" name="dialogue-search"> -->
+                <input placeholder="Поиск диалога..." type="text" name="dialogue-search"/>
                 <ol class="dialogues-list">
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -97,14 +42,14 @@
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -120,14 +65,14 @@
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -143,14 +88,14 @@
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -166,14 +111,14 @@
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -189,14 +134,14 @@
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -212,14 +157,14 @@
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -235,14 +180,14 @@
                     <li class="dialogue">
                         <a class="a" href="#">
                             <div class="wrap">
-                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы">
+                                <img class="dialogue-img" src="img/asd.png" alt="аватарка беседы"/>
                                 <div class="dialogue-content">
                                     <div>
                                         Название беседы
                                     </div>
                                     <div class="wrap2">
                                         <div class="wrap">
-                                            <img src="img/asd.png" width="15px" height="15px" alt="">
+                                            <img src="img/asd.png" width="15px" height="15px" alt=""/>
                                             <div>
                                                 Последнее сообщение
                                             </div>
@@ -280,6 +225,7 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+    </>
+        );
+    }
+}
