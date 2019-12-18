@@ -47,6 +47,10 @@
     cursor: pointer;
 }
 
+.defoult-titel{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 @media (max-width: 1367px) { 
     .title{
         font-size: 100px;

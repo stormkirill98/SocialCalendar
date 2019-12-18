@@ -11,10 +11,15 @@
 }
 
 .friends-main-box{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin: 5px 20%;
     padding: 5px;
     background: rgb(203, 255, 203);
+}
+
+.friends-list{
+    height: 480px;
+    margin-top: 5px;
+    overflow-y: auto;
 }
 
 .friend{
@@ -22,20 +27,23 @@
     justify-content: space-between;
     height: 70px;
     padding: 5px;
-    margin: 5px 0px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     background:  rgb(202, 247, 144);
 }
 
 .friend-avatar{
     width: 60px;
     height: 60px;
+    margin-right: 5px;
 }
 
 .wrap{
     display: flex;
+    
     align-items: center;
 }
 
-.button{
+.button1{
     margin-left: 5px;
 }

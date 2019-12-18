@@ -53,8 +53,6 @@
 .dialogue-content{
     margin-left: 5px;
     width: 100%;
-    /* display: flex;
-    justify-content: space-between; */
 }
 
 .a{
@@ -69,7 +67,8 @@
 }
 
 .dialogues-list{
-    height: 500px;
+    margin-top: 5px;
+    height: 470px;
     overflow-y: auto;
 }
 
@@ -85,7 +84,7 @@
     background: rgb(202, 247, 144);
     overflow-y: auto;
     padding: 5px;
-    height: 350px;
+    height: 453px;
     display: flex;
     flex-direction: column;
     align-content: flex-end;
