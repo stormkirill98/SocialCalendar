@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './css/Calendar.css';
-//import './Header'
+import React from "react";
+import "../css/index.css";
 
-class Main extends React.Component {
+
+export default class Main extends React.Component {
     render() {
         return (
             <>
@@ -15,10 +14,3 @@ class Main extends React.Component {
         );
     }
 }
-
-// ========================================
-
-ReactDOM.render(
-    <Main />,
-    document.getElementById('root')
-);

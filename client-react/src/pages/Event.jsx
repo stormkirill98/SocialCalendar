@@ -1,7 +1,14 @@
 import React from "react";
-import "../css/EventPage.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "../css/EventPage.css";
+
 
 export default class Levels extends React.Component {
-
+    render() {
+        return (
+          <div>
+            Страница события
+          </div>
+        );
+    }
 }
