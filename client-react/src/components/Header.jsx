@@ -9,7 +9,7 @@ export default class Header extends React.Component {
                     <nav class="nav navbar-light">
                         <div class="button">
                             <input type="checkbox" id="hmt" class="hidden-menu-ticker" />>
-                        <label class="btn-menu" for="hmt">
+                            <label class="btn-menu" for="hmt">
                                 <span class="first"></span>
                                 <span class="second"></span>
                                 <span class="third"></span>
@@ -36,19 +36,19 @@ export default class Header extends React.Component {
 
                         <div class="auth-left">
                             <a href="Calendar.html" class="auth-img">
-                                <img src="img/icon.JPG" width="50" height="50" alt="Аватарка" />>
-                        </a>
+                                <img src="img/icon.JPG" width="50" height="50" alt="Аватарка" />
+                            </a>
                         </div>
 
                         <div class="auth-right">
                             <a class="auth-name" href="Calendar.html">Семён Петрович</a>
                             <div class="icons">
                                 <a href="Options.html">
-                                    <img class="options" src="img/settings.png" alt="Настройки" />>
-                            </a>
+                                    <img class="options" src="img/settings.png" alt="Настройки" />
+                                </a>
                                 <a href="#">
-                                    <img class="notification" src="img/notifications.png" alt="Оповещения" />>
-                            </a>
+                                    <img class="notification" src="img/notifications.png" alt="Оповещения" />
+                                </a>
                             </div>
                         </div>
                     </div>
