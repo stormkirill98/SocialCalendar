@@ -8,6 +8,7 @@ from flask_login import (
     logout_user)
 from oauthlib.oauth2 import WebApplicationClient
 from werkzeug.exceptions import abort
+from flask_cors import CORS
 
 from server import auth
 from server.auth import GOOGLE_CLIENT_ID
@@ -17,6 +18,7 @@ from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils
 
 app = Flask(__name__)
+CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 
 # User session management setup
