@@ -18,8 +18,9 @@ from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # User session management setup
 login_manager = LoginManager()
