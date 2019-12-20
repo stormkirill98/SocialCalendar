@@ -73,10 +73,8 @@ def logout():
 
 
 @app.route("/events", methods=['GET'])
+@login_required
 def events():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get events in json for month of year
         :arg month
@@ -90,10 +88,8 @@ def events():
 
 
 @app.route("/event", methods=['GET', 'POST', 'PUT', 'DELETE'])
+@login_required
 def event():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get event by ID
         :arg id - event id"""
@@ -118,10 +114,8 @@ def event():
 
 
 @app.route("/event/group/leave", methods=['DELETE'])
+@login_required
 def group_event():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'DELETE':
         """Leave group event by ID
         :arg id - event id"""
@@ -130,10 +124,8 @@ def group_event():
 
 
 @app.route("/chat", methods=['GET', 'POST', 'DELETE'])
+@login_required
 def chat():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get chat by id"""
         chat_id = request.args.get('id')
@@ -141,10 +133,8 @@ def chat():
 
 
 @app.route("/chat/msg", methods=['POST', 'PUT', 'DELETE'])
+@login_required
 def chat_msg():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'POST':
         """send msg
         :arg chat_id - where send
@@ -167,10 +157,8 @@ def chat_msg():
 
 
 @app.route("/chats", methods=['GET'])
+@login_required
 def chats():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get N chats sorted by last msg datetime
         :arg count_getting - count already is get
@@ -183,20 +171,16 @@ def chats():
 
 
 @app.route("/friends", methods=['GET'])
+@login_required
 def friends():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get all friends"""
         return user_utils.get_friends(current_user)
 
 
 @app.route("/friend", methods=['GET', 'DELETE'])
+@login_required
 def friend():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get friend by id"""
         friend_id = request.args.get('id')
@@ -210,20 +194,16 @@ def friend():
 
 
 @app.route("/invites", methods=['GET'])
+@login_required
 def invites():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get all invites"""
         return user_utils.get_invites(current_user)
 
 
 @app.route("/invite", methods=['POST', 'DELETE'])
+@login_required
 def invite():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'POST':
         """Send invite
         :arg type - to friends or to group event
@@ -242,10 +222,8 @@ def invite():
 
 
 @app.route("/search/users", methods=['GET'])
+@login_required
 def search_users():
-    if current_user is None or not current_user.is_authenticated:
-        return abort(401)
-
     if request.method == 'GET':
         """Get users filtered by filtered string
         :arg filtered_str"""
