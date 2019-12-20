@@ -7,7 +7,6 @@ from flask_login import (
     login_required,
     logout_user)
 from oauthlib.oauth2 import WebApplicationClient
-from werkzeug.exceptions import abort
 from flask_cors import CORS, cross_origin
 
 from server import auth
@@ -18,9 +17,8 @@ from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://social-calendar-front.herokuapp.com/"}})
+CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 # User session management setup
 login_manager = LoginManager()
@@ -52,14 +50,14 @@ def index():
 
 
 @app.route("/login")
-@cross_origin(origin='social-calendar-front.herokuapp.com', headers=['Content-Type', 'Authorization'])
+@cross_origin()
 def login():
     request_uri = auth.login(client)
     return redirect(request_uri)
 
 
 @app.route("/login/callback")
-@cross_origin(origin='social-calendar-front.herokuapp.com', headers=['Content-Type', 'Authorization'])
+@cross_origin()
 def callback():
     auth.callback(client)
     return redirect("https://social-calendar-front.herokuapp.com/")
