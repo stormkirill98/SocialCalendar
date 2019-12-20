@@ -52,14 +52,14 @@ def index():
 
 
 @app.route("/login")
-@cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
+@cross_origin(origin='localhost', headers=['Content-Type', 'Authorization'])
 def login():
     request_uri = auth.login(client)
     return redirect(request_uri)
 
 
 @app.route("/login/callback")
-@cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
+@cross_origin(origin='localhost', headers=['Content-Type', 'Authorization'])
 def callback():
     auth.callback(client)
     return redirect("https://social-calendar-front.herokuapp.com/")
