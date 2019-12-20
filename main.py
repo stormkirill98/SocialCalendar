@@ -8,7 +8,7 @@ from flask_login import (
     logout_user)
 from oauthlib.oauth2 import WebApplicationClient
 from werkzeug.exceptions import abort
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from server import auth
 from server.auth import GOOGLE_CLIENT_ID
@@ -36,6 +36,7 @@ def load_user(user_id):
 
 
 @app.route("/")
+@cross_origin()
 def index():
     if current_user.is_authenticated:
         return (
@@ -51,12 +52,14 @@ def index():
 
 
 @app.route("/login")
+@cross_origin()
 def login():
     request_uri = auth.login(client)
     return redirect(request_uri)
 
 
 @app.route("/login/callback")
+@cross_origin()
 def callback():
     auth.callback(client)
     return redirect("http://localhost:3000/")
