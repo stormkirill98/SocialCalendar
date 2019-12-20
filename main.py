@@ -58,14 +58,14 @@ def login():
 @app.route("/login/callback")
 def callback():
     auth.callback(client)
-    return redirect(url_for("index"))
+    return redirect("http://localhost:3000/")
 
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("index"))
+    return redirect("http://localhost:3000/")
 
 
 @app.route("/events", methods=['GET'])
