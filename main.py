@@ -62,14 +62,14 @@ def login():
 @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
 def callback():
     auth.callback(client)
-    return redirect("http://localhost:3000/")
+    return redirect("https://social-calendar-front.herokuapp.com/")
 
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect("http://localhost:3000/")
+    return redirect("https://social-calendar-front.herokuapp.com/")
 
 
 @app.route("/events", methods=['GET'])
