@@ -18,7 +18,7 @@ from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/*": {"origins": "https://social-calendar-front.herokuapp.com/"}})
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -52,14 +52,14 @@ def index():
 
 
 @app.route("/login")
-@cross_origin(origin='localhost', headers=['Content-Type', 'Authorization'])
+@cross_origin(origin='social-calendar-front.herokuapp.com', headers=['Content-Type', 'Authorization'])
 def login():
     request_uri = auth.login(client)
     return redirect(request_uri)
 
 
 @app.route("/login/callback")
-@cross_origin(origin='localhost', headers=['Content-Type', 'Authorization'])
+@cross_origin(origin='social-calendar-front.herokuapp.com', headers=['Content-Type', 'Authorization'])
 def callback():
     auth.callback(client)
     return redirect("https://social-calendar-front.herokuapp.com/")
