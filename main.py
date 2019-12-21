@@ -1,13 +1,14 @@
 import os
 
-from flask import Flask, redirect, url_for, request
+from bson import json_util
+from flask import Flask, redirect, request, url_for
+from flask_cors import CORS, cross_origin
 from flask_login import (
     LoginManager,
     current_user,
     login_required,
     logout_user)
 from oauthlib.oauth2 import WebApplicationClient
-from flask_cors import CORS, cross_origin
 
 from server import auth
 from server.auth import GOOGLE_CLIENT_ID
@@ -30,28 +31,27 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return user_dao.get_user(user_id)
+    user = user_dao.get_user(user_id)
+    if user:
+        print("Load user " + user.name)
+    else:
+        print("User not load by " + user_id)
+    return user
 
 
 @app.route("/")
 @cross_origin()
 def index():
     if current_user.is_authenticated:
-        return (
-            "<p>Hello, {}! You're logged in! Email: {}</p>"
-            "<div><p>Google Profile Picture:</p>"
-            '<img src="{}" alt="Google profile pic"></img></div>'
-            '<a class="button" href="/logout">Logout</a>'.format(
-                current_user.name, current_user.email, current_user.profile_pic
-            )
-        )
+        return json_util.dumps(current_user), 200
     else:
-        return '<a class="button" href="/login">Google Login</a>'
+        return '', 403
 
 
 @app.route("/login")
 @cross_origin()
 def login():
+    print("login")
     request_uri = auth.login(client)
     return redirect(request_uri)
 
@@ -60,14 +60,14 @@ def login():
 @cross_origin()
 def callback():
     auth.callback(client)
-    return redirect("https://social-calendar-front.herokuapp.com/")
+    return redirect(url_for("index"))
 
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect("https://social-calendar-front.herokuapp.com/")
+    return redirect(url_for("index"))
 
 
 @app.route("/events", methods=['GET'])
