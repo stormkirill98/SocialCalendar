@@ -1,7 +1,6 @@
 import os
 
-from bson import json_util
-from flask import Flask, redirect, request, url_for, jsonify, render_template
+from flask import Flask, redirect, request, url_for, render_template, make_response
 from flask_cors import CORS, cross_origin
 from flask_login import (
     LoginManager,
@@ -43,7 +42,10 @@ def load_user(user_id):
 @cross_origin()
 def index():
     print(request.headers)
-    return render_template("index.html")
+    resp = make_response(render_template("index.html"))
+    if current_user:
+        resp.headers["Auth"] = current_user.is_authenticated
+    return resp
 
 
 @app.route("/login")
