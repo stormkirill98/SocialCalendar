@@ -1,0 +1,15 @@
+.hide {
+    display: none;
+}
+
+.show {
+    padding: 10px 0 ;
+
+    display: block;
+    position: absolute;
+    width: max-content;
+    background-color: aliceblue;
+    border-radius: 10px;
+    top: 70px;
+    right: 100px;
+}

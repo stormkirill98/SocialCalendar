@@ -1,7 +1,7 @@
 import os
 
 from bson import json_util
-from flask import Flask, redirect, request, url_for
+from flask import Flask, redirect, request, url_for, jsonify, render_template
 from flask_cors import CORS, cross_origin
 from flask_login import (
     LoginManager,
@@ -17,7 +17,7 @@ from server.utils import user_utils
 from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 
@@ -42,16 +42,15 @@ def load_user(user_id):
 @app.route("/")
 @cross_origin()
 def index():
-    if current_user.is_authenticated:
-        return json_util.dumps(current_user), 200
-    else:
-        return '', 403
+    print(request.headers)
+    return render_template("index.html")
 
 
 @app.route("/login")
 @cross_origin()
 def login():
     print("login")
+    print(request.headers)
     request_uri = auth.login(client)
     return redirect(request_uri)
 
@@ -59,6 +58,7 @@ def login():
 @app.route("/login/callback")
 @cross_origin()
 def callback():
+    print("callback")
     auth.callback(client)
     return redirect(url_for("index"))
 

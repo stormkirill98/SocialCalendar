@@ -1,0 +1,37 @@
+.user-name {
+    min-width: 150px;
+    vertical-align: middle;
+    height: 22px;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.notifications-center {
+    height: 25px;
+    padding-top: 2px !important;
+    flex-grow: 1;
+}
+
+.settings-btn {
+    height: 25px;
+    padding-top: 2px !important;
+    flex-grow: 1;
+}
+
+.notifications-center,
+.settings-btn {
+    margin: 0;
+    margin-left: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    /* justify-content: space-between; */
+
+}
+
+.user-info {
+    padding-top: 2px;
+    padding-left: 5px;
+}
