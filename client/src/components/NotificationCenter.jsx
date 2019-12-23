@@ -10,11 +10,31 @@ export default class NotificationCenter extends React.Component {
         super(props);
 
         this.state = {
-            invites: props.invites
+            invites: []
         };
 
         this.toggle = this.toggle.bind(this);
         this.removeInvite = this.removeInvite.bind(this);
+        this.getInvites = this.getInvites.bind(this);
+
+        this.getInvites()
+
+    }
+
+    getInvites() {
+        fetch("/invites").then((response) => {
+            if (response.ok) {
+                response.json().then((data) => {
+                    console.log(data);
+
+                    this.setState({
+                        invites: data ? data : []
+                    });
+                })
+            } else {
+                console.log(response.statusText);
+            }
+        });
     }
 
     toggle() {

@@ -60,7 +60,6 @@ export default class Event extends React.Component {
 
     render() {
         if (this.state.access && this.state.members) {
-            console.log();
             console.log(this.state.members);
             const listItems = this.state.members.map((val) => <EventMember key={val} id={val}/>);
 
