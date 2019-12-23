@@ -2,8 +2,8 @@ from server.entities.events.event import Event
 
 
 class GroupEvent(Event):
-    def __init__(self, name, is_private, datetime, address, description, member_id_list=[], chat_id="", id=""):
-        super().__init__(name, is_private, datetime, address, description, id)
+    def __init__(self, name, is_private, datetime, address, description, icon, member_id_list=[], chat_id="", id=""):
+        super().__init__(name, is_private, datetime, address, description, icon, id)
         self.chat_id = chat_id
         self.member_id_list = member_id_list
 
