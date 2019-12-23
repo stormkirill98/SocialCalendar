@@ -23,8 +23,6 @@ export default class Calendar extends React.Component {
         fetch("/user").then((response) => {
             if (response.ok){
                 response.json().then((data) => {
-                    console.log("user: " + data);
-
                     const curDate = new Date();
                     this.setState({
                         curYear: curDate.getFullYear(),
