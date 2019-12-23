@@ -6,7 +6,7 @@ Flask
 gunicorn
 pymongo
 dnspython
-oauthlib==3.0.1
+oauthlib==3.1.0
 pyOpenSSL
 Flask-Login==0.4.1
 flask-cors==3.0.8
