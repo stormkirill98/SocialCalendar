@@ -7,21 +7,22 @@ export default class Header extends React.Component {
         super(props);
 
         this.state = {
-            events: props.events ? props.events : []
+            events: props.events ? props.events : [],
+            updateEventListData: props.updateEventListData ? props.updateEventListData : null
         }
     }
 
     render() {
         const style = {
-            visibility: this.props.hidden ? 'hidden' : 'visible',
+            opacity: this.props.hidden ? 0.4 : 0.92,
         };
 
-
         const icons = this.state.events.map(
-            (val) => <EventIcon key={val.id} name={val.name} time={val.datetime.substr(-5).trim()} icon={val.icon}/>);
+            (val) => <EventIcon key={val.id} eventID={val.id} name={val.name} time={val.datetime.substr(-5).trim()} icon={val.icon} />);
 
         return (
-            <div className="day-plate" style={style}>
+            <div className="day-plate" style={style}
+                onClick={() => { this.state.updateEventListData(this.state.events) }}>
                 {this.props.day}
                 <div className="mini-events">
                     {icons}

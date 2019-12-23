@@ -1,15 +1,25 @@
 import React from "react";
 import "../css/EventList.css"
+import EventDetails from "../components/EventDetails"
 
 
 export default class EventList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            events: props.events
+        };
+    }
+
     render() {
+        const listItems = this.state.events.map(
+            (val) => <EventDetails key={val.id} eventID={val.id} name={val.name}
+                time={val.datetime} icon={val.icon} address={val.address} description={val.description}
+                type={val.type}/>);
         return (
             <div className="events-area">
                 <div className="events-list">
-                    <div className="event-details">День рождения Путина</div>
-                    <div className="event-details">Годовщина смерти тёщи</div>
-                    <div className="event-details">Победа Гватемалы над Р.Конго</div>
+                    {listItems}
                 </div>
             </div>
         );

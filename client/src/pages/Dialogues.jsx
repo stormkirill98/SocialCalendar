@@ -7,10 +7,10 @@ import DialoguesMainBox from "../components/DialoguesMainBox";
 export default class Dialogues extends React.Component {
     render() {
         return (
-            <>
-                <Header/>
-                <DialoguesMainBox/>
-            </>
+    <>
+    <Header/>
+    <DialoguesMainBox/>
+    </>
         );
     }
 }

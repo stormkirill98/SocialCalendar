@@ -1,14 +1,15 @@
 .events-area{
-    background: rgb(129, 122, 122);
     flex: 1 auto;
     padding: 20px;
 }
 
 .events-list{
+    border-radius: 4px;
     background: #3D3D3D;
     overflow-y: auto;
     height: 100%;
-    padding: 5px;
+    padding: 10px;
+    opacity: 0.98;
 }
 
 .event-details{
@@ -17,5 +18,6 @@
     border-radius: 10px;
     margin-top: 5px;
     padding: 5px;
+    opacity:0.98;
 }
 .event-details:nth-child(1){margin-top: 0;}

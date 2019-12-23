@@ -13,7 +13,7 @@
 .event-info {
     padding: 10px 0 ;
 
-    display: block;
+    /* display: block; */
     position: absolute;
     width: max-content;
     background-color: aliceblue;
@@ -22,4 +22,5 @@
     color: black;
 
     font-size: 14pt;
+    z-index: 999; /*не робит блять сука что за говно нахуй ааааааааааааааааааааааааа*/
 }

@@ -1,0 +1,26 @@
+a.event-member-link{
+    text-decoration: none !important;
+    color: white;
+}
+
+.event-member{
+    display: flex;
+    flex-direction: row;
+
+    border: 4px solid #3D3D3D;
+    border-radius: 4px;
+    background: #3D3D3D;
+    color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5); 
+    text-decoration: none
+    /* opacity: 0.98;    */
+}
+
+.event-member-ava{
+    display: inline;
+    border-radius: 100%;
+}
+
+.event-member-name{
+    margin-left: 10px;
+}

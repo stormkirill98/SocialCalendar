@@ -1,0 +1,7 @@
+#root .page-container .navbar
+/*,#root .navbar */{
+    position: fixed;
+    opacity: 0.98;
+    z-index: 1;
+    width: 100%;
+}

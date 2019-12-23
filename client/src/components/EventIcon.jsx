@@ -1,11 +1,13 @@
 import React from "react";
 import "../css/EventIcon.css"
+import {Link} from "react-router-dom";
 
 export default class EventIcon extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            eventID: props.eventID,
             name: props.name,
             icon: props.icon,
             time: props.time
@@ -20,12 +22,15 @@ export default class EventIcon extends React.Component {
         return (
             <div>
                 {this.state.icon ?
-                    <img className="event-icon" src={require("../SVG_icon/burger.svg")} alt="icon"
-                         onMouseEnter={() => this.toggleInfo(false)}
-                         onMouseLeave={() => this.toggleInfo(true)}/> : ''}
+                    <Link to={"/Event/" + this.state.eventID}>
+                        <img className="event-icon" src={require("../SVG_icon/burger.svg")} alt="icon"
+                            onMouseEnter={() => this.toggleInfo(false)}
+                            onMouseLeave={() => this.toggleInfo(true)} />
+                    </Link>
+                    : ''}
 
                 <div className="event-info" hidden ref={ref => this.info = ref}>
-                    {this.state.name} <br/> {this.state.time}
+                    {this.state.name} <br /> {this.state.time}
                 </div>
             </div>
         );
