@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, redirect, request, url_for, render_template, make_response
+from flask import Flask, redirect, request, url_for, render_template, make_response, send_from_directory
 from flask_cors import CORS, cross_origin
 from flask_login import (
     LoginManager,
@@ -19,6 +19,7 @@ from server.utils.events import event_utils
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
+app.config['EVENT_ICONS_FOLDER'] = './public/event_icons'
 
 # User session management setup
 login_manager = LoginManager()
@@ -225,6 +226,12 @@ def search_users():
         :arg filtered_str"""
         filtered_str = request.args.get('filtered_str')
         return user_utils.search_users(filtered_str)
+
+
+@app.route('/load_icon/<iconname>')
+def load_icon(iconname):
+    image = send_from_directory(app.config['EVENT_ICONS_FOLDER'], iconname)
+    return image
 
 
 if __name__ == "__main__":
