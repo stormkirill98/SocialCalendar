@@ -51,7 +51,8 @@
     width: 198px;
     height: 42px;
     border: 0px solid black;
-    background: url(../img/SingInWithGoogle.png) round;
+    background: url(../img/SingInWithGoogle.png);
+    background-repeat: round;
 }
 
 @media (max-width: 1367px) { 

@@ -10,25 +10,23 @@ export default class Calendar extends React.Component {
 
         this.state = {
             curYear: 2019,
-            curMonth: 12
+            curMonth: 12,
+            eventsInEventsList: []
         }
     }
 
-    render() {
-        const months = ["", "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    updateEventListData = (value) => {
+        this.setState({ eventsInEventsList: value })
+    }
 
+    render() {
         return (
             <div className="page-container">
-                <Header/>
+                <Header />
 
-                <div className="flex-row">
-                    <div className="year">{this.state.curYear}</div>
-                    <div className="month">{months[this.state.curMonth]}</div>
-                </div>
-
-                <div className="flex-row">
-                    <Month year={this.state.curYear} month={this.state.curMonth}/>
-                    <EventList/>
+                <div className="flex-row calendar-main">
+                    <Month year={this.state.curYear} month={this.state.curMonth} updateEventListData={this.updateEventListData}/>
+                    <EventList events={this.state.eventsInEventsList} />
                 </div>
             </div>
         );
