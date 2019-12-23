@@ -65,16 +65,17 @@ def create_event(event_json, user: User):
     event_datetime = datetime.strptime(event_json.get('datetime'), "%d.%m.%Y %H:%M")
     event_address = event_json.get('address')
     event_description = event_json.get('description')
+    event_icon = event_json.get('icon')
     if event_description is None:
         event_description = ""
 
     if event_type == EventType.GROUP:
-        event = GroupEvent(event_name, event_is_private, event_datetime, event_address, event_description)
+        event = GroupEvent(event_name, event_is_private, event_datetime, event_address, event_description, event_icon)
         event_id = user_utils.create_group_event(user.id, event)
         return json_util.dumps(event_id), 201
 
     if event_type == EventType.SINGLE:
-        event = SingleEvent(event_name, event_is_private, event_datetime, event_address, event_description)
+        event = SingleEvent(event_name, event_is_private, event_datetime, event_address, event_description, event_icon)
         event_id = user_utils.create_single_event(user.id, event)
         return json_util.dumps(event_id), 201
 

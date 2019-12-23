@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, redirect, request, url_for, render_template, make_response
+from flask import Flask, redirect, request, url_for, render_template, make_response, send_from_directory
 from flask_cors import CORS, cross_origin
 from flask_login import (
     LoginManager,
@@ -19,6 +19,7 @@ from server.utils.events import event_utils
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
+app.config['EVENT_ICONS_FOLDER'] = './public/event_icons'
 
 # User session management setup
 login_manager = LoginManager()
@@ -30,8 +31,7 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 @login_manager.user_loader
 def load_user(user_id):
-    user = user_dao.get_user(user_id)
-    return user
+    return user_dao.get_user(user_id)
 
 
 @app.route("/")
@@ -64,6 +64,13 @@ def logout():
     return redirect(url_for("index"))
 
 
+@app.route("/user", methods=['GET'])
+@login_required
+def user():
+    if request.method == 'GET':
+        return user_utils.get_current_user(current_user)
+
+
 @app.route("/events", methods=['GET'])
 @login_required
 def events():
@@ -75,8 +82,6 @@ def events():
         year = request.args.get("year")
 
         return event_utils.get_events(month, year, current_user)
-    else:
-        return "Error. This method is not handle"
 
 
 @app.route("/event", methods=['GET', 'POST', 'PUT', 'DELETE'])
@@ -221,6 +226,12 @@ def search_users():
         :arg filtered_str"""
         filtered_str = request.args.get('filtered_str')
         return user_utils.search_users(filtered_str)
+
+
+@app.route('/load_icon/<iconname>')
+def load_icon(iconname):
+    image = send_from_directory(app.config['EVENT_ICONS_FOLDER'], iconname)
+    return image
 
 
 if __name__ == "__main__":

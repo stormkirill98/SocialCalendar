@@ -260,6 +260,10 @@ def get_invites(user: User):
     return json_util.dumps(invite_list), 200
 
 
+def get_current_user(user: User):
+    return json_util.dumps(user.to_json())
+
+
 def valid_invite_type(invite_type):
     if invite_type is None:
         return False
