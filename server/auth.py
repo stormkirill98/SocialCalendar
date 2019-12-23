@@ -17,8 +17,8 @@ except ImportError as error:
     pass
 
 # Configuration
-GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
-GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
+GOOGLE_CLIENT_ID = "1033315078324-tb38sppml93t1kpdmrm3ukgqg873meap.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "nZKk83_UNwrCg0QECwgwOnRQ"
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 
 

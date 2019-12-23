@@ -1,6 +1,8 @@
 import React from "react";
 import "../css/Login.css"
 import {Redirect} from "react-router-dom";
+import Cookies from 'js-cookie';
+
 
 export default class Login extends React.Component {
 
@@ -8,18 +10,12 @@ export default class Login extends React.Component {
         super(props);
 
         this.state = {
-            isAuth: false
+            isAuth: Cookies.get('Auth')
         }
     }
 
     signIn() {
-        fetch("/login", {
-            mode: "no-cors"
-        })
-            .then((response) => {
-                const isAuth = response.headers.get("Auth");
-                this.setState({isAuth: isAuth});
-            });
+        window.location.replace("https://127.0.0.1:5000/login")
     }
 
     render() {
@@ -30,7 +26,7 @@ export default class Login extends React.Component {
                 <div className="wrap-index-main">
                     <div className="main">
                         <div className="title">Social Calendar</div>
-                        <button className="google-auth-button" onClick={() => this.signIn()}/>
+                        <button className="google-auth-button" onClick={this.signIn}/>
                     </div>
                 </div>
             );

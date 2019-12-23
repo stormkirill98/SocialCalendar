@@ -31,28 +31,21 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 @login_manager.user_loader
 def load_user(user_id):
     user = user_dao.get_user(user_id)
-    if user:
-        print("Load user " + user.name)
-    else:
-        print("User not load by " + user_id)
     return user
 
 
 @app.route("/")
 @cross_origin()
 def index():
-    print(request.headers)
     resp = make_response(render_template("index.html"))
     if current_user:
-        resp.headers["Auth"] = current_user.is_authenticated
+        resp.set_cookie("Auth", value=str(current_user.is_authenticated))
     return resp
 
 
 @app.route("/login")
 @cross_origin()
 def login():
-    print("login")
-    print(request.headers)
     request_uri = auth.login(client)
     return redirect(request_uri)
 
@@ -60,7 +53,6 @@ def login():
 @app.route("/login/callback")
 @cross_origin()
 def callback():
-    print("callback")
     auth.callback(client)
     return redirect(url_for("index"))
 
