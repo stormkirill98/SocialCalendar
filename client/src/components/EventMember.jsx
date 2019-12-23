@@ -13,7 +13,7 @@ export default class EventMember extends React.Component {
             name: "Kalivan"
         };
 
-        fetch(`https://social-calendar-tensor.herokuapp.com/friend?id=${this.props.id}}`).then((response) => {
+        fetch(`/friend?id=${this.props.id}}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
                     this.state.name = data.name

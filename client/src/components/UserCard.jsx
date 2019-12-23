@@ -38,7 +38,6 @@ export default class UserCard extends React.Component {
     }
 
     getPicture(){
-        //const auth = window.gapi.auth2.getAuthInstance()
         return "https://lh3.googleusercontent.com/a-/AAuE7mAd99fGmysqUPELQf17X25h6P_Ovketo5vlsncv"
     }
 

@@ -18,7 +18,7 @@ export default class Month extends React.Component {
             events: {
                 1: [
                     {
-                        id: "124412",
+                        id: "5dd96b8efacc0de4f9e30c50",
                         type: "group",
                         name: "First Event",
                         is_private: "true",
@@ -28,7 +28,7 @@ export default class Month extends React.Component {
                         icon: icon1
                     },
                     {
-                        id: "12422412",
+                        id: "5dd973c6eddc2cd5210007aa",
                         type: "group",
                         name: "Second Event",
                         is_private: "true",
@@ -38,7 +38,7 @@ export default class Month extends React.Component {
                         icon: icon2
                     },
                     {
-                        id: "12441",
+                        id: "5dd98a33b89943a1cd78b289",
                         type: "group",
                         name: "First Event",
                         is_private: "true",
