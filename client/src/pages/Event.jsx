@@ -33,12 +33,9 @@ export default class Event extends React.Component {
         fetch(`/event?id=${this.props.match.params.id}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    console.log(response.statusText);
-                    console.log(data);
-                    console.log(this.state.members);
                     this.setState({
                         access: true,
-                        eventAvatarUrl: data.event_img, //potom pereimenovat
+                        eventAvatarUrl: data.icon,
                         eventTitle: data.name,
                         eventFullDesr: data.description,
                         eventShortDescr: data.short_descr, //i eto
@@ -46,10 +43,13 @@ export default class Event extends React.Component {
                         datetime: data.datetime,
                         address: data.address,
                         chatID: data.chat_id,
-                        members: data.member_id_list
+                        members: typeof data.member_id_list === "object"
+                            ? [data.member_id_list["$oid"]]
+                            : data.member_id_list
                     });
 
-                })
+
+                });
                 console.log(this.state.members);
             } else {
                 console.log(response.statusText);
@@ -60,16 +60,17 @@ export default class Event extends React.Component {
 
     render() {
         if (this.state.access && this.state.members) {
-            const listItems = this.state.members.map(
-                (val) => <EventMember key={val} id={val} />);
+            console.log();
+            console.log(this.state.members);
+            const listItems = this.state.members.map((val) => <EventMember key={val} id={val}/>);
 
             return (
                 <div className="page-container-event">
-                    <Header />
+                    <Header/>
                     <main className="event">
                         <div className="event-box">
                             <div className="event-img-wrap event-page-wrap">
-                                <img className="event-img" src={this.state.eventAvatarUrl} alt="Аватарка" />
+                                <img className="event-img" src={this.state.eventAvatarUrl} alt="Аватарка"/>
                             </div>
                             <div className="event-title-descr event-page-wrap">
                                 <h3 className="event-title">{this.state.eventTitle}</h3>
@@ -86,13 +87,12 @@ export default class Event extends React.Component {
                         </div>
                         <div className="chat-main-box">
                             <h4 className="event-chat">Чат</h4>
-                            <div className="chat-box"></div>
+                            <div className="chat-box"/>
                         </div>
                     </main>
                 </div>
             );
-        }
-        else {
+        } else {
             return (
                 <div className="no-access">
                     Событие недоступно для вас
