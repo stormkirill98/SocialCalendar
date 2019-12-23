@@ -70,7 +70,7 @@ export default class Month extends React.Component {
 
         //названия дней недели
         for (let i = 0; i < 7; i++) {
-            days.push(<div className="day-name" key={100+i}></div>);
+            days.push(<div className="day-name" key={100 + i}/>);
         }
 
         //предыдущий месяц
