@@ -17,12 +17,11 @@ export default class EventList extends React.Component {
                 time={val.datetime} icon={val.icon} address={val.address} description={val.description}
                 type={val.type}/>);*/
         return (
+            
             <div className="events-area">
-                <div className="events-list">
-{/*
-                    {listItems}
-*/}
-                </div>
+                <ol className="events-list">
+                    <EventDetails/>
+                </ol>
             </div>
         );
     }
