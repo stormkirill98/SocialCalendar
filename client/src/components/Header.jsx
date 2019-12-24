@@ -11,18 +11,34 @@ export default class Header extends React.Component {
         super(props);
 
         this.state = {
-            user: props.user
+            user: null
         };
 
-        this.updateUser = this.updateUser.bind(this);
+        this.getCurrentUser = this.getCurrentUser.bind(this);
+
+        this.getCurrentUser();
     }
 
-    updateUser(user) {
-        this.setState({
-            user: user
-        });
+    getCurrentUser() {
+        fetch("/user").then((response) => {
+            if (response.ok){
+                response.json().then((data) => {
+                    this.setState({
+                        user: {
+                            user_id: data.id,
+                            name: data.name,
+                            email: data.email,
+                            profile_pic: data.profile_pic,
+                            birthday: data.birthday
+                        }
+                    });
 
-        this.userCard.updateUser(user);
+                    this.userCard.updateUser(this.state.user);
+                })
+            } else {
+                console.log(response.statusText);
+            }
+        });
     }
 
     render() {

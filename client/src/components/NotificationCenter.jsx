@@ -25,8 +25,6 @@ export default class NotificationCenter extends React.Component {
         fetch("/invites").then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    console.log(data);
-
                     this.setState({
                         invites: data ? data : []
                     });
