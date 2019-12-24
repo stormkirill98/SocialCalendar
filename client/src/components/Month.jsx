@@ -9,6 +9,8 @@ export default class Month extends React.Component {
         this.state = {
             countDays: monthDays(props.year, props.month),
             firstDayOfWeek: firstWeekDay(props.year, props.month),
+            month: props.month,
+            year: props.year,
             events: {
                 1: [
                     {
@@ -53,12 +55,60 @@ export default class Month extends React.Component {
                     }
                 ],
             }
+        };
+
+        this.updateMonthAndYear = this.updateMonthAndYear.bind(this);
+    }
+
+
+    prevMonth() {
+        let curMonth = this.state.month, curYear = this.state.year;
+
+        if (curMonth === 1) {
+            curYear--;
+            curMonth = 12;
+            this.updateMonthAndYear(curMonth, curYear);
+        } else {
+            curMonth--;
+            this.updateMonthAndYear(curMonth, curYear);
         }
+    }
+
+    nextMonth() {
+        let curMonth = this.state.month, curYear = this.state.year;
+
+        if (curMonth === 12) {
+            curYear++;
+            curMonth = 1;
+            this.updateMonthAndYear(curMonth, curYear);
+        } else {
+            curMonth++;
+            this.updateMonthAndYear(curMonth, curYear);
+        }
+    }
+
+
+    prevYear() {
+        this.updateMonthAndYear(this.state.month, this.state.year - 1);
+    }
+
+    nextYear() {
+        this.updateMonthAndYear(this.state.month, this.state.year + 1);
+    }
+
+    updateMonthAndYear(month, year) {
+        this.setState({
+            countDays: monthDays(year, month),
+            firstDayOfWeek: firstWeekDay(year, month),
+            month: month,
+            year: year,
+            events: this.state.events
+        });
     }
 
     render() {
         const days = [], firstDay = this.state.firstDayOfWeek, countDays = this.state.countDays,
-            countDaysPrevMonth = monthDays(this.props.year, this.props.month - 1);
+            countDaysPrevMonth = monthDays(this.state.year, this.state.month - 1);
         const months = ["", "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
@@ -87,7 +137,17 @@ export default class Month extends React.Component {
         return (
             <div className="flex-col">
                 <div className="wrap-year-month">
-                    <div className="month-year">{months[this.props.month]} {this.props.year}</div>
+                    <div className="month-year">
+                        <button onClick={() => this.prevMonth()}>{'<'}</button>
+                        {months[this.state.month]}
+                        <button onClick={() => this.nextMonth()}>{'>'}</button>
+                    </div>
+
+                    <div className="month-year">
+                        <button onClick={() => this.prevYear()}>{'<'}</button>
+                        {this.state.year}
+                        <button onClick={() => this.nextYear()}>{'>'}</button>
+                    </div>
                 </div>
                 <div className="month-grid">
                     {days}
@@ -97,8 +157,7 @@ export default class Month extends React.Component {
     }
 }
 
-function monthDays(y, m)    // full year and month in range 1-12
-{
+function monthDays(y, m)  {   // full year and month in range 1-12
     let leap = 0;
     if (m === 2) {
         if (y % 4 === 0) leap = 1;
