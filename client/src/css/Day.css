@@ -31,3 +31,10 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.addEventButton{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 0;
+}

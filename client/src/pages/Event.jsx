@@ -17,16 +17,7 @@ export default class Event extends React.Component {
             isPrivate: false,
             datetime: new Date(),
             address: "_address",
-            members: [],//         { "5dd0330f9a5ef7791b641fff"},
-            //         { "5dfd1dd64bd7592818b25abb"},
-            //         { "5dfd1dd64bd7592818b25abb"}
-            // {
-            //     1: [
-            //         { "5dd0330f9a5ef7791b641fff"},
-            //         { "5dfd1dd64bd7592818b25abb"},
-            //         { "5dfd1dd64bd7592818b25abb"}
-            //     ]
-            // },
+            members: [],
             chatID: -1
         };
         //this.getEventData();

@@ -139,19 +139,19 @@ export default class Month extends React.Component {
 
         //предыдущий месяц
         for (let i = 0; i < firstDay; i++) {
-            days.push(<Day key={-i}
-                hidden={true} day={countDaysPrevMonth - firstDay + 1 + i} events={null}/>)
+            days.push(<Day key={-i} hidden={true} day={countDaysPrevMonth - firstDay + 1 + i} 
+                events={null} month={this.state.month-1} year={this.state.month==1?}/>)
         }
 
         //этот месяц
         for (let i = 0; i < countDays; i++) {
             days.push(<Day key={i + 1} hidden={false} day={i + 1} events={this.state.events[i + 1]?this.state.events[i + 1]:[]}
-                updateEventListData={this.props.updateEventListData} />)
+                updateEventListData={this.props.updateEventListData} month={this.state.month} year={this.state.year}/>)
         }
 
         //след месяц
         for (let i = 0; i < 42 - countDays - firstDay; i++) {
-            days.push(<Day key={countDays + i + 1} hidden={true} day={i + 1} events={null}/>)
+            days.push(<Day key={countDays + i + 1} hidden={true} day={i + 1} events={null} month={this.state.month} year={this.state.year}/>)
         }
 
         return (

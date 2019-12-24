@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/Day.css"
 import EventIcon from "./EventIcon";
+import { Link } from "react-router-dom";
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -8,9 +9,12 @@ export default class Header extends React.Component {
 
         this.state = {
             events: props.events ? props.events : [],
-            updateEventListData: props.updateEventListData ? props.updateEventListData : null
+            updateEventListData: props.updateEventListData ? props.updateEventListData : null,
+            month: props.month
         }
     }
+
+
 
     render() {
         const style = {
@@ -19,18 +23,22 @@ export default class Header extends React.Component {
         let icons;
 
         console.log(this.state.events);
-        if(this.state.events){
+        if (this.state.events) {
             icons = this.state.events.map(
                 (val) => <EventIcon key={val.id} eventID={val.id} name={val.name} time={val.datetime.substr(-5).trim()} icon={val.icon} />);
         }
- 
+
 
         return (
             <div className="day-plate" style={style}
                 onClick={() => { this.state.updateEventListData(this.state.events) }}>
                 {this.props.day}
                 <div className="mini-events">
-                    {this.state.events?icons:""}
+                    {this.state.events ? icons : ""}
+                    <Link to={"/CreateEvent/" + this.state.month + "/" + this.props.day}>
+                        <img classname="addEventButton" src="/load_icon/plus.svg"
+                            alt="+" onClick={this.createEvent} />
+                    </Link>
                 </div>
             </div>
         );
