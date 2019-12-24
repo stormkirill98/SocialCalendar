@@ -12,14 +12,16 @@ export default class EventList extends React.Component {
     }
 
     render() {
-        const listItems = this.state.events.map(
+        /*const listItems = this.state.events.map(
             (val) => <EventDetails key={val.id} eventID={val.id} name={val.name}
                 time={val.datetime} icon={val.icon} address={val.address} description={val.description}
-                type={val.type}/>);
+                type={val.type}/>);*/
         return (
             <div className="events-area">
                 <div className="events-list">
+{/*
                     {listItems}
+*/}
                 </div>
             </div>
         );

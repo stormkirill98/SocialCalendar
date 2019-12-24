@@ -14,7 +14,7 @@ from server.auth import GOOGLE_CLIENT_ID
 from server.database import user_dao
 from server.utils import user_utils
 from server.utils.chats import chat_utils, msg_utils
-from server.utils.events import event_utils
+from server.utils.events import event_utils, event_member_utils
 
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 CORS(app)
@@ -188,6 +188,15 @@ def friend():
         :arg id - id of friend which need remove from friends"""
         friend_id = request.args.get('id')
         return user_utils.remove_friend(friend_id, current_user)
+
+
+@app.route("/member", methods=['GET'])
+@login_required
+def member():
+    if request.method == 'GET':
+        """Get friend by id"""
+        member_id = request.args.get('id')
+        return event_member_utils.get_event_member(member_id)
 
 
 @app.route("/invites", methods=['GET'])

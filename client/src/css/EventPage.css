@@ -10,6 +10,24 @@
     src: url(../fonts/Algerian.TTF);
 }
 
+.page-container-event{
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+}
+
+.no-access{
+    background: url(https://img5.goodfon.ru/wallpaper/nbig/c/8d/rik-i-morti-rick-and-morty-rick-sanchez-rick-sanchez-multfil.jpg);
+    background-size: cover;
+    font-family: "Algerian";
+    display: flex;
+    font-size: 100px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color:white;
+}
+
 .event{
     width: 100%;
     display: grid;

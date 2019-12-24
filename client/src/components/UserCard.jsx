@@ -14,32 +14,18 @@ export default class UserCard extends React.Component {
         super(props);
 
         this.state = {
-            invites: [{
-                id: 101332313,
-                type: "friend",
-                sender_id: 12341,
-                sender_name: "Vasya Pupkin"
-            }, {
-                id: 10123789813,
-                type: "event",
-                sender_id: 12341,
-                event_name: "Happy Birthday"
-            }, {
-                id: 101672313,
-                type: "friend",
-                sender_id: 12341,
-                sender_name: "Artur Milasian"
-            }],
-            userName: "Kirill Panihin",
-            pictureUrl: this.getPicture()
-
-            //"https://lh3.googleusercontent.com/a-/AAuE7mAd99fGmysqUPELQf17X25h6P_Ovketo5vlsncv"
+            userName: props.user ? props.user.name : "",
+            pictureUrl: props.user ? props.user.profile_pic : ""
         };
+
+        this.updateUser = this.updateUser.bind(this);
     }
 
-    getPicture(){
-        //const auth = window.gapi.auth2.getAuthInstance()
-        return "https://lh3.googleusercontent.com/a-/AAuE7mAd99fGmysqUPELQf17X25h6P_Ovketo5vlsncv"
+    updateUser(user) {
+        this.setState({
+            userName: user ? user.name : "",
+            pictureUrl: user ? user.profile_pic : ""
+        });
     }
 
     render() {
@@ -53,7 +39,7 @@ export default class UserCard extends React.Component {
                         </Typography>
                     </Card>
                     <div className="buttons">
-                        <NotificationCenter invites={this.state.invites} className="notifications-center"/>
+                        <NotificationCenter className="notifications-center"/>
 
                         <Button variant="contained" color="primary" className="settings-btn" size="small">
                             <SettingsIcon fontSize="small"/>
