@@ -16,7 +16,7 @@ export default class Routing extends React.Component {
                     <Route path="/Calendar" component={Calendar} />
                     <Route path="/Event/:id" component={Event} />
                     <Route path="/Event" component={Event} />{/* Это потом убрать */}
-                    <Route path="/CreateEvent/:month/:day" component={CreateEvent} />
+                    <Route path="/CreateEvent/:year/:month/:day" component={CreateEvent} />
                     <Route path="/Dialogues/:id" component={Dialogues} /> 
                     <Route path="/Dialogues" component={Dialogues} />{/* и это */}
                     <Route path="/Friends" component={Friends} />
