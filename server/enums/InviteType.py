@@ -1,0 +1,2 @@
+FRIEND = 'friend'
+EVENT = 'event'

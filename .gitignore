@@ -1,0 +1,12 @@
+./__pycache__
+./server/__pycache__
+./server/database/__pycache__
+./server/database/events/__pycache__
+./server/entities/__pycache__
+./server/entities/chats/__pycache__
+./server/entities/chats/inner_classes/__pycache__
+./server/entities/events/__pycache__
+*.pyc
+local.py
+./venv
+/build

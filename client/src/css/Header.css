@@ -1,0 +1,21 @@
+@font-face{
+    font-family: "Algerian";
+    src: url(./../fonts/Algerian.TTF);
+}
+
+#root .page-container .navbar
+/*,#root .navbar */{
+    position: fixed;
+    opacity: 0.98;
+    z-index: 1;
+    width: 100%;
+}
+
+.header-link{
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.navbar-brand{
+    font-family: "Algerian";
+}

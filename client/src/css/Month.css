@@ -1,0 +1,9 @@
+.month-grid {
+    flex: 1 auto;
+    display: grid;
+    padding: 20px;
+    border-width: 2px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows:  0.5fr repeat(6, 1fr);
+    gap: 5px 10px;
+}
