@@ -6,62 +6,20 @@ export default class Month extends React.Component {
     constructor(props) {
         super(props);
 
+        this.day = [];
+
         this.state = {
             countDays: monthDays(props.year, props.month),
             firstDayOfWeek: firstWeekDay(props.year, props.month),
             month: props.month,
             year: props.year,
-            events: {
-                1: [
-                    {
-                        id: "5dd96b8efacc0de4f9e30c50",
-                        type: "group",
-                        name: "First Event",
-                        is_private: "true",
-                        datetime: "23.11.2019 19:00",
-                        address: "address",
-                        description: "desciption fasadsa",
-                        icon: "/load_icon/bell.svg"
-                    },
-                    {
-                        id: "5dd973c6eddc2cd5210007aa",
-                        type: "group",
-                        name: "Second Event",
-                        is_private: "true",
-                        datetime: "23.11.2019 19:00",
-                        address: "address",
-                        description: "desciption fasadsa",
-                        icon: "https://social-calendar-tensor.herokuapp.com/load_icon/bell.svg"
-                    },
-                    {
-                        id: "5dd98a33b89943a1cd78b289",
-                        type: "group",
-                        name: "First Event",
-                        is_private: "true",
-                        datetime: "23.11.2019 19:00",
-                        address: "address",
-                        description: "desciption fasadsa",
-                        icon: "https://social-calendar-tensor.herokuapp.com/load_icon/bell.svg"
-                    },
-                    {
-                        id: "1242241",
-                        type: "group",
-                        name: "Second Event",
-                        is_private: "true",
-                        datetime: "23.11.2019 19:00",
-                        address: "address",
-                        description: "desciption fasadsa",
-                        icon: "https://social-calendar-tensor.herokuapp.com/load_icon/bell.svg"
-                    }
-                ],
-            }
+            events: {}
         };
 
         this.updateMonthAndYear = this.updateMonthAndYear.bind(this);
+        this.updateEvents = this.updateEvents.bind(this);
         this.getEvents = this.getEvents.bind(this);
-        this.getEvents(this.state.month, this.state.year)
     }
-
 
     prevMonth() {
         let curMonth = this.state.month, curYear = this.state.year;
@@ -89,7 +47,6 @@ export default class Month extends React.Component {
         }
     }
 
-
     prevYear() {
         this.updateMonthAndYear(this.state.month, this.state.year - 1);
     }
@@ -109,21 +66,36 @@ export default class Month extends React.Component {
         this.getEvents(month, year);
     }
 
+    updateEvents(events) {
+        this.setState({
+            countDays: this.state.countDays,
+            firstDayOfWeek: this.state.firstDayOfWeek,
+            month: this.state.month,
+            year: this.state.year,
+            events: events
+        });
+
+        if (this.day) {
+            for (const [key, value] of Object.entries(events)) {
+                this.day[key].updateEvents(value);
+            }
+        }
+    }
+
+    componentDidMount() {
+        this.getEvents(this.state.month, this.state.year)
+    }
+
     getEvents(month, year) {
         fetch(`/events?month=${month}&year=${year}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    console.log(data);
-                    this.setState({
-                        events: data
-                    })
+                    this.updateEvents(data)
                 })
             } else {
                 console.log(response.statusText);
             }
         });
-        console.log(this.state.events);
-        this.render();
     }
 
     render() {
@@ -134,24 +106,29 @@ export default class Month extends React.Component {
 
         //названия дней недели
         for (let i = 0; i < 7; i++) {
-            days.push(<div className="day-name" key={100 + i} />);
+            days.push(<div className="day-name" key={100 + i}/>);
         }
 
         //предыдущий месяц
         for (let i = 0; i < firstDay; i++) {
-            days.push(<Day key={-i} hidden={true} day={countDaysPrevMonth - firstDay + 1 + i} 
-                events={null} month={this.state.month-1} year={this.state.month==1?this.state.year-1:this.state.year}/>)
+            days.push(<Day key={-i} hidden={true} day={countDaysPrevMonth - firstDay + 1 + i}
+                           events={null} month={this.state.month - 1}
+                           year={this.state.month === 1 ? this.state.year - 1 : this.state.year}/>)
         }
 
         //этот месяц
         for (let i = 0; i < countDays; i++) {
-            days.push(<Day key={i + 1} hidden={false} day={i + 1} events={this.state.events[i + 1]?this.state.events[i + 1]:[]}
-                updateEventListData={this.props.updateEventListData} month={this.state.month} year={this.state.year}/>)
+            days.push(<Day key={i + 1} hidden={false} day={i + 1}
+                           events={this.state.events[i + 1]}
+                           updateEventListData={this.props.updateEventListData} month={this.state.month}
+                           year={this.state.year}
+                           ref={ref => this.day[i + 1] = ref}/>)
         }
 
         //след месяц
         for (let i = 0; i < 42 - countDays - firstDay; i++) {
-            days.push(<Day key={countDays + i + 1} hidden={true} day={i + 1} events={null} month={this.state.month} year={this.state.month==12?this.state.year+1:this.state.year}/>)
+            days.push(<Day key={countDays + i} hidden={true} day={i + 1} events={null} month={this.state.month}
+                           year={this.state.month === 12 ? this.state.year + 1 : this.state.year}/>)
         }
 
         return (

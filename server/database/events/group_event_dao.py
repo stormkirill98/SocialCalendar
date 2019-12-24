@@ -41,6 +41,7 @@ def get(group_event_id):
                       json['datetime'],
                       json['address'],
                       json['description'],
+                      json['icon'],
                       json['member_id_list'],
                       json['chat_id'],
                       json['_id'])

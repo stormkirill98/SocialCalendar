@@ -1,9 +1,6 @@
 import calendar
-import itertools
-import operator
 from collections import defaultdict
 from datetime import datetime
-from itertools import groupby
 
 from bson import json_util, ObjectId
 from werkzeug.exceptions import abort
@@ -169,6 +166,7 @@ def update_event_fields(event_json, event: Event):
     event_datetime = event_json.get('datetime')
     event_address = event_json.get('address')
     event_description = event_json.get('description')
+    event_icon = event_json.get('icon')
 
     if valid_name(event_name):
         event.name = event_name
@@ -184,6 +182,9 @@ def update_event_fields(event_json, event: Event):
 
     if event_description is not None:
         event.description = event_description
+
+    if event_icon is not None:
+        event.icon = event_icon
 
 
 def valid_event_json(event_json):

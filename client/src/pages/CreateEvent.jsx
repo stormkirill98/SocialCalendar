@@ -9,7 +9,7 @@ export default class CreateEvent extends React.Component {
         super(props);
         this.state = {
             type: "group",
-            умуте_name: "Event_name",
+            event_name: "Event_name",
             is_private: "false",
             datetime: new Date(this.props.match.params.year,this.props.match.params.month,
                 this.props.match.params.day,24,0,30,500),//час мин сек мс
@@ -23,7 +23,7 @@ export default class CreateEvent extends React.Component {
             "name": this.state.event_name,
             "is_private": "true",
             "datetime": new Date(this.props.match.params.year,this.props.match.params.month,
-                this.props.match.params.day,24,00,30,500),//час мин сек мс
+                this.props.match.params.day,24,0,30,500),//час мин сек мс
             "address": "address",
             "description": "desciption fasadsa"
         })
