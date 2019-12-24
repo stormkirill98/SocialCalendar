@@ -10,7 +10,8 @@ export default class Header extends React.Component {
         this.state = {
             events: props.events ? props.events : [],
             updateEventListData: props.updateEventListData ? props.updateEventListData : null,
-            month: props.month
+            month: props.month,
+            year: props.year
         }
     }
 
@@ -35,8 +36,8 @@ export default class Header extends React.Component {
                 {this.props.day}
                 <div className="mini-events">
                     {this.state.events ? icons : ""}
-                    <Link to={"/CreateEvent/" + this.state.month + "/" + this.props.day}>
-                        <img classname="addEventButton" src="/load_icon/plus.svg"
+                    <Link to={"/CreateEvent/" + this.state.year + "/" + this.state.month + "/" + this.props.day}>
+                        <img className="addEventButton" src="/load_icon/plus.svg"
                             alt="+" onClick={this.createEvent} />
                     </Link>
                 </div>

@@ -140,7 +140,7 @@ export default class Month extends React.Component {
         //предыдущий месяц
         for (let i = 0; i < firstDay; i++) {
             days.push(<Day key={-i} hidden={true} day={countDaysPrevMonth - firstDay + 1 + i} 
-                events={null} month={this.state.month-1} year={this.state.month==1?}/>)
+                events={null} month={this.state.month-1} year={this.state.month==1?this.state.year-1:this.state.year}/>)
         }
 
         //этот месяц
@@ -151,7 +151,7 @@ export default class Month extends React.Component {
 
         //след месяц
         for (let i = 0; i < 42 - countDays - firstDay; i++) {
-            days.push(<Day key={countDays + i + 1} hidden={true} day={i + 1} events={null} month={this.state.month} year={this.state.year}/>)
+            days.push(<Day key={countDays + i + 1} hidden={true} day={i + 1} events={null} month={this.state.month} year={this.state.month==12?this.state.year+1:this.state.year}/>)
         }
 
         return (
