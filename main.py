@@ -96,7 +96,7 @@ def event():
     if request.method == 'POST':
         """Create new event"""
         event_json = request.get_json()
-        return event_utils.create_event(event_json, current_user)  # TODO check that current user was be update
+        return event_utils.create_event(event_json, current_user)
 
     if request.method == 'PUT':
         """Update name, is_private, datetime, address, description"""

@@ -147,7 +147,7 @@ def delete_event(event_id, user: User):
             # event with this id is not exists in database
             return abort(404)
 
-    return '', 205
+    return '', 204
 
 
 def update_event_fields(event_json, event: Event):
