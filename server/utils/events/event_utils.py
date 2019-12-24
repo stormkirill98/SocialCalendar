@@ -1,5 +1,9 @@
 import calendar
+import itertools
+import operator
+from collections import defaultdict
 from datetime import datetime
+from itertools import groupby
 
 from bson import json_util, ObjectId
 from werkzeug.exceptions import abort
@@ -51,7 +55,16 @@ def get_events(month, year, user: User):
                         23, 59, 59)
     events = [x for x in events if start_date <= x.datetime <= end_date]
 
-    return json_util.dumps([e.__dict__ for e in events]), 200
+    # group by day
+    groups = defaultdict(list)
+    for obj in events:
+        groups[obj.datetime.day].append(obj)
+
+    res = {}
+    for day in groups:
+        res[day] = [e.__dict__ for e in groups.get(day)]
+
+    return json_util.dumps(res), 200
 
 
 def create_event(event_json, user: User):
