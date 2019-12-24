@@ -1,12 +1,12 @@
 #root{
-    background: url(../img/Winx-bg.jpg);
+    background: url(https://thecharmingstyle.com/image/59569-full_download-wallpaper-1920x1080-meditation-chakra-aura-lotus.jpg);
     background-size: cover;
 }
 
 .page-container {
     display: flex;
     flex-direction: column;
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
 }
 
 .calendar-main{

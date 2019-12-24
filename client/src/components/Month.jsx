@@ -21,7 +21,7 @@ export default class Month extends React.Component {
                         datetime: "23.11.2019 19:00",
                         address: "address",
                         description: "desciption fasadsa",
-                        icon: "icon1"
+                        icon: "/load_icon/bell.svg"
                     },
                     {
                         id: "5dd973c6eddc2cd5210007aa",
@@ -31,7 +31,7 @@ export default class Month extends React.Component {
                         datetime: "23.11.2019 19:00",
                         address: "address",
                         description: "desciption fasadsa",
-                        icon: "icon2"
+                        icon: "https://social-calendar-tensor.herokuapp.com/load_icon/bell.svg"
                     },
                     {
                         id: "5dd98a33b89943a1cd78b289",
@@ -41,7 +41,7 @@ export default class Month extends React.Component {
                         datetime: "23.11.2019 19:00",
                         address: "address",
                         description: "desciption fasadsa",
-                        icon: "icon1"
+                        icon: "https://social-calendar-tensor.herokuapp.com/load_icon/bell.svg"
                     },
                     {
                         id: "1242241",
@@ -51,13 +51,15 @@ export default class Month extends React.Component {
                         datetime: "23.11.2019 19:00",
                         address: "address",
                         description: "desciption fasadsa",
-                        icon: "icon2"
+                        icon: "https://social-calendar-tensor.herokuapp.com/load_icon/bell.svg"
                     }
                 ],
             }
         };
 
         this.updateMonthAndYear = this.updateMonthAndYear.bind(this);
+        this.getEvents = this.getEvents.bind(this);
+        this.getEvents(this.state.month, this.state.year)
     }
 
 
@@ -104,6 +106,24 @@ export default class Month extends React.Component {
             year: year,
             events: this.state.events
         });
+        this.getEvents(month, year);
+    }
+
+    getEvents(month, year) {
+        fetch(`/events?month=${month}&year=${year}`).then((response) => {
+            if (response.ok) {
+                response.json().then((data) => {
+                    console.log(data);
+                    this.setState({
+                        events: data
+                    })
+                })
+            } else {
+                console.log(response.statusText);
+            }
+        });
+        console.log(this.state.events);
+        this.render();
     }
 
     render() {
@@ -114,39 +134,39 @@ export default class Month extends React.Component {
 
         //названия дней недели
         for (let i = 0; i < 7; i++) {
-            days.push(<div className="day-name" key={100 + i}/>);
+            days.push(<div className="day-name" key={100 + i} />);
         }
 
         //предыдущий месяц
         for (let i = 0; i < firstDay; i++) {
             days.push(<Day key={-i}
-                hidden={true} day={countDaysPrevMonth - firstDay + 1 + i} />)
+                hidden={true} day={countDaysPrevMonth - firstDay + 1 + i} events={null}/>)
         }
 
         //этот месяц
         for (let i = 0; i < countDays; i++) {
-            days.push(<Day key={i + 1} hidden={false} day={i + 1} events={this.state.events[i + 1]} 
-                updateEventListData={this.props.updateEventListData}/>)
+            days.push(<Day key={i + 1} hidden={false} day={i + 1} events={this.state.events[i + 1]?this.state.events[i + 1]:[]}
+                updateEventListData={this.props.updateEventListData} />)
         }
 
         //след месяц
         for (let i = 0; i < 42 - countDays - firstDay; i++) {
-            days.push(<Day key={countDays + i + 1} hidden={true} day={i + 1} />)
+            days.push(<Day key={countDays + i + 1} hidden={true} day={i + 1} events={null}/>)
         }
 
         return (
             <div className="flex-col">
                 <div className="wrap-year-month">
                     <div className="month-year">
-                        <button onClick={() => this.prevMonth()}>{'<'}</button>
+                        <button className="arrow-button" onClick={() => this.prevMonth()}>{'<'}</button>
                         {months[this.state.month]}
-                        <button onClick={() => this.nextMonth()}>{'>'}</button>
+                        <button className="arrow-button" onClick={() => this.nextMonth()}>{'>'}</button>
                     </div>
 
                     <div className="month-year">
-                        <button onClick={() => this.prevYear()}>{'<'}</button>
+                        <button className="arrow-button" onClick={() => this.prevYear()}>{'<'}</button>
                         {this.state.year}
-                        <button onClick={() => this.nextYear()}>{'>'}</button>
+                        <button className="arrow-button" onClick={() => this.nextYear()}>{'>'}</button>
                     </div>
                 </div>
                 <div className="month-grid">
@@ -157,7 +177,7 @@ export default class Month extends React.Component {
     }
 }
 
-function monthDays(y, m)  {   // full year and month in range 1-12
+function monthDays(y, m) {   // full year and month in range 1-12
     let leap = 0;
     if (m === 2) {
         if (y % 4 === 0) leap = 1;
