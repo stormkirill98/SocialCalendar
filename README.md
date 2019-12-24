@@ -103,6 +103,7 @@ Plan events, alone or with your friends
           'id': id,
           'name': name,
           'is_private': is_private,
+          'icon': icon,
           'datetime': datetime,
           'address': address,
           'description': description,
@@ -114,6 +115,7 @@ Plan events, alone or with your friends
           'is_private': is_private,
           'datetime': datetime,
           'address': address,
+          'icon': icon,
           'description': description,
           'member_id_list': [member_id_list],
           'chat_id': chat_id
@@ -136,6 +138,7 @@ Plan events, alone or with your friends
       "is_private": "true", //или false
       "datetime": "23.11.2019 19:00",
       "address": "address",
+      'icon': icon,
       "description": "desciption fasadsa" // не обязательное поле
     }
 
@@ -157,6 +160,7 @@ Plan events, alone or with your friends
       "is_private": "true", //или false
       "datetime": "23.11.2019 19:00",
       "address": "address",
+      'icon': icon,
       "description": "desciption fasadsa" // не обязательное поле
     }
 
