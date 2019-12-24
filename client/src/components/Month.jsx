@@ -99,8 +99,6 @@ export default class Month extends React.Component {
     }
 
     render() {
-        console.log("render month");
-
         const days = [], firstDay = this.state.firstDayOfWeek, countDays = this.state.countDays,
             countDaysPrevMonth = monthDays(this.state.year, this.state.month - 1);
         const months = ["", "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",

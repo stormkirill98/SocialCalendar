@@ -41,7 +41,6 @@ export default class NotificationCenter extends React.Component {
     }
 
     removeInvite(id) {
-        console.log("remove " + id);
         const invites = this.state.invites;
 
         this.setState({invites: invites.filter((value => value.id !== id))});

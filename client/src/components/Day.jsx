@@ -7,8 +7,6 @@ export default class Day extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log("day constructor " + props.events);
-
         this.state = {
             events: (props.events && props.events.length !== 0) ? props.events : null,
             updateEventListData: props.updateEventListData ? props.updateEventListData : null,
@@ -29,9 +27,6 @@ export default class Day extends React.Component {
     }
 
     render() {
-        console.log("render day");
-        console.log(this.state.events);
-
         const style = {
             opacity: this.props.hidden ? 0.4 : 0.92,
         };
