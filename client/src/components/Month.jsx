@@ -6,6 +6,8 @@ export default class Month extends React.Component {
     constructor(props) {
         super(props);
 
+        this.day = [];
+
         this.state = {
             countDays: monthDays(props.year, props.month),
             firstDayOfWeek: firstWeekDay(props.year, props.month),
@@ -72,6 +74,12 @@ export default class Month extends React.Component {
             year: this.state.year,
             events: events
         });
+
+        if (this.day) {
+            for (const [key, value] of Object.entries(events)) {
+                this.day[key].updateEvents(value);
+            }
+        }
     }
 
     componentDidMount() {
@@ -115,7 +123,8 @@ export default class Month extends React.Component {
             days.push(<Day key={i + 1} hidden={false} day={i + 1}
                            events={this.state.events[i + 1]}
                            updateEventListData={this.props.updateEventListData} month={this.state.month}
-                           year={this.state.year}/>)
+                           year={this.state.year}
+                           ref={ref => this.day[i + 1] = ref}/>)
         }
 
         //след месяц
