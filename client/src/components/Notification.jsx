@@ -19,16 +19,21 @@ export default class NotificationList extends React.Component {
 
     accept() {
         const id = this.state.invite.id;
-        console.log("accept " + id)
-        // TODO call API for accept invite
+        this.handleInvite(id, "accept");
         this.removeInvite(id)
     }
 
     decline() {
         const id = this.state.invite.id;
-        console.log("decline " + id);
-        // TODO call API for decline invite
+        this.handleInvite(id, "decline");
         this.removeInvite(id)
+    }
+
+    handleInvite(id, action) {
+        fetch(`/invite?id=${id}&action=${action}`, {method: 'DELETE'})
+            .then((response) => {
+                console.log(response.statusText);
+            });
     }
 
     render() {
@@ -40,17 +45,18 @@ export default class NotificationList extends React.Component {
             content = "Присоединитесь на " + invite.event_name + "?";
         }
 
-            return (
-                <div className="container">
-                    {invite.type === "friend" ? <AccessibleIcon className="type-icon"/> : <EventIcon className="type-icon"/>}
-                    <div className="content">{content}</div>
-                    <Button color="primary" className={"accept-btn"} onClick={() => this.accept()}>
-                        <CheckIcon fontSize={"small"}/>
-                    </Button>
-                    <Button color="secondary" className={"decline-btn"} onClick={() => this.decline()}>
-                        <CloseIcon fontSize={"small"}/>
-                    </Button>
-                </div>
-            );
+        return (
+            <div className="container">
+                {invite.type === "friend" ? <AccessibleIcon className="type-icon"/> :
+                    <EventIcon className="type-icon"/>}
+                <div className="content">{content}</div>
+                <Button color="primary" className={"accept-btn"} onClick={() => this.accept()}>
+                    <CheckIcon fontSize={"small"}/>
+                </Button>
+                <Button color="secondary" className={"decline-btn"} onClick={() => this.decline()}>
+                    <CloseIcon fontSize={"small"}/>
+                </Button>
+            </div>
+        );
     }
 }
