@@ -1,5 +1,8 @@
 import React from 'react';
 import '../css/Friends.css';
+import Button from "@material-ui/core/Button";
+import DeleteIcon from '@material-ui/icons/Delete';
+import ChatIcon from '@material-ui/icons/Chat';
 
 
 export default class Friend extends React.Component {
@@ -30,8 +33,12 @@ export default class Friend extends React.Component {
                     <div className="friend-name">{this.props.name}</div>
                     </div>
                     <div className="wrap">
-                        <button className="button1">Перейти к чату</button>
-                        <button className="button1" onClick={this.deleteFriend}>Добавить/Удалить</button>
+                        <Button color="primary" className="settings-btn" variant="contained">
+                            <ChatIcon fontSize="small"/>
+                        </Button>
+                        <Button color="primary" className="settings-btn" variant="contained" onClick={this.deleteFriend}>
+                            <DeleteIcon fontSize="small"/>
+                        </Button>
                     </div>
                 </li>
             </>

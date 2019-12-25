@@ -2,6 +2,9 @@ import React from 'react';
 import '../css/Dialogues.css';
 import Dialog from "../components/Dialogue";
 import Message from "../components/Message";
+import Button from "@material-ui/core/Button";
+import SendIcon from '@material-ui/icons/Send';
+
 
 
 export default class DialoguesMainBox extends React.Component {
@@ -62,7 +65,9 @@ export default class DialoguesMainBox extends React.Component {
                 </ol>
                 <div class="msg-area">
                     <textarea class="text" placeholder="Введите сообщение..." ></textarea>
-                    <button class="button" type="submit">Отправить</button>
+                    <Button color="primary" className="settings-btn" variant="contained">
+                        <SendIcon/>
+                    </Button>
                 </div>
             </div>
         </div>

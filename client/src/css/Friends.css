@@ -11,7 +11,9 @@
 .friends-main-box{
     margin: 5px 20%;
     padding: 5px;
-    background: rgb(203, 255, 203);
+    background: #3D3D3D;
+    opacity: .98;
+    border-radius: 4px;
 }
 
 .friends-list{
@@ -20,25 +22,34 @@
     overflow-y: auto;
 }
 
+.friends{
+    color: white;
+}
+
 .friend{
     display: flex;
     justify-content: space-between;
+    border-radius: 4px;
+    opacity:0.98;
     height: 70px;
     padding: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
-    background:  rgb(202, 247, 144);
+    background: #343a40;
+    color: white;
 }
 
 .friend-avatar{
     width: 60px;
     height: 60px;
     margin-right: 5px;
+    border-radius: 100%;
 }
 
 .wrap{
     display: flex;
     align-items: center;
+    margin: 0px 3px;
 }
 
 .button1{
@@ -47,4 +58,8 @@
 
 .deleted{
     visibility: hidden;
+}
+
+.friend-name{
+    color: white;
 }
