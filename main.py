@@ -16,7 +16,7 @@ from server.utils import user_utils
 from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils, event_member_utils
 
-app = Flask(__name__, static_folder="../client/build/static", template_folder="../client/build")
+app = Flask(__name__, static_folder="./client/build/static", template_folder="./client/build")
 CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 app.config['EVENT_ICONS_FOLDER'] = './public/event_icons'
