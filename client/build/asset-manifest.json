@@ -1,44 +1,18 @@
 {
   "files": {
-<<<<<<< HEAD
-    "main.css": "/static/css/main.f82e99c8.chunk.css",
-    "main.js": "/static/js/main.32650852.chunk.js",
-    "main.js.map": "/static/js/main.32650852.chunk.js.map",
-=======
-<<<<<<< HEAD
-    "main.css": "/static/css/main.1b3df692.chunk.css",
-    "main.js": "/static/js/main.17293a42.chunk.js",
-    "main.js.map": "/static/js/main.17293a42.chunk.js.map",
+    "main.css": "/static/css/main.2fc8003f.chunk.css",
+    "main.js": "/static/js/main.6ee3ebde.chunk.js",
+    "main.js.map": "/static/js/main.6ee3ebde.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.47e08d05.js",
     "runtime-main.js.map": "/static/js/runtime-main.47e08d05.js.map",
     "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.25f24b3c.chunk.js": "/static/js/2.25f24b3c.chunk.js",
-    "static/js/2.25f24b3c.chunk.js.map": "/static/js/2.25f24b3c.chunk.js.map",
+    "static/js/2.3d57aab9.chunk.js": "/static/js/2.3d57aab9.chunk.js",
+    "static/js/2.3d57aab9.chunk.js.map": "/static/js/2.3d57aab9.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e5833e78777c5b0056df1b6900fb2b4d.js": "/precache-manifest.e5833e78777c5b0056df1b6900fb2b4d.js",
+    "precache-manifest.d8d00dd66bfeb79d6757b5de3fca2aae.js": "/precache-manifest.d8d00dd66bfeb79d6757b5de3fca2aae.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
-    "static/css/main.1b3df692.chunk.css.map": "/static/css/main.1b3df692.chunk.css.map",
-=======
-    "main.css": "/static/css/main.1b36c378.chunk.css",
-    "main.js": "/static/js/main.7b928025.chunk.js",
-    "main.js.map": "/static/js/main.7b928025.chunk.js.map",
->>>>>>> aaaf23381ea4c15fcebfa1714b9a7df81e7830ff
-    "runtime-main.js": "/static/js/runtime-main.47e08d05.js",
-    "runtime-main.js.map": "/static/js/runtime-main.47e08d05.js.map",
-    "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.2741725c.chunk.js": "/static/js/2.2741725c.chunk.js",
-    "static/js/2.2741725c.chunk.js.map": "/static/js/2.2741725c.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.6e0569c45355bac9b5ff8a5c89a3f094.js": "/precache-manifest.6e0569c45355bac9b5ff8a5c89a3f094.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
-<<<<<<< HEAD
-    "static/css/main.f82e99c8.chunk.css.map": "/static/css/main.f82e99c8.chunk.css.map",
-=======
-    "static/css/main.1b36c378.chunk.css.map": "/static/css/main.1b36c378.chunk.css.map",
->>>>>>> b008a184967e57a8624117211b87ede72d566fb8
->>>>>>> aaaf23381ea4c15fcebfa1714b9a7df81e7830ff
+    "static/css/main.2fc8003f.chunk.css.map": "/static/css/main.2fc8003f.chunk.css.map",
     "static/media/Login.css": "/static/media/Algerian.b60bb3c6.TTF",
     "static/media/Calendar.css": "/static/media/Auth-background.d81bcfdc.jpg",
     "static/media/w512h5121371227427events.png": "/static/media/w512h5121371227427events.c6e75c47.png"
@@ -46,19 +20,8 @@
   "entrypoints": [
     "static/js/runtime-main.47e08d05.js",
     "static/css/2.17e5ed98.chunk.css",
-<<<<<<< HEAD
-    "static/js/2.25f24b3c.chunk.js",
-    "static/css/main.1b3df692.chunk.css",
-    "static/js/main.17293a42.chunk.js"
-=======
-    "static/js/2.2741725c.chunk.js",
-<<<<<<< HEAD
-    "static/css/main.f82e99c8.chunk.css",
-    "static/js/main.32650852.chunk.js"
-=======
-    "static/css/main.1b36c378.chunk.css",
-    "static/js/main.7b928025.chunk.js"
->>>>>>> b008a184967e57a8624117211b87ede72d566fb8
->>>>>>> aaaf23381ea4c15fcebfa1714b9a7df81e7830ff
+    "static/js/2.3d57aab9.chunk.js",
+    "static/css/main.2fc8003f.chunk.css",
+    "static/js/main.6ee3ebde.chunk.js"
   ]
 }
