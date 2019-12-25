@@ -37,7 +37,7 @@ def load_user(user_id):
 @app.route("/")
 @cross_origin()
 def index():
-    resp = make_response(render_template("index.html"))
+    resp = make_response(send_from_directory(app.template_folder, 'index.html'))
     if current_user:
         resp.set_cookie("Auth", value=str(current_user.is_authenticated))
     return resp
