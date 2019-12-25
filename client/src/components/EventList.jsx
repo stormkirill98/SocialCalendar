@@ -20,7 +20,6 @@ export default class EventList extends React.Component {
             
             <div className="events-area">
                 <ol className="events-list">
-                    <EventDetails/>
                 </ol>
             </div>
         );
