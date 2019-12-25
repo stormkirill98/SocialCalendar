@@ -15,14 +15,10 @@ export default class CreateEvent extends React.Component {
                 this.props.match.params.day,24,0,30,500),//час мин сек мс
             address: "Советский Союз",
             description: "Desciption",
-            icon: "/load_icon/doughnut.svg"
         };
-        this.handleChangddddddde = this.handleChangddddddde.bind(this);
     }
 
-    selectAvatar = (name) => {
-        this.setState({ icon: name })
-     }
+
 
     sendNewEvent() {
         var bodyJSON = JSON.stringify({
@@ -77,10 +73,6 @@ export default class CreateEvent extends React.Component {
     //     )
     // }
 
-    handleChangde(event) {
-        this.setState({type: event.target.value});
-      }
-
     render() {
         return (
             <div className="page-container-event">
@@ -88,7 +80,7 @@ export default class CreateEvent extends React.Component {
                 <main className="event">
                     <div className="event-box">
                         <div className="event-img-wrap event-page-wrap">
-                            <IconsGrid updateData={this.selectAvatar}></IconsGrid>
+                            {/* <IconsGrid updateData={this.selectAvatar}></IconsGrid> */}
                         </div>
                         <div className="event-title-descr event-page-wrap">
                             <div className="flex-row">
