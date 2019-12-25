@@ -14,18 +14,19 @@ Plan events, alone or with your friends
 
 ### /user GET
     Возвращает текущего пользователя:
-      {
-        'id': id,
-        'google_id': google_id,
-        'name': name,
-        'email': email,
-        'profile_pic': profile_pic,
-        'birthday': birthday,
-        'event_id_list': [event_id_list],
-        'friend_id_list': [friend_id_list],
-        'chat_id_list': [chat_id_list],
-        'invite_id_list': [invite_id_list]
-      }
+    {
+      'id': id,
+      'google_id': google_id,
+      'name': name,
+      'email': email,
+      'profile_pic': profile_pic,
+      'birthday': birthday,
+      'event_id_list': [event_id_list],
+      'friend_id_list': [friend_id_list],
+      'chat_id_list': [chat_id_list],
+      'invite_id_list': [invite_id_list]
+    }
+
 
 
 ### /search/users?filtered_str=... GET

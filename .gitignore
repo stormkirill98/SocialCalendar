@@ -9,4 +9,3 @@
 *.pyc
 local.py
 ./venv
-/build
