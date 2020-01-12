@@ -30,7 +30,7 @@ export default class NotificationList extends React.Component {
     }
 
     handleInvite(id, action) {
-        fetch(`/invite?id=${id}&action=${action}`, {method: 'DELETE'})
+        fetch(`/invite?id=${id.$oid}&action=${action}`, {method: 'DELETE'})
             .then((response) => {
                 console.log(response.statusText);
             });
