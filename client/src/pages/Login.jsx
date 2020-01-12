@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/Login.css"
 import { Redirect } from "react-router-dom";
-import Cookies from 'js-cookie';
 
 
 export default class Login extends React.Component {
