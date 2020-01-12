@@ -16,8 +16,10 @@ export default class EventMember extends React.Component {
         fetch(`/member?id=${this.props.id}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    this.state.name = data.name
-                    this.state.avatar = data.profile_pic
+                    this.setState({
+                        name: data.name,
+                        avatar: data.profile_pic
+                    })
                 })
             } else {
                 console.log(response.statusText);
