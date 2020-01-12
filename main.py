@@ -34,13 +34,17 @@ def load_user(user_id):
     return user_dao.get_user(user_id)
 
 
+@app.after_request
+def apply_caching(response):
+    if current_user:
+        response.headers["Auth"] = str(current_user.is_authenticated)
+    return response
+
+
 @app.route("/")
 @cross_origin()
 def index():
-    resp = make_response(render_template("index.html"))
-    if current_user:
-        resp.set_cookie("Auth", value=str(current_user.is_authenticated))
-    return resp
+    return make_response(render_template("index.html"))
 
 
 @app.route("/login")
