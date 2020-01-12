@@ -9,3 +9,5 @@
 *.pyc
 local.py
 ./venv
+/build
+/client/.idea/

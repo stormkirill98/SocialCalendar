@@ -7,36 +7,38 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 export default class Friend extends React.Component {
 
-    deleteFriends(){
-        fetch(`/friends?id=5dfd1dd64bd7592818b25abb`).then((response) => {
-            if (response.ok) {
-                response.json().then((data) => {
-                   
-                });
-            } else {
-                console.log(response.statusText);
-            }
-        });
+    constructor(props) {
+        super(props);
+
+        this.removeFriend = props.removeFriend;
+
+        this.state = {
+            friend: props.friend
+        };
     }
 
-    deleteFriend() {
-        var x = document.getElementById("fr");
-        x.style.display = "none"; 
-       }
+    deleteFriend(id) {
+        fetch(`/friend?id=${id}`, {method: 'DELETE'})
+            .then((response) => {
+                console.log(response.statusText);
+            });
+    }
 
     render() {
+        const friend = this.state.friend;
+
         return (
             <>
-                <li className="friend" id="fr">
+                <li className="friend">
                     <div className="wrap">
-                    <img className="friend-avatar" src={this.props.profile_pic} alt="аватарка друга"/>
-                    <div className="friend-name">{this.props.name}</div>
+                    <img className="friend-avatar" src={friend.profile_pic} alt="аватарка друга"/>
+                    <div className="friend-name">{friend.name}</div>
                     </div>
                     <div className="wrap">
                         <Button color="primary" className="settings-btn" variant="contained">
                             <ChatIcon fontSize="small"/>
                         </Button>
-                        <Button color="primary" className="settings-btn" variant="contained" onClick={this.deleteFriend}>
+                        <Button color="primary" className="settings-btn" variant="contained" onClick={() => this.deleteFriend(friend.id.$oid)}>
                             <DeleteIcon fontSize="small"/>
                         </Button>
                     </div>

@@ -16,7 +16,7 @@ from server.utils import user_utils
 from server.utils.chats import chat_utils, msg_utils
 from server.utils.events import event_utils, event_member_utils
 
-app = Flask(__name__, static_folder="./client/build/static", template_folder="./client/build")
+app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 app.config['EVENT_ICONS_FOLDER'] = './public/event_icons'
@@ -34,13 +34,17 @@ def load_user(user_id):
     return user_dao.get_user(user_id)
 
 
+@app.after_request
+def apply_caching(response):
+    if current_user:
+        response.headers["Auth"] = str(current_user.is_authenticated)
+    return response
+
+
 @app.route("/")
 @cross_origin()
 def index():
-    resp = make_response(send_from_directory(app.template_folder, 'index.html'))
-    if current_user:
-        resp.set_cookie("Auth", value=str(current_user.is_authenticated))
-    return resp
+    return make_response(render_template("index.html"))
 
 
 @app.route("/login")
