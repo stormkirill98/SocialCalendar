@@ -13,7 +13,6 @@ export default class Calendar extends React.Component {
             curYear: curDate.getFullYear(),
             curMonth: curDate.getMonth() + 1
         };
-
     }
 
     updateEventListData = (value) => {
@@ -24,7 +23,6 @@ export default class Calendar extends React.Component {
         return (
             <div className="page-container">
                 <Header/>
-
                 <div className="flex-row calendar-main">
                     <Month year={this.state.curYear} month={this.state.curMonth} updateEventListData={this.updateEventListData}/>
                     <EventList events={this.state.eventsInEventsList} />
