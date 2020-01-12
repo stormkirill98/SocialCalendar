@@ -19,10 +19,14 @@ export default class EventIcon extends React.Component {
     }
 
     render() {
+        let eventId  = typeof this.state.eventID === "object" 
+                    ? this.state.eventID["$oid"] 
+                    : this.state.eventID;
+        
         return (
             <div>
                 {this.state.icon ?
-                    <Link to={"/Event/" + this.state.eventID}>
+                    <Link to={"/Event/" + eventId}>
                         <img className="event-icon" src={this.state.icon} alt="icon"
                             onMouseEnter={() => this.toggleInfo(false)}
                             onMouseLeave={() => this.toggleInfo(true)} />
