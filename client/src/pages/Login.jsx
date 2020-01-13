@@ -12,7 +12,7 @@ export default class Login extends React.Component {
             isAuth: false
         }
 
-        fetch(`/event?id=5dd96b8efacc0de4f9e30c50`).then((response) => {
+        fetch(`/invites`).then((response) => {
             if (response.ok) {
                 this.setState({
                     isAuth: response.headers.get('Auth')
