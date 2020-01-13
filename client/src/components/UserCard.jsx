@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import NotificationCenter from "./NotificationCenter";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 export default class UserCard extends React.Component {
 
@@ -23,10 +23,11 @@ export default class UserCard extends React.Component {
         this.exit = this.exit.bind(this);
     }
 
-    exit(){
-        fetch("/logout");
-        //return <Redirect to='/' />; не робит почему то
-        window.location.replace("https://127.0.0.1:5000/")
+    exit() {
+        fetch("/logout").then((response) => {
+            window.location.replace("https://127.0.0.1:5000/");
+        });
+        //return <Redirect push to='/' />; //не робит почему то
     }
     updateUser(user) {
         this.setState({
@@ -48,8 +49,9 @@ export default class UserCard extends React.Component {
                     <div className="buttons">
                         <NotificationCenter className="notifications-center" />
 
-                        <Button variant="contained" color="primary" className="settings-btn" size="small">
-                            <ExitIcon fontSize="small"/>
+                        <Button variant="contained" color="primary" className="settings-btn" size="small"
+                            onClick={this.exit}>
+                            <ExitIcon fontSize="small" />
                         </Button>
                     </div>
                 </Grid>
