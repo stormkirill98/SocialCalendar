@@ -3,6 +3,7 @@ import "../css/CreateEvent.css";
 import Header from "../components/Header";
 // import IconsGrid from "../components/IconsGrid";
 import { Redirect } from "react-router-dom";
+import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons';
 
 export default class CreateEvent extends React.Component {
     constructor(props) {
@@ -11,16 +12,24 @@ export default class CreateEvent extends React.Component {
             type: "group",
             event_name: "Event_name",
             is_private: false,
-            datetime: new Date(this.props.match.params.year, this.props.match.params.month,
-                this.props.match.params.day, 24, 0, 30, 500),//час мин сек мс
+            datetime: "17.1.2020 15:30",
+            // new Date(this.props.match.params.year, this.props.match.params.month,
+            //     this.props.match.params.day, 24, 0, 30, 500),//час мин сек мс
             address: "Советский Союз",
             description: "Desciption",
+            icon: "/load_icon/bell.svg"
         };
         this.privateChange = this.privateChange.bind(this);
+        this.typeChange = this.typeChange.bind(this);
+        this.sendNewEvent = this.sendNewEvent.bind(this);
+        this.nameChange = this.nameChange.bind(this);
+        this.addressChange = this.addressChange.bind(this);
+        this.descriptionChange = this.descriptionChange.bind(this);
     }
 
     sendNewEvent() {
         console.log("зашел в sendNewEvent()");
+        console.log(this.state);
         var bodyJSON = JSON.stringify({
             "type": this.state.type,
             "name": this.state.event_name,
@@ -50,16 +59,20 @@ export default class CreateEvent extends React.Component {
         });
     }
 
-    typeChange(event){
-        console.log(2233);
-        this.setState({type: event});
-        console.log(this.state.type);
+    typeChange(event) {
+        this.setState({ type: event });
     }
-
     privateChange(event) {
-        console.log(123);
-        this.setState({is_private: event});
-        console.log(this.state.is_private);
+        this.setState({ is_private: event });
+    }
+    nameChange(event){
+        this.setState({ event_name: event.target.value });
+    }
+    addressChange(event){
+        this.setState({ address: event.target.value });
+    }
+    descriptionChange(event){
+        this.setState({ description: event.target.value });
     }
 
     // onAvatarkaClicked(){
@@ -94,35 +107,36 @@ export default class CreateEvent extends React.Component {
                         {/* <IconsGrid updateData={this.selectAvatar}></IconsGrid> */}
 
                         <h3 className="create-event-title">Название</h3>
-                        <input className="create-event-title-input create-event-input" type="text" />
+                        <input className="create-event-title-input create-event-input" type="text"
+                            value={this.state.event_name} onChange={this.nameChange} />
 
                         <h3 className="create-event-type">Тип события</h3>
-                        <div className="radio-field">
-                            <input type="radio" id="group"
-                                name="event-type" value="group" onChange={() => this.typeChange("group")} checked/>
-                            <label for="private-yes">Групповой</label>
-
-                            <input type="radio" id="single"
-                                name="event-type" value="single" onChange={() => this.typeChange("single")}/>
-                            <label for="private-no">Только для меня</label>
-                        </div>
+                        <RadioGroup onChange={this.typeChange} horizontal>
+                            <ReversedRadioButton value="group">
+                                Групповой
+                            </ReversedRadioButton>
+                            <ReversedRadioButton value="single">
+                                Одиночный
+                            </ReversedRadioButton>
+                        </RadioGroup>
 
                         <h3 className="create-event-isPrivate">Приватный</h3>
-                        <div className="radio-field">
-                            <input type="radio" id="private-yes"
-                                name="private" value={true} onChange={() => this.privateChange(true)} checked/>
-                            <label for="private-yes">Да</label>
-
-                            <input type="radio" id="private-no"
-                                name="private" value={false} onChange={() => this.privateChange(false)}/>
-                            <label for="private-no">Нет</label>
-                        </div>
+                        <RadioGroup onChange={this.privateChange} horizontal>
+                            <ReversedRadioButton value={"true"}>
+                                Да
+                            </ReversedRadioButton>
+                            <ReversedRadioButton value={"false"}>
+                                Нет
+                            </ReversedRadioButton>
+                        </RadioGroup>
 
                         <h3 className="create-event-Address">Адрес</h3>
-                        <input className="create-event-Address-input create-event-input" type="text" />
+                        <input className="create-event-Address-input create-event-input" type="text"
+                            value={this.state.address} onChange={this.addressChange} />
 
                         <h3 className="create-event-descr">Описание</h3>
-                        <textarea className="create-event-descr-input create-event-input" type="text" />
+                        <input className="create-event-descr-input create-event-input" type="text"
+                            value={this.state.description} onChange={this.descriptionChange} />
                     </div>
                     <div className="create-button" onClick={this.sendNewEvent}>
                         Создать

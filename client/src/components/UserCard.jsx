@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import {Card} from "@material-ui/core";
 import "../css/UserCard.css"
 import Typography from "@material-ui/core/Typography";
-import SettingsIcon from '@material-ui/icons/Settings';
+import ExitIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import NotificationCenter from "./NotificationCenter";
 
@@ -42,7 +42,7 @@ export default class UserCard extends React.Component {
                         <NotificationCenter className="notifications-center"/>
 
                         <Button variant="contained" color="primary" className="settings-btn" size="small">
-                            <SettingsIcon fontSize="small"/>
+                            <ExitIcon fontSize="small"/>
                         </Button>
                     </div>
                 </Grid>
