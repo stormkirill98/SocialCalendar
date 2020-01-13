@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { Card } from "@material-ui/core";
 import "../css/UserCard.css"
 import Typography from "@material-ui/core/Typography";
-import SettingsIcon from '@material-ui/icons/ExitToApp';
+import ExitIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import NotificationCenter from "./NotificationCenter";
 import { Redirect } from "react-router-dom";
@@ -48,9 +48,8 @@ export default class UserCard extends React.Component {
                     <div className="buttons">
                         <NotificationCenter className="notifications-center" />
 
-                        <Button variant="contained" color="primary" className="settings-btn" size="small"
-                            onClick={this.exit}>
-                            <SettingsIcon fontSize="small" />
+                        <Button variant="contained" color="primary" className="settings-btn" size="small">
+                            <ExitIcon fontSize="small"/>
                         </Button>
                     </div>
                 </Grid>
