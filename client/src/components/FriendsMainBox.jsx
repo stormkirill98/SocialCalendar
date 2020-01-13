@@ -51,23 +51,19 @@ export default class FriendsMainBox extends React.Component {
         });
     }
 
-    sendInvite(Uid) {
-        console.log("Uid: ",Uid);
-        var id = Uid;
-        console.log("id: ",id);
+    sendInvite(id) {
         const users = this.state.users;
-        console.log("users:",users);
-        this.setState({users: users.filter((user => user._id.$oid !== id))});
+        this.setState({users: users.filter(user => user._id !== id)});
     }
 
     removeFriend(id) {
         const friends = this.state.friends;
-        this.setState({friends: friends.filter((friend => friend.id.$oid !== id))});
+        this.setState({friends: friends.filter(friend => friend.id.$oid != id)});
     }
 
     render() {
-        console.log(this.state.friends);
-        console.log(this.state.users);
+        // console.log("friends", this.state.friends);
+        // console.log("users", this.state.users);
         const listItems = this.state.friends.map(
             (val) => <Friend friend={val} key={val.id} removeFriend={this.removeFriend}/>);
 
