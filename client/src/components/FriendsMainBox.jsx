@@ -14,13 +14,16 @@ export default class FriendsMainBox extends React.Component {
             users: []
         };
         
+        this.searchUsers = this.searchUsers.bind(this);
         this.sendInvite = this.sendInvite.bind(this);
         this.removeFriend = this.removeFriend.bind(this);
         this.getFriends = this.getFriends.bind(this);
         this.getUsers = this.getUsers.bind(this);
 
+        this.state.inputValue = "Доб";
+
         this.getFriends()
-        this.getUsers("а")
+        this.getUsers(this.state.inputValue)
     }
 
     getUsers(search) {
@@ -61,9 +64,14 @@ export default class FriendsMainBox extends React.Component {
         this.setState({friends: friends.filter(friend => friend.id.$oid != id)});
     }
 
+    searchUsers() {
+        this.setState({inputValue: "Кир"});
+    }
+
     render() {
         // console.log("friends", this.state.friends);
         // console.log("users", this.state.users);
+        console.log(this.state);
         const listItems = this.state.friends.map(
             (val) => <Friend friend={val} key={val.id} removeFriend={this.removeFriend}/>);
 
@@ -74,7 +82,7 @@ export default class FriendsMainBox extends React.Component {
             <>
             <div class="friends-main-box">
                 <h4 class="friends">Список друзей</h4>
-                <input placeholder="Поиск друзей" type="text" name="friends-search"/>
+                <input placeholder="Поиск друзей" type="text" name="friends-search" id="search" onChange={this.searchUsers}/>
                 <ol class="friends-list">
                     {listItems}
                     {listItems2}
