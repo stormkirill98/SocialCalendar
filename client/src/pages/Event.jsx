@@ -20,10 +20,11 @@ export default class Event extends React.Component {
             members: [],
             chatID: -1
         };
-        //this.getEventData();
+
         fetch(`/event?id=${this.props.match.params.id}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
+                    console.log(data.member_id_list);
                     this.setState({
                         access: true,
                         eventAvatarUrl: data.icon,
@@ -34,14 +35,14 @@ export default class Event extends React.Component {
                         datetime: data.datetime,
                         address: data.address,
                         chatID: data.chat_id,
-                        members: typeof data.member_id_list === "object"
-                            ? [data.member_id_list["$oid"]]
-                            : data.member_id_list
+                        members: data.member_id_list
+                        // members: typeof data.member_id_list === "object"
+                        //     ? [data.member_id_list["$oid"]]
+                        //     : data.member_id_list
                     });
-
-
                 });
-                console.log(this.state.members);
+
+                
             } else {
                 console.log(response.statusText);
                 this.state.access = false;
