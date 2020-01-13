@@ -17,7 +17,7 @@ export default class NotAFriend extends React.Component {
     }
 
     sendInvite(id) {
-        var bodyJSON = JSON.stringify({ "type": "friend", "receiver_id": id })
+        var bodyJSON = JSON.stringify({ "type": "friend", "receiver_id": id.$oid })
         fetch("/invite",
             { method: 'POST',
             headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
