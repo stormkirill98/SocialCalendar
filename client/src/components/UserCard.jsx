@@ -1,12 +1,13 @@
 import React from "react";
 import Avatar from 'react-avatar';
 import Grid from "@material-ui/core/Grid";
-import {Card} from "@material-ui/core";
+import { Card } from "@material-ui/core";
 import "../css/UserCard.css"
 import Typography from "@material-ui/core/Typography";
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import NotificationCenter from "./NotificationCenter";
+import { Redirect } from "react-router-dom";
 
 export default class UserCard extends React.Component {
 
@@ -19,8 +20,14 @@ export default class UserCard extends React.Component {
         };
 
         this.updateUser = this.updateUser.bind(this);
+        this.exit = this.exit.bind(this);
     }
 
+    exit(){
+        fetch("/logout");
+        //return <Redirect to='/' />; не робит почему то
+        window.location.replace("https://127.0.0.1:5000/")
+    }
     updateUser(user) {
         this.setState({
             userName: user ? user.name : "",
@@ -31,7 +38,7 @@ export default class UserCard extends React.Component {
     render() {
         return (
             <Grid container>
-                <Avatar alt={this.state.userName} size="55" round={true} src={this.state.pictureUrl}/>
+                <Avatar alt={this.state.userName} size="55" round={true} src={this.state.pictureUrl} />
                 <Grid item className="user-info">
                     <Card className="user-name">
                         <Typography className="card-title" color="textSecondary" gutterBottom>
@@ -39,15 +46,13 @@ export default class UserCard extends React.Component {
                         </Typography>
                     </Card>
                     <div className="buttons">
-                        <NotificationCenter className="notifications-center"/>
+                        <NotificationCenter className="notifications-center" />
 
                         <Button variant="contained" color="primary" className="settings-btn" size="small">
                             <ExitIcon fontSize="small"/>
                         </Button>
                     </div>
                 </Grid>
-
-
             </Grid>
         );
     }
