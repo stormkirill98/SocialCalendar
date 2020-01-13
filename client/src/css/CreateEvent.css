@@ -27,7 +27,6 @@
     width: 100%;
     grid-row-gap: 13px;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: repeat(6, 1fr);
 }
 
 .radio-field{
@@ -54,6 +53,28 @@
     align-self: flex-end;
     justify-content: center;
     align-content: center;
+}
+
+.icons-grid{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    width: fit-content;
+    grid-gap: 10px;
+}
+
+.icons-grid div{
+    display: flex;
+}
+
+h4{
+    height: 66px;
+}
+
+.flex-center{
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
 }
 /* .event{
     display: flex;

@@ -2,7 +2,7 @@ import React from "react";
 import "../css/CreateEvent.css";
 import Header from "../components/Header";
 import Button from "@material-ui/core/Button";
-// import IconsGrid from "../components/IconsGrid";
+import IconsGrid from "../components/IconsGrid";
 import { Redirect } from "react-router-dom";
 import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons';
 
@@ -26,6 +26,7 @@ export default class CreateEvent extends React.Component {
         this.nameChange = this.nameChange.bind(this);
         this.addressChange = this.addressChange.bind(this);
         this.descriptionChange = this.descriptionChange.bind(this);
+        this.changeSelectedIcon = this.changeSelectedIcon.bind(this);
     }
 
     sendNewEvent() {
@@ -76,28 +77,10 @@ export default class CreateEvent extends React.Component {
         this.setState({ description: event.target.value });
     }
 
-    // onAvatarkaClicked(){
-    //     return(
-    //         <div className="icons-grid">
-    //             <img src="../../../public/event_icons/bell.svg" alt=""/>
-    //             <img src="../../../public/event_icons/burger.svg" alt=""/>
-    //             <img src="../../../public/event_icons/cart.svg" alt=""/>
-    //             <img src="../../../public/event_icons/coctail.svg" alt=""/>
-    //             <img src="../../../public/event_icons/coffee.svg" alt=""/>
-    //             <img src="../../../public/event_icons/confirm.svg" alt=""/>
-    //             <img src="../../../public/event_icons/delete.svg" alt=""/>
-    //             <img src="../../../public/event_icons/doughnut.svg" alt=""/>
-    //             <img src="../../../public/event_icons/exit.svg" alt=""/>
-    //             <img src="../../../public/event_icons/gamepad.svg" alt=""/>
-    //             <img src="../../../public/event_icons/glasses.svg" alt=""/>
-    //             <img src="../../../public/event_icons/heart.svg" alt=""/>
-    //             <img src="../../../public/event_icons/music.svg" alt=""/>
-    //             <img src="../../../public/event_icons/pin.svg" alt=""/>
-    //             <img src="../../../public/event_icons/pizza.svg" alt=""/>
-    //             <img src="../../../public/event_icons/plus.svg" alt=""/>
-    //         </div>
-    //     )
-    // }
+    changeSelectedIcon(newicon){
+        this.setState({icon: "/load_icon/" + newicon});
+        console.log("сработала смена иконки " + this.state.icon);
+    }
 
     render() {
         return (
@@ -105,8 +88,7 @@ export default class CreateEvent extends React.Component {
                 <Header />
                 <main className="create-event">
                     <div className="create-event-grid">
-                        {/* <IconsGrid updateData={this.selectAvatar}></IconsGrid> */}
-
+                        <IconsGrid changeIcon={this.changeSelectedIcon}/>
                         <h4 className="create-event-title left-column-title">Название</h4>
                         <input className="create-event-title-input create-event-input" type="text"
                             value={this.state.event_name} onChange={this.nameChange} />
