@@ -27,7 +27,7 @@ export default class EventIcon extends React.Component {
             <div>
                 {this.state.icon ?
                     <Link to={"/Event/" + eventId}>
-                        <img className="event-icon" src={this.state.icon} alt="icon"
+                        <img className="event-icon" src={this.state.icon} alt="."
                             onMouseEnter={() => this.toggleInfo(false)}
                             onMouseLeave={() => this.toggleInfo(true)} />
                     </Link>

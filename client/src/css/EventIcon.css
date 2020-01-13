@@ -4,6 +4,8 @@
     padding: 5px;
     width: 35px;
     height: 35px;
+    max-width: 35px;
+    max-height: 35px;
 }
 
 .event-icon:hover {
