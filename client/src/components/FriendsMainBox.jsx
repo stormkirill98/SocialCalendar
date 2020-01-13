@@ -52,8 +52,11 @@ export default class FriendsMainBox extends React.Component {
     }
 
     sendInvite(Uid) {
+        console.log("Uid: ",Uid);
         var id = Uid;
+        console.log("id: ",id);
         const users = this.state.users;
+        console.log("users:",users);
         this.setState({users: users.filter((user => user._id.$oid !== id))});
     }
 
