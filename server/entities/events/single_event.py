@@ -13,4 +13,5 @@ class SingleEvent(Event):
             'datetime': self.datetime,
             'address': self.address,
             'description': self.description,
+            'icon': self.icon
         }
