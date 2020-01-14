@@ -1,15 +1,15 @@
 {
   "files": {
-<<<<<<< HEAD
-    "main.css": "/static/css/main.6eb0226a.chunk.css",
-    "main.js": "/static/js/main.e2b81db4.chunk.js",
-    "main.js.map": "/static/js/main.e2b81db4.chunk.js.map",
+    "main.css": "/static/css/main.ce36ae49.chunk.css",
+    "main.js": "/static/js/main.3604e32a.chunk.js",
+    "main.js.map": "/static/js/main.3604e32a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.47e08d05.js",
     "runtime-main.js.map": "/static/js/runtime-main.47e08d05.js.map",
     "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
     "static/js/2.94a99023.chunk.js": "/static/js/2.94a99023.chunk.js",
     "static/js/2.94a99023.chunk.js.map": "/static/js/2.94a99023.chunk.js.map",
     "index.html": "/index.html",
+<<<<<<< HEAD
     "precache-manifest.afc9edffee1dad3b5353dd60524dfafc.js": "/precache-manifest.afc9edffee1dad3b5353dd60524dfafc.js",
 =======
     "main.css": "/static/css/main.64219dff.chunk.css",
@@ -33,9 +33,12 @@
 >>>>>>> 3654aaedbdee393a3f084dbb2590479df7a3946e
 >>>>>>> 7a5a8052641c8f891d098f236ff4bd1f98a0750b
 >>>>>>> f05718d95c5d55ac84072b7f749748fb6820fb77
+=======
+    "precache-manifest.e14ce7233f0f9a7caf192af12296fe7a.js": "/precache-manifest.e14ce7233f0f9a7caf192af12296fe7a.js",
+>>>>>>> 79601a75ed69a1aaebebc9fdba22b40039f1804e
     "service-worker.js": "/service-worker.js",
     "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
-    "static/css/main.6eb0226a.chunk.css.map": "/static/css/main.6eb0226a.chunk.css.map",
+    "static/css/main.ce36ae49.chunk.css.map": "/static/css/main.ce36ae49.chunk.css.map",
     "static/media/Login.css": "/static/media/Algerian.b60bb3c6.TTF",
     "static/media/Calendar.css": "/static/media/Auth-background.d81bcfdc.jpg",
     "static/media/w512h5121371227427events.png": "/static/media/w512h5121371227427events.c6e75c47.png"
@@ -43,6 +46,7 @@
   "entrypoints": [
     "static/js/runtime-main.47e08d05.js",
     "static/css/2.17e5ed98.chunk.css",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "static/js/2.9a61ebe6.chunk.js",
     "static/css/main.64219dff.chunk.css",
@@ -76,5 +80,10 @@
 >>>>>>> 3654aaedbdee393a3f084dbb2590479df7a3946e
 >>>>>>> 7a5a8052641c8f891d098f236ff4bd1f98a0750b
 >>>>>>> f05718d95c5d55ac84072b7f749748fb6820fb77
+=======
+    "static/js/2.94a99023.chunk.js",
+    "static/css/main.ce36ae49.chunk.css",
+    "static/js/main.3604e32a.chunk.js"
+>>>>>>> 79601a75ed69a1aaebebc9fdba22b40039f1804e
   ]
 }

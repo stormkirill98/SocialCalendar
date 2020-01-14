@@ -24,6 +24,7 @@ class GroupEvent(Event):
             'datetime': self.datetime,
             'address': self.address,
             'description': self.description,
+            'icon': self.icon,
             'member_id_list': self.member_id_list,
             'chat_id': self.chat_id
         }

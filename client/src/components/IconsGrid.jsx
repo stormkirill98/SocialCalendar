@@ -22,7 +22,7 @@ export default class IconsGrid extends React.Component {
             selected: select,
             selectedElement: el
         });
-        el.style.border = '5px solid red';
+        el.style.border = '5px solid rgba(200,42,42,1)';
         el.style.borderRadius = '25%';
     }
 
