@@ -154,7 +154,7 @@ export default class Month extends React.Component {
         return (
             <div className="flex-col">
                 <div className="wrap-year-month">
-                    <div className="user-name month-year">
+                    <div className="other-user-name month-year">
                         Календарь пользователя {this.state.userName}
                     </div>
                     <div className="month-year">
