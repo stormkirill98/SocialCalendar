@@ -41,8 +41,6 @@ export default class Day extends React.Component {
             minute: 'numeric',
         };
 
-        console.log(this.state.events);
-
         if (this.state.events) {
             icons = this.state.events.map((val) => <EventIcon key={val.id}
                 eventID={val.id}
@@ -60,10 +58,13 @@ export default class Day extends React.Component {
                 {this.props.day}
                 <div className="mini-events">
                     {this.state.events ? icons : ""}
-                    <Link to={"/CreateEvent/" + this.state.year + "/" + this.state.month + "/" + this.props.day}>
-                        <img className="addEventButton" src="/load_icon/plus.svg"
-                            alt="+" onClick={this.createEvent} />
-                    </Link>
+                    {this.props.hidden
+                        ? ""
+                        : <Link to={"/CreateEvent/" + this.state.year + "/" + this.state.month + "/" + this.props.day}>
+                            <img className="addEventButton" src="/load_icon/plus.svg"
+                                alt="+" onClick={this.createEvent} />
+                        </Link>
+                    }
                 </div>
             </div>
         );

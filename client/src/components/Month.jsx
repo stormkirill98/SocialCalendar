@@ -13,8 +13,30 @@ export default class Month extends React.Component {
             firstDayOfWeek: firstWeekDay(props.year, props.month),
             month: props.month,
             year: props.year,
-            events: {}
+            events: {},
+            userName: "",
+            userID: null
         };
+
+        fetch("/user").then((response) => {
+            if (response.ok) {
+                response.json().then((data) => {
+                    if (this.props.user == data.id) {
+                        this.setState({
+                            userID: null,
+                            userName: "",
+                        });
+                    }
+                    else
+                        this.setState({
+                            userID: data.id,
+                            userName: data.name,
+                        });
+                })
+            } else {
+                console.log(response.statusText);
+            }
+        });
 
         this.updateMonthAndYear = this.updateMonthAndYear.bind(this);
         this.updateEvents = this.updateEvents.bind(this);
@@ -97,41 +119,44 @@ export default class Month extends React.Component {
 
     render() {
         const days = [], firstDay = this.state.firstDayOfWeek, countDays = this.state.countDays,
-            countDaysPrevMonth = this.state.month === 1 ? monthDays(this.state.year-1, 12)
-                                                      :monthDays(this.state.year, this.state.month - 1);
+            countDaysPrevMonth = this.state.month === 1 ? monthDays(this.state.year - 1, 12)
+                : monthDays(this.state.year, this.state.month - 1);
         const months = ["", "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
         //названия дней недели
         for (let i = 0; i < 7; i++) {
-            days.push(<div className="day-name" key={100 + i}/>);
+            days.push(<div className="day-name" key={100 + i} />);
         }
 
         //предыдущий месяц
         for (let i = 0; i < firstDay; i++) {
             days.push(<Day key={-i} hidden={true} day={countDaysPrevMonth - firstDay + 1 + i}
-                           events={null} month={this.state.month - 1}
-                           year={this.state.month === 1 ? this.state.year - 1 : this.state.year}/>)
+                events={null} month={this.state.month - 1}
+                year={this.state.month === 1 ? this.state.year - 1 : this.state.year} />)
         }
 
         //этот месяц
         for (let i = 0; i < countDays; i++) {
             days.push(<Day key={i + 1} hidden={false} day={i + 1}
-                           events={this.state.events[i + 1]}
-                           updateEventListData={this.props.updateEventListData} month={this.state.month}
-                           year={this.state.year}
-                           ref={ref => this.day[i + 1] = ref}/>)
+                events={this.state.events[i + 1]}
+                updateEventListData={this.props.updateEventListData} month={this.state.month}
+                year={this.state.year}
+                ref={ref => this.day[i + 1] = ref} />)
         }
 
         //след месяц
         for (let i = 0; i < 42 - countDays - firstDay; i++) {
             days.push(<Day key={countDays + i} hidden={true} day={i + 1} events={null} month={this.state.month}
-                           year={this.state.month === 12 ? this.state.year + 1 : this.state.year}/>)
+                year={this.state.month === 12 ? this.state.year + 1 : this.state.year} />)
         }
 
         return (
             <div className="flex-col">
                 <div className="wrap-year-month">
+                    <div className="other-user-name month-year">
+                        Календарь пользователя {this.state.userName}
+                    </div>
                     <div className="month-year">
                         <button className="arrow-button" onClick={() => this.prevMonth()}>{'<'}</button>
                         {months[this.state.month]}

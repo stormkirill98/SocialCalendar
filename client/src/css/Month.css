@@ -21,3 +21,10 @@
     padding: 0;
     margin-left: 10px;
 }
+
+.other-user-name{
+    display: none;
+    height: 35px;
+    position: absolute;
+    left: 10px;
+}
