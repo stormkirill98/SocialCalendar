@@ -22,9 +22,10 @@ export default class Calendar extends React.Component {
     render() {
         return (
             <div className="page-container">
-                <Header/>
+                <Header />
                 <div className="flex-row calendar-main">
-                    <Month year={this.state.curYear} month={this.state.curMonth} updateEventListData={this.updateEventListData}/>
+                    <Month year={this.state.curYear} month={this.state.curMonth} updateEventListData={this.updateEventListData}
+                        user={this.props.match.params.id} />
                     <EventList events={this.state.eventsInEventsList} />
                 </div>
             </div>
