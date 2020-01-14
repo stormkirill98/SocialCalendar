@@ -14,16 +14,14 @@ export default class FriendsMainBox extends React.Component {
             users: []
         };
         
+        this.getUsers = this.getUsers.bind(this);
+        this.getFriends = this.getFriends.bind(this);
+        this.removeFriend = this.removeFriend.bind(this);
         this.searchUsers = this.searchUsers.bind(this);
         this.sendInvite = this.sendInvite.bind(this);
-        this.removeFriend = this.removeFriend.bind(this);
-        this.getFriends = this.getFriends.bind(this);
-        this.getUsers = this.getUsers.bind(this);
 
-        this.state.inputValue = "Доб";
-
-        this.getFriends()
-        this.getUsers(this.state.inputValue)
+        this.getFriends();
+        this.getUsers();
     }
 
     getUsers(search) {
@@ -55,22 +53,21 @@ export default class FriendsMainBox extends React.Component {
     }
 
     sendInvite(id) {
-        const users = this.state.users;
-        this.setState({users: users.filter(user => user._id !== id)});
+        // const users = this.state.users;
+        // this.setState({users: users.filter(user => user._id !== id)});
     }
 
     removeFriend(id) {
-        const friends = this.state.friends;
-        this.setState({friends: friends.filter(friend => friend.id.$oid != id)});
+        // const friends = this.state.friends;
+        // this.setState({friends: friends.filter(friend => friend.id.$oid != id)});
+        this.getFriends();
     }
 
     searchUsers() {
-        this.setState({inputValue: "Кир"});
+        this.getUsers(document.getElementById("search").value);
     }
 
     render() {
-        // console.log("friends", this.state.friends);
-        // console.log("users", this.state.users);
         console.log(this.state);
         const listItems = this.state.friends.map(
             (val) => <Friend friend={val} key={val.id} removeFriend={this.removeFriend}/>);
