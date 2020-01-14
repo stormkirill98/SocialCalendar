@@ -66,17 +66,14 @@ export default class Month extends React.Component {
         this.getEvents(month, year);
     }
 
-    updateEvents(events) {
+    updateEvents(data) {
+        console.log(data);
         this.setState({
-            countDays: this.state.countDays,
-            firstDayOfWeek: this.state.firstDayOfWeek,
-            month: this.state.month,
-            year: this.state.year,
-            events: events
+            events: data
         });
 
         if (this.day) {
-            for (const [key, value] of Object.entries(events)) {
+            for (const [key, value] of Object.entries(data)) {
                 this.day[key].updateEvents(value);
             }
         }

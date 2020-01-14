@@ -13,12 +13,11 @@ export default class CreateEvent extends React.Component {
             type: "single",
             event_name: "Event_name",
             is_private: "true",
-            datetime: "17.1.2020 15:30",
-            // new Date(this.props.match.params.year, this.props.match.params.month,
-            //     this.props.match.params.day, 24, 0, 30, 500),//час мин сек мс
+            datetime: "" + this.props.match.params.day + "." + this.props.match.params.month + "." +
+            this.props.match.params.year + " 15:30",
             address: "Советский Союз",
             description: "Desciption",
-            icon: "/load_icon/bell.svg"
+            icon: "https://social-calendar-tensor.herokuapp.com/load_icon/bell.svg"
         };
         this.privateChange = this.privateChange.bind(this);
         this.typeChange = this.typeChange.bind(this);
@@ -77,8 +76,8 @@ export default class CreateEvent extends React.Component {
         this.setState({ description: event.target.value });
     }
 
-    changeSelectedIcon(newicon){
-        this.setState({icon: "/load_icon/" + newicon});
+    changeSelectedIcon(newicon) {
+        this.setState({ icon: "https://social-calendar-tensor.herokuapp.com/load_icon/" + newicon });
         console.log("сработала смена иконки " + this.state.icon);
     }
 
@@ -88,7 +87,7 @@ export default class CreateEvent extends React.Component {
                 <Header />
                 <main className="create-event">
                     <div className="create-event-grid">
-                        <IconsGrid changeIcon={this.changeSelectedIcon}/>
+                        <IconsGrid changeIcon={this.changeSelectedIcon} />
                         <h4 className="create-event-title left-column-title">Название</h4>
                         <input className="create-event-title-input create-event-input" type="text"
                             value={this.state.event_name} onChange={this.nameChange} />

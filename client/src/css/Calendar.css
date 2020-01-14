@@ -14,7 +14,7 @@
 }
 
 .flex-col{
-    width: 70%;
+    width: 100%;
     display: flexbox;
     flex-direction: column;
 }
@@ -60,6 +60,10 @@
     font-size: 26px;
     box-shadow: 0 0 8px rgba(0,0,0,0.5);
     opacity: 0.98;
+}
+
+.events-area{
+    display: none;
 }
 
 .day-name:nth-child(1)::after{ content: "Понедельник" }

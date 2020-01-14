@@ -29,7 +29,11 @@
 .mini-events{
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+.mimi-events div{
+    margin-right: 5px;
 }
 
 .addEventButton{

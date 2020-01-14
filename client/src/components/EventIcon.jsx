@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/EventIcon.css"
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class EventIcon extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export default class EventIcon extends React.Component {
             name: props.name,
             icon: props.icon,
             time: props.time
-        }
+        };
     }
 
     toggleInfo(hidden) {
@@ -19,10 +19,13 @@ export default class EventIcon extends React.Component {
     }
 
     render() {
-        let eventId  = typeof this.state.eventID === "object" 
-                    ? this.state.eventID["$oid"] 
-                    : this.state.eventID;
-        
+        let eventId = typeof this.state.eventID === "object"
+            ? this.state.eventID["$oid"]
+            : this.state.eventID;
+        // let eventIcon = typeof this.state.icon === "object"
+        //     ? this.state.icon["$oid"]
+        //     : this.state.icon;
+
         return (
             <div>
                 {this.state.icon ?

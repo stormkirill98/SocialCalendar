@@ -13,7 +13,7 @@
 }
 
 .event-info {
-    padding: 10px 0 ;
+    padding: 10px;
 
     position: absolute;
     width: max-content;
@@ -23,5 +23,8 @@
     color: black;
 
     font-size: 14pt;
-    z-index: 999;
+    z-index: 999;  /*эта хрень не робит */
+    margin-top: -120px;
+    margin-left: -300px;
+    max-width: 300px;
 }
