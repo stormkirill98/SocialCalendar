@@ -116,10 +116,22 @@
     /* align-self: center; */
     background: #3d3d3d;
     padding: 20px;
+    border-radius: 5px;
 }
 
 .invite-friends-title{
-    margin-bottom: 10px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.invite-friends-close-btn{
+    align-self: flex-end;
+}
+
+.invite-friends-flex-row{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 

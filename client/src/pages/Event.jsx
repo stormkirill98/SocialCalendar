@@ -62,14 +62,16 @@ export default class Event extends React.Component {
                 response.json().then((data) => {
                     console.log(data);
                     this.setState({
-                        MyFriends: data
+                        myFriends: data
                     });
                 })
             } else {
                 console.log(response.statusText);
             }
         });
+        document.getElementById("invite-friends").style.display = 'flex';
     }
+
 
     render() {
         if (this.state.access && this.state.members) {
@@ -111,15 +113,23 @@ export default class Event extends React.Component {
                         </div>
                     </main>
 
-                    <div id="invite-friends" className="invite-friends-shadow">
+                    <div id="invite-friends" className="invite-friends-shadow" style={{ display: 'none' }}>
                         <div className="invite-friends-window">
                             <h4 className="invite-friends-title">Пригласить друзей</h4>
                             <div className="friends-box">
                                 {listFriends}
                             </div>
+                            <div className="invite-friends-flex-row">
+                                <Button color="primary" className="invite-friends-close-btn" variant="contained"
+                                    onClick={() => { document.getElementById("invite-friends").style.display = 'none' }} >
+                                    Закрыть
+                            </Button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
             );
         } else {
             return (

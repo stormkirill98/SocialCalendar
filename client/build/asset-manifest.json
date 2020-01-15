@@ -1,31 +1,18 @@
 {
   "files": {
-<<<<<<< HEAD
-    "main.css": "/static/css/main.7e32c960.chunk.css",
-    "main.js": "/static/js/main.34e3e5b7.chunk.js",
-    "main.js.map": "/static/js/main.34e3e5b7.chunk.js.map",
+    "main.css": "/static/css/main.b9cbfa0d.chunk.css",
+    "main.js": "/static/js/main.a52c43d7.chunk.js",
+    "main.js.map": "/static/js/main.a52c43d7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.47e08d05.js",
     "runtime-main.js.map": "/static/js/runtime-main.47e08d05.js.map",
     "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.146004a6.chunk.js": "/static/js/2.146004a6.chunk.js",
-    "static/js/2.146004a6.chunk.js.map": "/static/js/2.146004a6.chunk.js.map",
+    "static/js/2.c4008489.chunk.js": "/static/js/2.c4008489.chunk.js",
+    "static/js/2.c4008489.chunk.js.map": "/static/js/2.c4008489.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.8f66012942ff6e6b92fecd7278a9d07e.js": "/precache-manifest.8f66012942ff6e6b92fecd7278a9d07e.js",
-=======
-    "main.css": "/static/css/main.a8554621.chunk.css",
-    "main.js": "/static/js/main.4951a7d6.chunk.js",
-    "main.js.map": "/static/js/main.4951a7d6.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.47e08d05.js",
-    "runtime-main.js.map": "/static/js/runtime-main.47e08d05.js.map",
-    "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.b744d357.chunk.js": "/static/js/2.b744d357.chunk.js",
-    "static/js/2.b744d357.chunk.js.map": "/static/js/2.b744d357.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.e66a6fe66d7b8b7ba16497722c58336a.js": "/precache-manifest.e66a6fe66d7b8b7ba16497722c58336a.js",
->>>>>>> b0ef21e6548e641ec781baea03d50d1f92b85a67
+    "precache-manifest.2809f4addc8e68ffe78b72c32abd8589.js": "/precache-manifest.2809f4addc8e68ffe78b72c32abd8589.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
-    "static/css/main.7e32c960.chunk.css.map": "/static/css/main.7e32c960.chunk.css.map",
+    "static/css/main.b9cbfa0d.chunk.css.map": "/static/css/main.b9cbfa0d.chunk.css.map",
     "static/media/Login.css": "/static/media/Algerian.b60bb3c6.TTF",
     "static/media/Calendar.css": "/static/media/Auth-background.d81bcfdc.jpg",
     "static/media/w512h5121371227427events.png": "/static/media/w512h5121371227427events.c6e75c47.png"
@@ -33,14 +20,8 @@
   "entrypoints": [
     "static/js/runtime-main.47e08d05.js",
     "static/css/2.17e5ed98.chunk.css",
-<<<<<<< HEAD
-    "static/js/2.146004a6.chunk.js",
-    "static/css/main.7e32c960.chunk.css",
-    "static/js/main.34e3e5b7.chunk.js"
-=======
-    "static/js/2.b744d357.chunk.js",
-    "static/css/main.a8554621.chunk.css",
-    "static/js/main.4951a7d6.chunk.js"
->>>>>>> b0ef21e6548e641ec781baea03d50d1f92b85a67
+    "static/js/2.c4008489.chunk.js",
+    "static/css/main.b9cbfa0d.chunk.css",
+    "static/js/main.a52c43d7.chunk.js"
   ]
 }
