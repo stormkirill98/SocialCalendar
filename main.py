@@ -219,7 +219,7 @@ def invite():
         :arg type - to friends or to group event
         :arg receiver_id - who receive this invite
         :arg event_id - optional is type is friend"""
-        received_json = request.get_json()
+        received_json = request.get_json(force=True)
         return user_utils.send_invite(received_json, current_user)
 
     if request.method == 'DELETE':
