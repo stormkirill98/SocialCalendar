@@ -89,7 +89,7 @@ export default class Month extends React.Component {
     }
 
     updateEvents(data) {
-        console.log(data);
+        // console.log(data);
         this.setState({
             events: data
         });

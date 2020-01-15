@@ -3,6 +3,9 @@ import "../css/EventPage.css";
 import Header from "../components/Header"
 import EventMember from "../components/EventMember"
 import EventAvatar from "../img/w512h5121371227427events.png"
+import Button from "@material-ui/core/Button";
+import AddIcon from '@material-ui/icons/Add';
+import FriendForEvent from "../components/FriendForEvent"
 
 export default class Event extends React.Component {
     constructor(props) {
@@ -35,40 +38,68 @@ export default class Event extends React.Component {
                         datetime: data.datetime,
                         address: data.address,
                         chatID: data.chat_id,
-                        members: data.member_id_list
+                        members: data.member_id_list,
+                        myFriends: []
                         // members: typeof data.member_id_list === "object"
                         //     ? [data.member_id_list["$oid"]]
                         //     : data.member_id_list
                     });
                 });
 
-                
+
             } else {
                 console.log(response.statusText);
                 this.state.access = false;
             }
         });
+        this.inviteFriends = this.inviteFriends.bind(this);
     }
+
+
+    inviteFriends() {
+        fetch("/friends").then((response) => {
+            if (response.ok) {
+                response.json().then((data) => {
+                    console.log(data);
+                    this.setState({
+                        myFriends: data
+                    });
+                })
+            } else {
+                console.log(response.statusText);
+            }
+        });
+        document.getElementById("invite-friends").style.display = 'flex';
+    }
+
 
     render() {
         if (this.state.access && this.state.members) {
             console.log(this.state.members);
-            const listItems = this.state.members.map((val) => <EventMember key={val} id={val}/>);
-
+            const listItems = this.state.members.map((val) => <EventMember key={val} id={val} />);
+            let listFriends;
+            if (this.state.myFriends)
+                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} />);
             return (
                 <div className="page-container-event">
-                    <Header/>
+                    <Header />
                     <main className="event">
                         <div className="event-box">
                             <div className="event-img-wrap event-page-wrap">
-                                <img className="event-img" src={this.state.eventAvatarUrl} alt="Аватарка"/>
+                                <img className="event-img" src={this.state.eventAvatarUrl} alt="Аватарка" />
                             </div>
                             <div className="event-title-descr event-page-wrap">
                                 <h3 className="event-title">{this.state.eventTitle}</h3>
                                 <div className="event-short-descr">{this.state.eventShortDescr}</div>
                             </div>
                             <div className="event-members event-page-wrap">
-                                <h4 className="members-title">Участники</h4>
+                                <div className="event-members-top">
+                                    <h4 className="members-title">Участники</h4>
+                                    <Button color="primary" className="settings-btn" variant="contained"
+                                        onClick={this.inviteFriends}>
+                                        <AddIcon fontSize="small" />
+                                    </Button>
+                                </div>
                                 <div className="members-list">{listItems}</div>
                             </div>
                             <div className="event-body event-page-wrap">
@@ -78,15 +109,32 @@ export default class Event extends React.Component {
                         </div>
                         <div className="chat-main-box">
                             <h4 className="event-chat">Чат</h4>
-                            <div className="chat-box"/>
+                            <div className="chat-box" />
                         </div>
                     </main>
+
+                    <div id="invite-friends" className="invite-friends-shadow" style={{ display: 'none' }}>
+                        <div className="invite-friends-window">
+                            <h4 className="invite-friends-title">Пригласить друзей</h4>
+                            <div className="friends-box">
+                                {listFriends}
+                            </div>
+                            <div className="invite-friends-flex-row">
+                                <Button color="primary" className="invite-friends-close-btn" variant="contained"
+                                    onClick={() => { document.getElementById("invite-friends").style.display = 'none' }} >
+                                    Закрыть
+                            </Button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
             );
         } else {
             return (
                 <div className="no-access">
-                    Событие недоступно для вас
+                    Событие не существует<br />/недоступно для вас
                 </div>
             );
         }
