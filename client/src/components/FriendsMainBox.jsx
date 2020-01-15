@@ -34,6 +34,9 @@ export default class FriendsMainBox extends React.Component {
                 })
             } else {
                 console.log(response.statusText);
+                this.setState({
+                    users: []
+                });
             }
         });
     }
@@ -58,9 +61,8 @@ export default class FriendsMainBox extends React.Component {
     }
 
     removeFriend(id) {
-        // const friends = this.state.friends;
-        // this.setState({friends: friends.filter(friend => friend.id.$oid != id)});
-        this.getFriends();
+        const friends = this.state.friends;
+        this.setState({friends: friends.filter(friend => friend.id.$oid != id)});
     }
 
     searchUsers() {

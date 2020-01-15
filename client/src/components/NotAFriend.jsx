@@ -16,7 +16,7 @@ export default class NotAFriend extends React.Component {
         };
     }
 
-    sendInvite(id) {
+    invite(id) {
         var bodyJSON = JSON.stringify({ "type": "friend", "receiver_id": id.$oid })
         fetch("/invite",
             { method: 'POST',
@@ -30,6 +30,7 @@ export default class NotAFriend extends React.Component {
                     console.log(response.statusText);
                 }
         });
+        this.sendInvite(id);
     }
 
     render() {
@@ -46,7 +47,7 @@ export default class NotAFriend extends React.Component {
                         <Button color="primary" className="settings-btn" variant="contained">
                             <ChatIcon fontSize="small"/>
                         </Button>
-                        <Button color="primary" className="settings-btn" variant="contained" onClick={() => this.sendInvite(user._id)}>
+                        <Button color="primary" className="settings-btn" variant="contained" onClick={() => this.invite(user._id)}>
                             <PersonAddIcon fontSize="small"/>
                         </Button>
                     </div>

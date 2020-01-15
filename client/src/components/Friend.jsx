@@ -28,6 +28,7 @@ export default class Friend extends React.Component {
                     console.log(response.statusText);
                     }
             });
+        this.removeFriend(id);
     }
 
     render() {
