@@ -95,7 +95,7 @@ export default class Event extends React.Component {
                             <div className="event-members event-page-wrap">
                                 <div className="event-members-top">
                                     <h4 className="members-title">Участники</h4>
-                                    <Button color="primary" className="settings-btn" variant="contained"
+                                    <Button color="primary" className="event-members-top-btn" variant="contained"
                                         onClick={this.inviteFriends}>
                                         <AddIcon fontSize="small" />
                                     </Button>
@@ -107,7 +107,7 @@ export default class Event extends React.Component {
                                 <div className="event-full-descr">{this.state.eventFullDesr}</div>
                             </div>
                         </div>
-                        <div className="chat-main-box">
+                        <div className="chat-main-box" style={{ display: 'none' }}>
                             <h4 className="event-chat">Чат</h4>
                             <div className="chat-box" />
                         </div>
