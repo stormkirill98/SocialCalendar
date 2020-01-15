@@ -1,6 +1,7 @@
 import React from "react";
 import Notification from "./Notification";
 import "../css/NotificationCenter.css"
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import NotificationsNoneIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Button from "@material-ui/core/Button";
 
@@ -56,6 +57,7 @@ export default class NotificationCenter extends React.Component {
                         onClick={this.toggle}>
                     {this.state.invites.length === 0 ? "" : this.state.invites.length}
                     <NotificationsNoneIcon size="small"/>
+                    <NotificationsIcon fontSize="small" />
                 </Button>
 
                 <div ref={ref => this.widget = ref} className="hide">
