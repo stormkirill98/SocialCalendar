@@ -25,7 +25,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color:black;
+    color:rgb(245, 61, 61);
 }
 
 .event{
@@ -40,10 +40,10 @@
 .event-box,
 .chat-main-box{
     display: grid;
-    background: rgba(139, 255, 139, 0.5);
+    /* background: rgba(139, 255, 139, 0.5); */
     padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 0 8px rgba(130,255,130,0.5); 
+    /* border-radius: 4px; */
+    /* box-shadow: 0 0 8px rgba(130,255,130,0.5);  */
 }
 
 .event-box{
@@ -75,13 +75,51 @@
     border-radius: 5px;
 }
 
+.members-title,
+.event-body-title{
+    height: auto;
+}
+
+.event-members-top{
+    display: flex;
+    align-items: center;
+}
+
 .event-page-wrap{
     background: rgba(224, 224, 224, 0.5);
     /* border: 4px solid rgba(224, 224, 224, 0.5); */
     border-radius: 4px;
-    color:black;
+    color: black;
     box-shadow: 0 0 2px rgba(0,0,0,0.5); 
     padding: 15px;
+}
+
+.invite-friends-shadow{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.invite-friends-window{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    color: #fff0f0;
+    width: 50%;
+    /* display: flex; */
+    /* align-self: center; */
+    background: #3d3d3d;
+    padding: 20px;
+}
+
+.invite-friends-title{
+    margin-bottom: 10px;
 }
 
 

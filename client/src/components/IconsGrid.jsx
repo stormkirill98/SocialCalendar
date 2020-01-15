@@ -15,7 +15,7 @@ export default class IconsGrid extends React.Component {
         this.props.changeIcon(select);
 
         if (this.state.selectedElement)
-            this.state.selectedElement.style.border = '0px'
+            this.state.selectedElement.style.border = '5px solid rgba(0,0,0,0)'
 
         let el = document.getElementById(select);
         this.setState({
