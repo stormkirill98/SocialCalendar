@@ -19,6 +19,8 @@ def get_events(event_ids):
     if event_ids is None or not isinstance(event_ids, list):
         return []
 
+    event_ids = set(event_ids)
+
     events = []
     for event_id in event_ids:
         event = get_event(event_id)
