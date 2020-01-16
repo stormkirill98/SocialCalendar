@@ -33,7 +33,9 @@ export default class FriendForEvent extends React.Component {
                     console.log("ответ /invite POST: " + data);
                 })
             } else {
-                console.log(response.statusText);
+                if (response.status == 403) {
+                    this.props.showNoRulesWindow();
+                }
             }
         });
     }

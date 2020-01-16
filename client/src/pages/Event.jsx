@@ -55,6 +55,7 @@ export default class Event extends React.Component {
         });
         this.inviteFriends = this.inviteFriends.bind(this);
         this.deleteEvent = this.deleteEvent.bind(this);
+        this.showNoRulesWindow = this.showNoRulesWindow.bind(this);
     }
 
 
@@ -77,17 +78,20 @@ export default class Event extends React.Component {
         fetch(`/event?id=${this.state.eventID}`, {
             method: 'DELETE'
         }).then((response) => {
-            if (response.ok) { } else {
+            if (response.ok) { 
+                document.getElementById("confirm-delete").style.display = 'none';
+                window.location.replace("https://127.0.0.1:5000/");
+            } else {
                 if (response.status == 403) {
                     document.getElementById("confirm-delete").style.display = 'none';
                     document.getElementById("no-rules").style.display = 'flex';
                 }
             }
-
         });
-        document.getElementById("confirm-delete").style.display = 'none';
+    }
 
-        // window.location.replace("https://127.0.0.1:5000/");
+    showNoRulesWindow() {
+        document.getElementById("no-rules").style.display = 'flex';
     }
 
     render() {
@@ -96,10 +100,12 @@ export default class Event extends React.Component {
             let listFriends, listItems;
 
             if (this.state.members)
-                listItems = this.state.members.map((val) => <EventMember key={val} id={val} />);
+                listItems = this.state.members.map((val) =>
+                    <EventMember key={val} id={val} />);
 
             if (this.state.myFriends)
-                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} eventID={this.state.eventID} />);
+                listFriends = this.state.myFriends.map((val) =>
+                    <FriendForEvent key={val} friend={val} eventID={this.state.eventID} showNoRulesWindow={this.showNoRulesWindow}/>);
 
             return (
                 <div className="page-container-event">
@@ -185,12 +191,12 @@ export default class Event extends React.Component {
 
                     <div id="no-rules" className="confirm-delete" style={{ display: 'none' }}>
                         <div className="confirm-delete-window">
-                            <h3>Вы увернны, что хотите удалить данное событие безвозвратно?</h3>
+                            <h3>У вас нет прав для выполнения данного действия</h3>
                             <div className="confirm-delete-btns">
 
                                 <Button color="primary" className="confirm-delete-no" variant="contained"
                                     onClick={() => { document.getElementById("no-rules").style.display = 'none' }} >
-                                    Нет
+                                    Закрыть
                                 </Button>
                             </div>
                         </div>
