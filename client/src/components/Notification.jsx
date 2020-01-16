@@ -15,6 +15,7 @@ export default class NotificationList extends React.Component {
         this.state = {
             invite: props.invite
         };
+        
     }
 
     accept() {
@@ -37,6 +38,7 @@ export default class NotificationList extends React.Component {
     }
 
     render() {
+        console.log(this.state.invite);
         const invite = this.state.invite;
         let content;
         if (invite.type === "friend") {

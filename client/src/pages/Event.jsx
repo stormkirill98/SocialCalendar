@@ -92,7 +92,7 @@ export default class Event extends React.Component {
             const listItems = this.state.members.map((val) => <EventMember key={val} id={val} />);
             let listFriends;
             if (this.state.myFriends)
-                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} />);
+                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} eventID={this.state.eventID}/>);
             return (
                 <div className="page-container-event">
                     <Header />
