@@ -44,9 +44,9 @@ export default class NotAFriend extends React.Component {
                     <div className="friend-name">{user.name}</div>
                     </div>
                     <div className="wrap">
-                        <Button color="primary" className="settings-btn" variant="contained">
+                        {/* <Button color="primary" className="settings-btn" variant="contained">
                             <ChatIcon fontSize="small"/>
-                        </Button>
+                        </Button> */}
                         <Button color="primary" className="settings-btn" variant="contained" onClick={() => this.invite(user._id)}>
                             <PersonAddIcon fontSize="small"/>
                         </Button>

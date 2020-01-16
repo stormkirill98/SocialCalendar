@@ -15,10 +15,10 @@ export default class Routing extends React.Component {
                     <Route path="/Calendar/:id" component={Calendar} />
                     <Route path="/Calendar" component={Calendar} />
                     <Route path="/Event/:id" component={Event} />
-                    <Route path="/Event" component={Event} />{/* Это потом убрать */}
+                    <Route path="/Event" component={Event} />
                     <Route path="/CreateEvent/:year/:month/:day" component={CreateEvent} />
                     <Route path="/Dialogues/:id" component={Dialogues} /> 
-                    <Route path="/Dialogues" component={Dialogues} />{/* и это */}
+                    <Route path="/Dialogues" component={Dialogues} />
                     <Route path="/Friends" component={Friends} />
 
                     {/* Новые страницы впихивать перед этим комментом   */}
