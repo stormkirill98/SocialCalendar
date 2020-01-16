@@ -79,11 +79,17 @@ export default class Event extends React.Component {
             method: 'DELETE'
         }).then((response) => {
             if (response.ok) { } else {
-                console.log(response.statusText);
+                if(responce.status == 403)
+                {
+                    document.getElementById("confirm-delete").style.display = 'none';
+                    document.getElementById("no-rules").style.display = 'flex';
+                }
             }
+
         });
         document.getElementById("confirm-delete").style.display = 'none';
-        window.location.replace("https://127.0.0.1:5000/");
+        
+        // window.location.replace("https://127.0.0.1:5000/");
     }
 
     render() {
@@ -163,6 +169,22 @@ export default class Event extends React.Component {
                         </div>
                     </div>
 
+                    <div id="no-rules" className="confirm-delete" style={{ display: 'none' }}>
+                        <div className="confirm-delete-window">
+                            <h3>Вы увернны, что хотите удалить данное событие безвозвратно?</h3>
+                            <div className="confirm-delete-btns">
+                                <Button color="primary" className="confirm-delete-yes" variant="contained"
+                                    onClick={this.deleteEvent} >
+                                    Да
+                                </Button>
+                                <Button color="primary" className="confirm-delete-no" variant="contained"
+                                    onClick={() => { document.getElementById("confirm-delete").style.display = 'none' }} >
+                                    Нет
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
 
             );
