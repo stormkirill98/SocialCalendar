@@ -56,9 +56,9 @@ export default class Header extends React.Component {
                         <Nav.Link>
                             <Link className="header-link" to="../../../../../Friends">Друзья</Link>
                         </Nav.Link>
-                        <Nav.Link>
+                        {/* <Nav.Link>
                             <Link className="header-link" to="../../../../../Dialogues">Чаты</Link>
-                        </Nav.Link>
+                        </Nav.Link> */}
                     </Nav>
                 </Navbar.Collapse>
 

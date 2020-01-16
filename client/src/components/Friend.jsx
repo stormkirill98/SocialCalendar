@@ -42,9 +42,9 @@ export default class Friend extends React.Component {
                     <div className="friend-name">{friend.name}</div>
                     </div>
                     <div className="wrap">
-                        <Button color="primary" className="settings-btn" variant="contained">
+                        {/* <Button color="primary" className="settings-btn" variant="contained">
                             <ChatIcon fontSize="small"/>
-                        </Button>
+                        </Button> */}
                         <Button color="primary" className="settings-btn" variant="contained" onClick={() => this.deleteFriend(friend.id.$oid)}>
                             <DeleteIcon fontSize="small"/>
                         </Button>
