@@ -109,7 +109,6 @@ export default class Month extends React.Component {
         fetch(`/events?month=${month}&year=${year}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    console.log(data);
                     this.updateEvents(data);
                 })
             } else {

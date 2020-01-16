@@ -6,6 +6,8 @@ import EventAvatar from "../img/w512h5121371227427events.png"
 import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ExitIcon from '@material-ui/icons/ExitToApp';
+import ExitIcon2 from '@material-ui/icons/Map';
 import FriendForEvent from "../components/FriendForEvent"
 
 export default class Event extends React.Component {
@@ -28,7 +30,6 @@ export default class Event extends React.Component {
         fetch(`/event?id=${this.props.match.params.id}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    console.log(data);
                     this.setState({
                         access: true,
                         eventAvatarUrl: data.icon,
@@ -56,6 +57,7 @@ export default class Event extends React.Component {
         this.inviteFriends = this.inviteFriends.bind(this);
         this.deleteEvent = this.deleteEvent.bind(this);
         this.showNoRulesWindow = this.showNoRulesWindow.bind(this);
+        this.leaveEvent = this.leaveEvent.bind(this);
     }
 
 
@@ -78,7 +80,7 @@ export default class Event extends React.Component {
         fetch(`/event?id=${this.state.eventID}`, {
             method: 'DELETE'
         }).then((response) => {
-            if (response.ok) { 
+            if (response.ok) {
                 document.getElementById("confirm-delete").style.display = 'none';
                 window.location.replace("https://127.0.0.1:5000/");
             } else {
@@ -94,6 +96,19 @@ export default class Event extends React.Component {
         document.getElementById("no-rules").style.display = 'flex';
     }
 
+    leaveEvent() {
+        fetch(`/event/group/leave?id=${this.state.eventID}`, {
+            method: 'DELETE'
+        }).then((response) => {
+            if (response.ok) {
+                window.location.replace("https://127.0.0.1:5000/");
+            } else {
+                document.getElementById("no-rules").style.display = 'flex';
+            }
+        });
+    }
+
+
     render() {
         // && this.state.members
         if (this.state.access) {
@@ -105,7 +120,7 @@ export default class Event extends React.Component {
 
             if (this.state.myFriends)
                 listFriends = this.state.myFriends.map((val) =>
-                    <FriendForEvent key={val} friend={val} eventID={this.state.eventID} showNoRulesWindow={this.showNoRulesWindow}/>);
+                    <FriendForEvent key={val} friend={val} eventID={this.state.eventID} showNoRulesWindow={this.showNoRulesWindow} />);
 
             return (
                 <div className="page-container-event">
@@ -118,10 +133,20 @@ export default class Event extends React.Component {
                             <div className="event-title-descr event-page-wrap">
                                 <div className="event-title-and-delete-btn">
                                     <h3 className="event-title">{this.state.eventTitle}</h3>
-                                    <Button className="event-delete-btn"
-                                        onClick={() => { document.getElementById("confirm-delete").style.display = 'flex' }}>
-                                        <DeleteIcon />
-                                    </Button>
+                                    <div>
+                                        <Button className="event-delete-btn"
+                                            onClick={() => { document.getElementById("confirm-delete").style.display = 'flex' }}>
+                                            <DeleteIcon />
+                                        </Button>
+                                        {this.state.members ?
+                                            <Button className="event-delete-btn"
+                                                onClick={this.leaveEvent}>
+                                                <ExitIcon />
+                                            </Button>
+                                            : ""
+                                        }
+                                    </div>
+
                                 </div>
                                 <div className="event-short-descr">{this.state.eventShortDescr}</div>
                             </div>
@@ -144,10 +169,13 @@ export default class Event extends React.Component {
                                     </div>
                                 </>
                                 : <>
-                                    <div id="event-body" className="event-body event-page-wrap" style={{ gridColumn: 'span 2' }}>
-                                        <h4 className="event-body-title">Описание</h4>
-                                        <div className="event-full-descr">{this.state.eventFullDesr}</div>
-                                    </div>
+                                    {this.state.eventFullDesr ?
+                                        <div id="event-body" className="event-body event-page-wrap" style={{ gridColumn: 'span 2' }}>
+                                            <h4 className="event-body-title">Описание</h4>
+                                            <div className="event-full-descr">{this.state.eventFullDesr}</div>
+                                        </div>
+                                        : <></>
+                                    }
                                 </>
                             }
 

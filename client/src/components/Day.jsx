@@ -37,8 +37,8 @@ export default class Day extends React.Component {
             month: 'long',
             day: 'numeric',
             weekday: 'long',
-            hour: 'numeric',
-            minute: 'numeric',
+            // hour: 'numeric',
+            // minute: 'numeric',
         };
 
         if (this.state.events) {
