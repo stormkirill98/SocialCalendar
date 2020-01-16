@@ -147,7 +147,7 @@ export default class Event extends React.Component {
                         </div>
                     </div>
 
-                    <div id="confirm-delete" className="confirm-delete">
+                    <div id="confirm-delete" className="confirm-delete" style={{ display: 'none' }}>
                         <div className="confirm-delete-window">
                             <h3>Вы увернны, что хотите удалить данное событие безвозвратно?</h3>
                             <div className="confirm-delete-btns">
