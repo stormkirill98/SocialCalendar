@@ -41,6 +41,7 @@ def get(single_event_id):
                        json['datetime'],
                        json['address'],
                        json['description'],
+                       json['icon'],
                        json['_id'])
 
 
