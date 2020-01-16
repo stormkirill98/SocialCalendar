@@ -36,26 +36,45 @@ export default class UserCard extends React.Component {
         });
     }
 
+
+
     render() {
         return (
-            <Grid container>
-                <Avatar alt={this.state.userName} size="55" round={true} src={this.state.pictureUrl} />
-                <Grid item className="user-info">
-                    <Card className="user-name">
-                        <Typography className="card-title" color="textSecondary" gutterBottom>
-                            {this.state.userName}
-                        </Typography>
-                    </Card>
-                    <div className="buttons">
-                        <NotificationCenter className="notifications-center" />
+            <>
+                <Grid container>
+                    <Avatar alt={this.state.userName} size="55" round={true} src={this.state.pictureUrl} />
+                    <Grid item className="user-info">
+                        <Card className="user-name">
+                            <Typography className="card-title" color="textSecondary" gutterBottom>
+                                {this.state.userName}
+                            </Typography>
+                        </Card>
+                        <div className="buttons">
+                            <NotificationCenter className="notifications-center" />
 
-                        <Button variant="contained" color="primary" className="settings-btn" size="small"
-                            onClick={this.exit}>
-                            <ExitIcon fontSize="small" />
-                        </Button>
-                    </div>
+                            <Button variant="contained" color="primary" className="settings-btn" size="small"
+                                onClick={() => { document.getElementById("app-exit").style.display = 'flex' }}>
+                                <ExitIcon fontSize="small" />
+                            </Button>
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
+                <div id="app-exit" className="app-exit" style={{ display: 'none' }}>
+                    <div className="confirm-exit-window">
+                        <h3>Вы точно хотите выйти?</h3>
+                        <div className="confirm-delete-btns">
+                            <Button color="primary" className="confirm-delete-yes" variant="contained"
+                                onClick={this.exit} >
+                                Да
+                            </Button>
+                            <Button color="primary" className="confirm-delete-no" variant="contained"
+                                onClick={() => { document.getElementById("app-exit").style.display = 'none' }} >
+                                Нет
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </>
         );
     }
 }
