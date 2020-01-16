@@ -31,6 +31,7 @@ export default class NotificationList extends React.Component {
     }
 
     handleInvite(id, action) {
+        console.log("Зашел в отправить /invite");
         fetch(`/invite?id=${id.$oid}&action=${action}`, {method: 'DELETE'})
             .then((response) => {
                 console.log(response.statusText);
@@ -38,7 +39,6 @@ export default class NotificationList extends React.Component {
     }
 
     render() {
-        console.log(this.state.invite);
         const invite = this.state.invite;
         let content;
         if (invite.type === "friend") {

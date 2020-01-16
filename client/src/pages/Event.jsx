@@ -28,7 +28,7 @@ export default class Event extends React.Component {
         fetch(`/event?id=${this.props.match.params.id}`).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    console.log(data.member_id_list);
+                    console.log(data);
                     this.setState({
                         access: true,
                         eventAvatarUrl: data.icon,
@@ -62,7 +62,6 @@ export default class Event extends React.Component {
         fetch("/friends").then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    console.log(data);
                     this.setState({
                         myFriends: data
                     });
@@ -79,8 +78,7 @@ export default class Event extends React.Component {
             method: 'DELETE'
         }).then((response) => {
             if (response.ok) { } else {
-                if(responce.status == 403)
-                {
+                if (response.status == 403) {
                     document.getElementById("confirm-delete").style.display = 'none';
                     document.getElementById("no-rules").style.display = 'flex';
                 }
@@ -88,17 +86,21 @@ export default class Event extends React.Component {
 
         });
         document.getElementById("confirm-delete").style.display = 'none';
-        
+
         // window.location.replace("https://127.0.0.1:5000/");
     }
 
     render() {
-        if (this.state.access && this.state.members) {
-            console.log(this.state.members);
-            const listItems = this.state.members.map((val) => <EventMember key={val} id={val} />);
-            let listFriends;
+        // && this.state.members
+        if (this.state.access) {
+            let listFriends, listItems;
+
+            if (this.state.members)
+                listItems = this.state.members.map((val) => <EventMember key={val} id={val} />);
+
             if (this.state.myFriends)
-                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} eventID={this.state.eventID}/>);
+                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} eventID={this.state.eventID} />);
+
             return (
                 <div className="page-container-event">
                     <Header />
@@ -117,20 +119,32 @@ export default class Event extends React.Component {
                                 </div>
                                 <div className="event-short-descr">{this.state.eventShortDescr}</div>
                             </div>
-                            <div className="event-members event-page-wrap">
-                                <div className="event-members-top">
-                                    <h4 className="members-title">Участники</h4>
-                                    <Button color="primary" className="event-members-top-btn" variant="contained"
-                                        onClick={this.inviteFriends}>
-                                        <AddIcon fontSize="small" />
-                                    </Button>
-                                </div>
-                                <div className="members-list">{listItems}</div>
-                            </div>
-                            <div className="event-body event-page-wrap">
-                                <h4 className="event-body-title">Описание</h4>
-                                <div className="event-full-descr">{this.state.eventFullDesr}</div>
-                            </div>
+
+                            {this.state.members ?
+                                <>
+                                    <div className="event-members event-page-wrap">
+                                        <div className="event-members-top">
+                                            <h4 className="members-title">Участники</h4>
+                                            <Button color="primary" className="event-members-top-btn" variant="contained"
+                                                onClick={this.inviteFriends}>
+                                                <AddIcon fontSize="small" />
+                                            </Button>
+                                        </div>
+                                        <div className="members-list">{listItems}</div>
+                                    </div>
+                                    <div id="event-body" className="event-body event-page-wrap" >
+                                        <h4 className="event-body-title">Описание</h4>
+                                        <div className="event-full-descr">{this.state.eventFullDesr}</div>
+                                    </div>
+                                </>
+                                : <>
+                                    <div id="event-body" className="event-body event-page-wrap" style={{ gridColumn: 'span 2' }}>
+                                        <h4 className="event-body-title">Описание</h4>
+                                        <div className="event-full-descr">{this.state.eventFullDesr}</div>
+                                    </div>
+                                </>
+                            }
+
                         </div>
                         <div className="chat-main-box" style={{ display: 'none' }}>
                             <h4 className="event-chat">Чат</h4>
@@ -173,18 +187,15 @@ export default class Event extends React.Component {
                         <div className="confirm-delete-window">
                             <h3>Вы увернны, что хотите удалить данное событие безвозвратно?</h3>
                             <div className="confirm-delete-btns">
-                                <Button color="primary" className="confirm-delete-yes" variant="contained"
-                                    onClick={this.deleteEvent} >
-                                    Да
-                                </Button>
+
                                 <Button color="primary" className="confirm-delete-no" variant="contained"
-                                    onClick={() => { document.getElementById("confirm-delete").style.display = 'none' }} >
+                                    onClick={() => { document.getElementById("no-rules").style.display = 'none' }} >
                                     Нет
                                 </Button>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
             );
