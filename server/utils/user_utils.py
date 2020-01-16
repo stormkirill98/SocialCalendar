@@ -17,6 +17,8 @@ from server.utils.events import group_event_utils, event_member_utils
 
 
 def send_invite(request_json, user: User):
+    # TODO check that this invite not exist
+
     if request_json is None:
         return abort(400)
 

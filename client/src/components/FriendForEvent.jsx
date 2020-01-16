@@ -17,8 +17,11 @@ export default class FriendForEvent extends React.Component {
     sendInvite() {
         var bodyJSON = JSON.stringify({
             "type": "event",
-            "receiver_id": this.state.friend.id
+            "receiver_id": this.state.friend.id.$oid,
+            "event_id": this.props.eventID
         })
+
+        console.log(bodyJSON);
         fetch("https://127.0.0.1:5000/invite", {
             method: 'POST',
             headers: {

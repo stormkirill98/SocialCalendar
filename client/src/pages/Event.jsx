@@ -5,6 +5,7 @@ import EventMember from "../components/EventMember"
 import EventAvatar from "../img/w512h5121371227427events.png"
 import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import FriendForEvent from "../components/FriendForEvent"
 
 export default class Event extends React.Component {
@@ -53,6 +54,7 @@ export default class Event extends React.Component {
             }
         });
         this.inviteFriends = this.inviteFriends.bind(this);
+        this.deleteEvent = this.deleteEvent.bind(this);
     }
 
 
@@ -72,6 +74,23 @@ export default class Event extends React.Component {
         document.getElementById("invite-friends").style.display = 'flex';
     }
 
+    deleteEvent() {
+        fetch(`/event?id=${this.state.eventID}`, {
+            method: 'DELETE'
+        }).then((response) => {
+            if (response.ok) { } else {
+                if(responce.status == 403)
+                {
+                    document.getElementById("confirm-delete").style.display = 'none';
+                    document.getElementById("no-rules").style.display = 'flex';
+                }
+            }
+
+        });
+        document.getElementById("confirm-delete").style.display = 'none';
+        
+        // window.location.replace("https://127.0.0.1:5000/");
+    }
 
     render() {
         if (this.state.access && this.state.members) {
@@ -79,7 +98,7 @@ export default class Event extends React.Component {
             const listItems = this.state.members.map((val) => <EventMember key={val} id={val} />);
             let listFriends;
             if (this.state.myFriends)
-                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} />);
+                listFriends = this.state.myFriends.map((val) => <FriendForEvent key={val} friend={val} eventID={this.state.eventID}/>);
             return (
                 <div className="page-container-event">
                     <Header />
@@ -89,13 +108,19 @@ export default class Event extends React.Component {
                                 <img className="event-img" src={this.state.eventAvatarUrl} alt="Аватарка" />
                             </div>
                             <div className="event-title-descr event-page-wrap">
-                                <h3 className="event-title">{this.state.eventTitle}</h3>
+                                <div className="event-title-and-delete-btn">
+                                    <h3 className="event-title">{this.state.eventTitle}</h3>
+                                    <Button className="event-delete-btn"
+                                        onClick={() => { document.getElementById("confirm-delete").style.display = 'flex' }}>
+                                        <DeleteIcon />
+                                    </Button>
+                                </div>
                                 <div className="event-short-descr">{this.state.eventShortDescr}</div>
                             </div>
                             <div className="event-members event-page-wrap">
                                 <div className="event-members-top">
                                     <h4 className="members-title">Участники</h4>
-                                    <Button color="primary" className="settings-btn" variant="contained"
+                                    <Button color="primary" className="event-members-top-btn" variant="contained"
                                         onClick={this.inviteFriends}>
                                         <AddIcon fontSize="small" />
                                     </Button>
@@ -107,7 +132,7 @@ export default class Event extends React.Component {
                                 <div className="event-full-descr">{this.state.eventFullDesr}</div>
                             </div>
                         </div>
-                        <div className="chat-main-box">
+                        <div className="chat-main-box" style={{ display: 'none' }}>
                             <h4 className="event-chat">Чат</h4>
                             <div className="chat-box" />
                         </div>
@@ -123,11 +148,43 @@ export default class Event extends React.Component {
                                 <Button color="primary" className="invite-friends-close-btn" variant="contained"
                                     onClick={() => { document.getElementById("invite-friends").style.display = 'none' }} >
                                     Закрыть
-                            </Button>
+                                </Button>
                             </div>
                         </div>
                     </div>
 
+                    <div id="confirm-delete" className="confirm-delete" style={{ display: 'none' }}>
+                        <div className="confirm-delete-window">
+                            <h3>Вы увернны, что хотите удалить данное событие безвозвратно?</h3>
+                            <div className="confirm-delete-btns">
+                                <Button color="primary" className="confirm-delete-yes" variant="contained"
+                                    onClick={this.deleteEvent} >
+                                    Да
+                                </Button>
+                                <Button color="primary" className="confirm-delete-no" variant="contained"
+                                    onClick={() => { document.getElementById("confirm-delete").style.display = 'none' }} >
+                                    Нет
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="no-rules" className="confirm-delete" style={{ display: 'none' }}>
+                        <div className="confirm-delete-window">
+                            <h3>Вы увернны, что хотите удалить данное событие безвозвратно?</h3>
+                            <div className="confirm-delete-btns">
+                                <Button color="primary" className="confirm-delete-yes" variant="contained"
+                                    onClick={this.deleteEvent} >
+                                    Да
+                                </Button>
+                                <Button color="primary" className="confirm-delete-no" variant="contained"
+                                    onClick={() => { document.getElementById("confirm-delete").style.display = 'none' }} >
+                                    Нет
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
 
             );

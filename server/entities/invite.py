@@ -8,6 +8,8 @@ class Invite(DatabaseObject):
         self.receiver_id = receiver_id
         self.type = invite_type
         self.event_id = event_id  # ид куда приглашают
+        self.sender_name = ""
+        self.event_name = ""
 
     def to_json(self):
         return {
@@ -15,5 +17,7 @@ class Invite(DatabaseObject):
             'sender_id': self.sender_id,
             'receiver_id': self.receiver_id,
             'type': self.type,
-            'event_id': self.event_id
+            'event_id': self.event_id,
+            'sender_name': self.sender_name,
+            'event_name': self.event_name
         }
