@@ -1,8 +1,10 @@
 from bson import ObjectId
 
-from server.database import database
+from server.database import database, user_dao
 from server.database.database import DB, id_is_valid
+from server.database.events import event_dao
 from server.entities.invite import Invite
+from server.enums import InviteType
 
 invites_collection = DB['invites']
 
@@ -24,11 +26,21 @@ def get_invite(invite_id):
     if json is None:
         return None
 
-    return Invite(json['sender_id'],
-                  json['receiver_id'],
-                  json['type'],
-                  json['event_id'],
-                  json['_id'])
+    invite = Invite(json['sender_id'],
+                    json['receiver_id'],
+                    json['type'],
+                    json['event_id'],
+                    json['_id'])
+
+    if invite.type == InviteType.FRIEND:
+        user = user_dao.get_user(invite.sender_id)
+        invite.sender_name = user.name
+
+    if invite.type == InviteType.EVENT:
+        event = event_dao.get_event(invite.event_id)
+        invite.event_name = event.name
+
+    return invite
 
 
 def is_exists(invite_id):
