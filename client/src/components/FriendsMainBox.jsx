@@ -70,7 +70,6 @@ export default class FriendsMainBox extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         const listItems = this.state.friends.map(
             (val) => <Friend friend={val} key={val.id} removeFriend={this.removeFriend}/>);
 
