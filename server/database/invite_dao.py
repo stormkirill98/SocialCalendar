@@ -38,7 +38,8 @@ def get_invite(invite_id):
 
     if invite.type == InviteType.EVENT:
         event = event_dao.get_event(invite.event_id)
-        invite.event_name = event.name
+        if event is not None:
+            invite.event_name = event.name
 
     return invite
 
