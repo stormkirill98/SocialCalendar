@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/Friends.css';
 import Button from "@material-ui/core/Button";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import ChatIcon from '@material-ui/icons/Chat';
 
 
 export default class NotAFriend extends React.Component {

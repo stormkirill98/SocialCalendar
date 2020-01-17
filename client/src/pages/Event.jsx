@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ExitIcon from '@material-ui/icons/ExitToApp';
-import ExitIcon2 from '@material-ui/icons/Map';
 import FriendForEvent from "../components/FriendForEvent"
 
 export default class Event extends React.Component {
@@ -84,7 +83,7 @@ export default class Event extends React.Component {
                 document.getElementById("confirm-delete").style.display = 'none';
                 window.location.replace("https://127.0.0.1:5000/");
             } else {
-                if (response.status == 403) {
+                if (response.status === 403) {
                     document.getElementById("confirm-delete").style.display = 'none';
                     document.getElementById("no-rules").style.display = 'flex';
                 }
@@ -140,7 +139,7 @@ export default class Event extends React.Component {
                                         </Button>
                                         {this.state.members ?
                                             <Button className="event-delete-btn"
-                                                onClick={this.leaveEvent}>
+                                                onClick={() => { document.getElementById("confirm-leave").style.display = 'flex' }}>
                                                 <ExitIcon />
                                             </Button>
                                             : ""
@@ -211,6 +210,22 @@ export default class Event extends React.Component {
                                 </Button>
                                 <Button color="primary" className="confirm-delete-no" variant="contained"
                                     onClick={() => { document.getElementById("confirm-delete").style.display = 'none' }} >
+                                    Нет
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="confirm-leave" className="confirm-delete" style={{ display: 'none' }}>
+                        <div className="confirm-delete-window">
+                            <h3>Вы увернны, что хотите покинуть событие?</h3>
+                            <div className="confirm-delete-btns">
+                                <Button color="primary" className="confirm-delete-yes" variant="contained"
+                                    onClick={this.leaveEvent} >
+                                    Да
+                                </Button>
+                                <Button color="primary" className="confirm-delete-no" variant="contained"
+                                    onClick={() => { document.getElementById("confirm-leave").style.display = 'none' }} >
                                     Нет
                                 </Button>
                             </div>

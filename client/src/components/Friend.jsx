@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/Friends.css';
 import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
-import ChatIcon from '@material-ui/icons/Chat';
 
 
 export default class Friend extends React.Component {

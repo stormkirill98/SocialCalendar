@@ -3,8 +3,7 @@ import "../css/CreateEvent.css";
 import Header from "../components/Header";
 import Button from "@material-ui/core/Button";
 import IconsGrid from "../components/IconsGrid";
-import { Redirect } from "react-router-dom";
-import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons';
+import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export default class CreateEvent extends React.Component {
     constructor(props) {

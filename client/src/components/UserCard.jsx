@@ -7,7 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import NotificationCenter from "./NotificationCenter";
-import { Redirect, Link } from "react-router-dom";
 
 export default class UserCard extends React.Component {
 
@@ -53,13 +52,13 @@ export default class UserCard extends React.Component {
                             <NotificationCenter className="notifications-center" />
 
                             <Button variant="contained" color="primary" className="settings-btn" size="small"
-                                onClick={() => { document.getElementById("app-exit").style.display = 'flex' }}>
+                                onClick={this.exit}>
                                 <ExitIcon fontSize="small" />
                             </Button>
                         </div>
                     </Grid>
                 </Grid>
-                <div id="app-exit" className="app-exit" style={{ display: 'none' }}>
+                {/* <div id="app-exit" className="app-exit" style={{ display: 'none' }}>
                     <div className="confirm-exit-window">
                         <h3>Вы точно хотите выйти?</h3>
                         <div className="confirm-delete-btns">
@@ -73,7 +72,7 @@ export default class UserCard extends React.Component {
                             </Button>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </>
         );
     }
