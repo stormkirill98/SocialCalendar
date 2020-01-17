@@ -24,7 +24,7 @@ export default class UserCard extends React.Component {
 
     exit() {
         fetch("/logout").then((response) => {
-            window.location.replace("https://127.0.0.1:5000/");
+            window.location.replace("https://social-calendar-tensor.herokuapp.com/");
         });
         //return <Redirect push to='/' />; //не робит почему то
     }
