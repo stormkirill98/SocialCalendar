@@ -24,7 +24,7 @@ export default class Login extends React.Component {
     }
 
     signIn() {
-        window.location.replace("https://127.0.0.1:5000/login")
+        window.location.replace("https://social-calendar-tensor.herokuapp.com/login")
     }
 
     render() {
